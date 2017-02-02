@@ -1,0 +1,11 @@
+﻿body {
+  margin: 0;
+  min-width: 320px;
+  background-color: #fff;
+  line-height: 1.6;
+}
+
+.error-text {
+  color: darkred;
+}
+

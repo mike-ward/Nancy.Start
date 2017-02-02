@@ -1,0 +1,33 @@
+﻿@{
+    Layout = "master.cshtml";
+    ViewBag.Title = "Login";
+}
+
+<div class="login-form">
+  <h1>Login</h1>
+
+  @if (ViewBag.AuthenticationError)
+  {
+      <h2 class="error-text">Invalid user or password</h2>
+  }
+
+  <form method="POST" 
+        class="pure-form pure-form-stacked" 
+        action="account/forms-authenticate?returnUrl=@(Request.Query["returnUrl"])">
+    
+    <div class="pure-control-group">
+      <label for="name">Email</label>
+      <input id="name" name="user" autofocus="autofocus" type="email" required>
+    </div>
+
+    <div class="pure-control-group">
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password"  required>
+    </div>
+
+    <div class="pure-control-group">
+      <button id="submit" type="submit" class="pure-button pure-button-primary">Log In</button>
+    </div>
+  
+  </form>
+</div>
