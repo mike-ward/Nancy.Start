@@ -22,9 +22,7 @@ namespace UnitTests.Controllers
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            response.Body["#content h1"]
-                .ShouldExistOnce()
-                .And.ShouldContain("This space for rent");
+            response.Body["#content h1"].ShouldExist();
         }
     }
 }

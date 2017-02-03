@@ -1,0 +1,15 @@
+{
+  "name": "js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "node .\\node_modules\\karma\\bin\\karma start",
+    "test-once": "node .\\node_modules\\karma\\bin\\karma start --single-run"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mithril": "1.0.0"
+  }
+}

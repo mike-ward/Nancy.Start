@@ -61,14 +61,14 @@ namespace TLA.Controllers
             nancyConventions.StaticContentsConventions.StyleBundle("styles.css",
                 new[]
                 {
-                    "css/pure-min.css",
-                    "css/*.css"
+                    "js/out/vendor.min.css",
+                    "js/out/app.css"
                 });
 
             nancyConventions.StaticContentsConventions.ScriptBundle("scripts.js",
                 new[]
                 {
-                    "js/out/vendor.js",
+                    "js/out/vendor.min.js",
                     "js/out/app.js"
                 });
         }

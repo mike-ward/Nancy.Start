@@ -177,9 +177,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Elmah\elmah.txt" />
-    <Content Include="css\account\login.css" />
-    <Content Include="css\base.css" />
-    <Content Include="css\pure-min.css" />
+    <Content Include="css\app\account\login.css" />
+    <Content Include="css\app\base.css" />
+    <Content Include="css\vendor\pure-min.css" />
     <Content Include="js\out\app.js" />
     <Content Include="NSass.Wrapper\NSass.Wrapper.x64.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -272,11 +272,33 @@ xcopy /s /y /R "$(SolutionDir)packages\Nancy.Viewengines.Razor.1.4.3\BuildProvid
 xcopy /s /y /R "$(SolutionDir)packages\Nancy.Viewengines.Razor.1.4.3\lib\Net40\Nancy.ViewEngines.Razor.dll" "$(ProjectDir)bin\"
 )</PostBuildEvent>
   </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
+  <!-- Here lies custom build steps to concat vendor specific js and css files -->
+  <Target Name="ConcatenateVendorScripts" AfterTargets="AfterBuild" Condition="$(NCrunch) != '1'">
+    <ItemGroup>
+      <ScriptFiles Include="js\node_modules\mithril\mithril.min.js" />
+    </ItemGroup>
+    <ItemGroup>
+      <VendorScriptFileContents Include="$([System.IO.File]::ReadAllText(%(ScriptFiles.Identity)))" />
+    </ItemGroup>
+    <WriteLinesToFile File="js\out\vendor.min.js" Lines="@(VendorScriptFileContents)" Overwrite="true" />
   </Target>
-  <Target Name="AfterBuild">
+  <Target Name="ConcatenateVendorCss" AfterTargets="AfterBuild" Condition="$(NCrunch) != '1'">
+    <ItemGroup>
+      <CssFiles Include="css\vendor\pure-min.css" />
+    </ItemGroup>
+    <ItemGroup>
+      <VendorCssFileContents Include="$([System.IO.File]::ReadAllText(%(CssFiles.Identity)))" />
+    </ItemGroup>
+    <WriteLinesToFile File="js\out\vendor.min.css" Lines="@(VendorCssFileContents)" Overwrite="true" />
   </Target>
-  -->
+  <Target Name="ConcatenateAppCss" AfterTargets="AfterBuild" Condition="$(NCrunch) != '1'">
+    <ItemGroup>
+      <AppCssFiles Include="css\app\base.css" />
+      <AppCssFiles Include="css\app\**\*.css" />
+    </ItemGroup>
+    <ItemGroup>
+      <AppCssFileContents Include="$([System.IO.File]::ReadAllText(%(AppCssFiles.Identity)))" />
+    </ItemGroup>
+    <WriteLinesToFile File="js\out\app.css" Lines="@(AppCssFileContents)" Overwrite="true" />
+  </Target>
 </Project>
