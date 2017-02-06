@@ -2,10 +2,8 @@
 using Nancy;
 using Nancy.Authentication.Forms;
 using Nancy.Bootstrapper;
-using Nancy.Conventions;
 using Nancy.Elmah;
 using Nancy.Json;
-using Nancy.Pile;
 using Nancy.TinyIoc;
 using TLA.Models;
 using TLA.Models.Authentication;
@@ -52,25 +50,6 @@ namespace TLA.Controllers
                 container.Register<IUserMapper, FormsUserMapper>();
                 container.Register<IUserRepository, FormsUserRepository>();
             }
-        }
-
-        protected override void ConfigureConventions(NancyConventions nancyConventions)
-        {
-            base.ConfigureConventions(nancyConventions);
-
-            nancyConventions.StaticContentsConventions.StyleBundle("styles.css",
-                new[]
-                {
-                    "js/out/vendor.min.css",
-                    "js/out/app.css"
-                });
-
-            nancyConventions.StaticContentsConventions.ScriptBundle("scripts.js",
-                new[]
-                {
-                    "js/out/vendor.min.js",
-                    "js/out/app.js"
-                });
         }
     }
 }
