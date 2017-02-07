@@ -76,6 +76,14 @@
       <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FluentAssertions, Version=4.19.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentAssertions.4.19.0\lib\net45\FluentAssertions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentAssertions.Core, Version=4.19.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentAssertions.4.19.0\lib\net45\FluentAssertions.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -151,6 +159,8 @@
     <Content Include="App_Data\Elmah\elmah.txt" />
     <Content Include="Content\app.css" />
     <Content Include="Content\app.js" />
+    <Content Include="Content\app.min.css" />
+    <Content Include="Content\app.min.js" />
     <Content Include="Content\vendor.min.css" />
     <Content Include="Content\vendor.min.js" />
     <Content Include="css\app\account\login.css" />
@@ -202,6 +212,9 @@
   <ItemGroup />
   <ItemGroup>
     <TypeScriptCompile Include="js\app\app.ts" />
+    <TypeScriptCompile Include="js\app\views\headerView.ts" />
+    <TypeScriptCompile Include="js\app\helpers\viewHelpers.ts" />
+    <TypeScriptCompile Include="js\app\views\homeView.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -240,6 +253,7 @@ xcopy /s /y /R "$(SolutionDir)packages\Nancy.Viewengines.Razor.1.4.3\lib\Net40\N
 )</PostBuildEvent>
   </PropertyGroup>
   <!-- Here lies custom build steps to concat vendor specific js and css files -->
+  <Import Project="$(SolutionDir)packages\AjaxMin.5.14.5506.26202\tools\net40\AjaxMin.targets" />
   <Target Name="ConcatenateVendorScripts" AfterTargets="AfterBuild" Condition="$(NCrunch) != '1'">
     <ItemGroup>
       <ScriptFiles Include="js\node_modules\mithril\mithril.min.js" />
@@ -267,5 +281,8 @@ xcopy /s /y /R "$(SolutionDir)packages\Nancy.Viewengines.Razor.1.4.3\lib\Net40\N
       <AppCssFileContents Include="$([System.IO.File]::ReadAllText(%(AppCssFiles.Identity)))" />
     </ItemGroup>
     <WriteLinesToFile File="Content\app.css" Lines="@(AppCssFileContents)" Overwrite="true" />
+  </Target>
+  <Target Name="Minify" AfterTargets="ConcatenateAppCss" Condition="$(NCrunch) != '1' And $(ConfigurationName) == 'Release'">
+    <AjaxMin CssSourceFiles="Content\app.css" CssSourceExtensionPattern="\.css$" CssTargetExtension=".css" JsSourceFiles="Content\app.js" JsSourceExtensionPattern="\.js$" JsTargetExtension=".js" />
   </Target>
 </Project>
