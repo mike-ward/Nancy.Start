@@ -2,7 +2,7 @@
 {
     public class ActiveDirectoryRedirectUrl : IAuthenticationReirectUrl
     {
-        public const string Url = "/account/active-directory-authenticate";
-        public string GetUrl => $"~{Url}";
+        public const string Url = "account/active-directory-authenticate";
+        public string GetUrl => Url;
     }
 }

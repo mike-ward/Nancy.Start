@@ -7,6 +7,7 @@ using System.Web;
 using Nancy;
 using Nancy.Authentication.Forms;
 using TLA.Models;
+using TLA.Models.Authentication;
 using TLA.Models.Authentication.ActiveDirectory;
 using TLA.Models.Extensions;
 using IUserMapper = TLA.Models.Authentication.IUserMapper;
@@ -18,7 +19,8 @@ namespace TLA.Controllers.Authentication
         public const string UserGroups = "activeDirectoryUserGroups";
         public const string AdminGroups = "activeDirectoryAdminGroups";
 
-        public ActiveDirectoryAuthenticateModule(IUserMapper userMapper)
+        public ActiveDirectoryAuthenticateModule(IAuthenticationReirectUrl authenticationReirectUrl, IUserMapper userMapper)
+            : base(authenticationReirectUrl)
         {
             Get[ActiveDirectoryRedirectUrl.Url] = p => Authenticate(userMapper);
         }
@@ -47,7 +49,7 @@ namespace TLA.Controllers.Authentication
 
             var claims = new string[0];
             if (adminRoles.Any(user.IsInRole))
-                claims = new[] {"admin"};
+                claims = new[] { "admin" };
             else if (userRoles.Any(user.IsInRole) == false)
                 throw new AuthenticationException(
                     $"Could not find valid role for {user.Identity.Name}\n\n" +

@@ -1,12 +1,14 @@
 ﻿module App.Views.Account {
-  export class LoginView {
+  class LoginView {
     constructor(private returnUrl: string, private errorMessage: string) {
     }
 
     view() {
       return m('view', [
+        m(new Components.PageHeader()),
+
         m('div.login-form', [
-          m('h1', 'Login'),
+          m('h2', 'Login'),
           m('h2.error-text', this.errorMessage),
           m(`form.pure-form.pure-form-stacked[action="account/forms-authenticate?returnUrl=${this.returnUrl}"][method="POST"])`, [
             m('.pure-control-group', [
@@ -21,8 +23,12 @@
               m('button.pure-button.pure-button-primary[id="submit"][type="submit"]', 'Log In')
             ])
           ])
-        ])
+        ]),
+
+        m(new Components.PageFooter())
       ]);
     }
   }
+
+  export const loginView = (url, msg) => new LoginView(url, msg);
 }

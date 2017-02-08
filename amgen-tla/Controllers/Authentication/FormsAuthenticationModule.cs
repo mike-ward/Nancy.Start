@@ -10,7 +10,8 @@ namespace TLA.Controllers.Authentication
 {
     public class FormsAuthenticationModule : BaseModule
     {
-        public FormsAuthenticationModule(IUserMapper userMapper, IViewRenderer viewRenderer)
+        public FormsAuthenticationModule(IAuthenticationReirectUrl authenticationReirectUrl, IUserMapper userMapper, IViewRenderer viewRenderer)
+            : base(authenticationReirectUrl)
         {
             Get[FormsRedirectUrl.Url] = p => View["account/login"];
             Post[FormsRedirectUrl.Url] = p => Authenticate(this.Bind<UserCredentials>(), userMapper, viewRenderer);
@@ -29,7 +30,8 @@ namespace TLA.Controllers.Authentication
             }
 
             var guid = userMapper.AddUser(userCredentials.User, "first", "last", new string[0]);
-            return this.LoginAndRedirect(guid, null, Request.Query["returnUrl"] as string ?? "~/home");
+            var url = Request.Query["returnUrl"] as string ?? "~/home";
+            return this.LoginAndRedirect(guid, null, url);
         }
     }
 }

@@ -6,7 +6,6 @@
 <script>
   const returnUrl = '@(Request.Query["returnUrl"])';
   const errorMsg = '@ViewBag.AuthenticationError';
-  const loginView = new App.Views.Account.LoginView(returnUrl, errorMsg);
 
-  m.mount(document.body, loginView);
+  mountView(App.Views.Account.loginView(returnUrl, errorMsg));
 </script>

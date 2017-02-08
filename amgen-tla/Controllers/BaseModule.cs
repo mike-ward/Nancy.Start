@@ -1,9 +1,17 @@
 ﻿using Nancy;
+using TLA.Models.Authentication;
 
 namespace TLA.Controllers
 {
     public class BaseModule : NancyModule
     {
-        // for the future
+        public BaseModule(IAuthenticationReirectUrl authenticationRedirectUrl)
+        {
+            Before += ctx =>
+            {
+                ViewBag.AuthenticationUrl = authenticationRedirectUrl.GetUrl;
+                return null;
+            };
+        }
     }
 }

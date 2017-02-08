@@ -16,6 +16,7 @@ view {
   max-width: 1024px;
 }
 
-.app-title {
-  text-align: center;
+.current-user-login {
+  float: right;
+  margin-right: 2em;
 }
