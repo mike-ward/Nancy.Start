@@ -1,9 +1,9 @@
 ﻿module App.Views {
-  export class HomeView {
+  export class WelcomeView {
     view() {
       return m('view', [
         m(new Components.PageHeader()),
-        m('h2', 'Home View')
+        m('h2', 'Welcome View')
       ]);
     }
   }

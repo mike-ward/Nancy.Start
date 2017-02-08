@@ -10,3 +10,12 @@
   color: darkred;
 }
 
+view {
+  display: block;
+  margin: 2em auto;
+  max-width: 1024px;
+}
+
+.app-title {
+  text-align: center;
+}

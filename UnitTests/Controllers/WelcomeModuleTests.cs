@@ -7,7 +7,7 @@ using TLA.Controllers;
 namespace UnitTests.Controllers
 {
     [TestClass]
-    public class IndexModuleTests
+    public class WelcomeModuleTests
     {
         [TestMethod]
         public void IndexPageShouldReturn200Ok()
@@ -15,14 +15,14 @@ namespace UnitTests.Controllers
             var browser = new Browser(with =>
             {
                 with.RootPathProvider(new ViewFolderRootPathProvider());
-                with.Module<IndexModule>();
+                with.Module<WelcomeModule>();
             });
 
             var response = browser.Get("/");
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            response.Body["#content h1"].ShouldExist();
+            response.Body["h1"].ShouldExist();
         }
     }
 }

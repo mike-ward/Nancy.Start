@@ -4,5 +4,6 @@
 }
 
 <script>
-    App.Helpers.mountView(App.homeView);
+  const homeView = new App.Views.HomeView();
+  m.mount(document.body, homeView);
 </script>

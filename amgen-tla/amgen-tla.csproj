@@ -159,8 +159,6 @@
     <Content Include="App_Data\Elmah\elmah.txt" />
     <Content Include="Content\app.css" />
     <Content Include="Content\app.js" />
-    <Content Include="Content\app.min.css" />
-    <Content Include="Content\app.min.js" />
     <Content Include="Content\vendor.min.css" />
     <Content Include="Content\vendor.min.js" />
     <Content Include="css\app\account\login.css" />
@@ -177,7 +175,7 @@
     <Compile Include="Models\Authentication\UserCredentials.cs" />
     <Compile Include="Controllers\Bootstrapper.cs" />
     <Compile Include="Controllers\HomeModule.cs" />
-    <Compile Include="Controllers\IndexModule.cs" />
+    <Compile Include="Controllers\WelcomeModule.cs" />
     <Compile Include="Controllers\BaseModule.cs" />
     <Compile Include="Models\Authentication\ActiveDirectory\ActiveDirectoryRedirectUrl.cs" />
     <Compile Include="Models\Authentication\ActiveDirectory\ActiveDirectoryUserMapper.cs" />
@@ -196,7 +194,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Views\index.cshtml" />
+    <Content Include="Views\welcome.cshtml" />
     <Content Include="App_Data\README.md" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <Content Include="Views\home.cshtml" />
@@ -209,12 +207,17 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="js\app\helpers\" />
+    <Folder Include="js\app\models\" />
+    <Folder Include="js\app\services\" />
+  </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="js\app\app.ts" />
-    <TypeScriptCompile Include="js\app\views\headerView.ts" />
-    <TypeScriptCompile Include="js\app\helpers\viewHelpers.ts" />
+    <TypeScriptCompile Include="js\app\components\pageHeader.ts" />
+    <TypeScriptCompile Include="js\app\views\account\loginView.ts" />
     <TypeScriptCompile Include="js\app\views\homeView.ts" />
+    <TypeScriptCompile Include="js\app\views\welcomeView.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
