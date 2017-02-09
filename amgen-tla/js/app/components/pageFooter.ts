@@ -1,5 +1,5 @@
 ﻿module App.Components {
-  export class PageFooter {
+  class PageFooter {
     view() {
       return m('.footer', [
         m('hr'),
@@ -7,4 +7,6 @@
       ]);
     }
   }
+
+  export const pageFooter = () => new PageFooter();
 }

@@ -1,5 +1,5 @@
 ﻿module App.Components {
-  export class PageHeader {
+  class PageHeader {
     view() {
       return m('.header', [
         m('h1', 'My Application Title'),
@@ -7,4 +7,6 @@
       ]);
     }
   }
+
+  export const pageHeader = () => new PageHeader();
 }

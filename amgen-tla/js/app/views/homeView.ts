@@ -2,9 +2,9 @@
   class HomeView {
     view() {
       return m('view', [
-        m(new Components.PageHeader()),
+        m(Components.pageHeader()),
         m('h2', 'Home View'),
-        m(new Components.PageFooter())
+        m(Components.pageFooter())
       ]);
     }
   }

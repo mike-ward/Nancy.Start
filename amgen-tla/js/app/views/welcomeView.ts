@@ -2,9 +2,9 @@
   class WelcomeView {
     view() {
       return m('view', [
-        m(new Components.PageHeader()),
+        m(Components.pageHeader()),
         m('h2', 'Welcome View'),
-        m(new Components.PageFooter())
+        m(Components.pageFooter())
       ]);
     }
   }
