@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Nancy;
 using Nancy.Testing;
 using TLA.Controllers;
+using TLA.Models.Authentication.Forms;
 
 namespace UnitTests.Controllers
 {
@@ -16,13 +17,12 @@ namespace UnitTests.Controllers
             {
                 with.RootPathProvider(new ViewFolderRootPathProvider());
                 with.Module<WelcomeModule>();
+                with.Dependency<FormsRedirectUrl>();
             });
 
             var response = browser.Get("/");
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
-
-            response.Body["h1"].ShouldExist();
         }
     }
 }

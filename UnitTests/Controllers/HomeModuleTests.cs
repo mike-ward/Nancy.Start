@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Nancy;
 using Nancy.Testing;
 using TLA.Controllers;
+using TLA.Models.Authentication.Forms;
 
 namespace UnitTests.Controllers
 {
@@ -16,10 +17,10 @@ namespace UnitTests.Controllers
             {
                 with.RootPathProvider(new ViewFolderRootPathProvider());
                 with.Module<HomeModule>();
+                with.Dependency<FormsRedirectUrl>();
             });
 
             var response = browser.Get("/home");
-
             response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
         }
     }
