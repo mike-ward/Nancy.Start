@@ -38,9 +38,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="amgen-tla">
-      <HintPath>..\amgen-tla\bin\amgen-tla.dll</HintPath>
-    </Reference>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
@@ -118,6 +115,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\Extensions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\amgen-tla\amgen-tla.csproj">
+      <Project>{b4f9c525-5c56-440e-b4c2-972a33d7c8cd}</Project>
+      <Name>amgen-tla</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

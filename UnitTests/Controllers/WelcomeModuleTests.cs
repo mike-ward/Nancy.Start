@@ -10,7 +10,7 @@ namespace UnitTests.Controllers
     public class WelcomeModuleTests
     {
         [TestMethod]
-        public void IndexPageShouldReturn200Ok()
+        public void WelcomePageShouldReturn200Ok()
         {
             var browser = new Browser(with =>
             {
