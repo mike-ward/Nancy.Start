@@ -195,6 +195,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="js\package.json" />
     <None Include="packages.config" />
     <Content Include="Views\welcome.cshtml" />
     <Content Include="App_Data\README.md" />

@@ -8,5 +8,5 @@
     }
   }
 
-  export const pageFooter = () => new PageFooter();
+  export const pageFooter = new PageFooter();
 }

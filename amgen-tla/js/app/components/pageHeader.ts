@@ -8,5 +8,5 @@
     }
   }
 
-  export const pageHeader = () => new PageHeader();
+  export const pageHeader = new PageHeader();
 }

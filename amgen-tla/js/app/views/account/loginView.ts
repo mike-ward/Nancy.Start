@@ -7,7 +7,7 @@
 
     view() {
       return m('view', [
-        m(Components.pageHeader()),
+        m(Components.pageHeader),
 
         m('div.login-form', [
           m('h2', 'Login'),
@@ -32,7 +32,7 @@
           ])
         ]),
 
-        m(Components.pageFooter())
+        m(Components.pageFooter)
       ]);
     }
   }
