@@ -201,6 +201,7 @@
     <Content Include="js\app\views\homeView.tst" />
     <Content Include="js\app\views\account\loginView.tst" />
     <Content Include="js\app\components\pageFooter.tst" />
+    <Content Include="js\app\components\pageHeader.tst" />
     <None Include="packages.config" />
     <Content Include="Views\welcome.cshtml" />
     <Content Include="App_Data\README.md" />
@@ -216,7 +217,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="js\app\helpers\" />
     <Folder Include="js\app\models\" />
     <Folder Include="js\app\services\" />
   </ItemGroup>
