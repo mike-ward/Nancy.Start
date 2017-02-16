@@ -166,6 +166,7 @@
     <Content Include="css\app\components\pageFooter.css" />
     <Content Include="css\app\components\pageHeader.css" />
     <Content Include="css\vendor\pure-min.css" />
+    <Content Include="js\karma.conf.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -196,6 +197,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="js\package.json" />
+    <Content Include="js\app\views\welcomeView.tst" />
+    <Content Include="js\app\views\homeView.tst" />
+    <Content Include="js\app\views\account\loginView.tst" />
+    <Content Include="js\app\components\pageFooter.tst" />
     <None Include="packages.config" />
     <Content Include="Views\welcome.cshtml" />
     <Content Include="App_Data\README.md" />

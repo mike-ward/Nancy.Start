@@ -2,9 +2,9 @@
   class WelcomeView {
     view() {
       return m('view', [
-        m(Components.pageHeader),
+        m(App.Components.pageHeader),
         m('h2', 'Welcome View'),
-        m(Components.pageFooter)
+        m(App.Components.pageFooter)
       ]);
     }
   }
