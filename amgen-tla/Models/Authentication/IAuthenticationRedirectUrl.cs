@@ -1,6 +1,6 @@
 ﻿namespace TLA.Models.Authentication
 {
-    public interface IAuthenticationReirectUrl
+    public interface IAuthenticationRedirectUrl
     {
         string GetUrl { get; }
     }

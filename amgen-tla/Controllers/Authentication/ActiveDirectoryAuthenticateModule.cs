@@ -19,8 +19,8 @@ namespace TLA.Controllers.Authentication
         public const string UserGroups = "activeDirectoryUserGroups";
         public const string AdminGroups = "activeDirectoryAdminGroups";
 
-        public ActiveDirectoryAuthenticateModule(IAuthenticationReirectUrl authenticationReirectUrl, IUserMapper userMapper)
-            : base(authenticationReirectUrl)
+        public ActiveDirectoryAuthenticateModule(IAuthenticationRedirectUrl authenticationRedirectUrl, IUserMapper userMapper)
+            : base(authenticationRedirectUrl)
         {
             Get[ActiveDirectoryRedirectUrl.Url] = p => Authenticate(userMapper);
         }

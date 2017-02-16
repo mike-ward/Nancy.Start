@@ -5,7 +5,7 @@ namespace TLA.Controllers
 {
     public class BaseModule : NancyModule
     {
-        public BaseModule(IAuthenticationReirectUrl authenticationRedirectUrl)
+        public BaseModule(IAuthenticationRedirectUrl authenticationRedirectUrl)
         {
             Before += ctx =>
             {

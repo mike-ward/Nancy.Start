@@ -5,8 +5,8 @@ namespace TLA.Controllers
 {
     public class WelcomeModule : BaseModule
     {
-        public WelcomeModule(IAuthenticationReirectUrl authenticationReirectUrl)
-            : base(authenticationReirectUrl)
+        public WelcomeModule(IAuthenticationRedirectUrl authenticationRedirectUrl)
+            : base(authenticationRedirectUrl)
         {
             Get["/"] = parameters => View["welcome"];
         }

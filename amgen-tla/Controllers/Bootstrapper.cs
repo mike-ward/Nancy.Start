@@ -29,7 +29,7 @@ namespace TLA.Controllers
             FormsAuthentication.Enable(pipelines,
                 new FormsAuthenticationConfiguration
                 {
-                    RedirectUrl = container.Resolve<IAuthenticationReirectUrl>().GetUrl,
+                    RedirectUrl = container.Resolve<IAuthenticationRedirectUrl>().GetUrl,
                     UserMapper = container.Resolve<IUserMapper>()
                 });
         }
@@ -40,13 +40,13 @@ namespace TLA.Controllers
 
             if (Configuration.ActiveDirectoryUserGroups().Any())
             {
-                container.Register<IAuthenticationReirectUrl, ActiveDirectoryRedirectUrl>();
+                container.Register<IAuthenticationRedirectUrl, ActiveDirectoryRedirectUrl>();
                 container.Register<IUserMapper, ActiveDirectoryUserMapper>();
                 container.Register<IUserRepository, ActiveDirectoryUserRepository>();
             }
             else
             {
-                container.Register<IAuthenticationReirectUrl, FormsRedirectUrl>();
+                container.Register<IAuthenticationRedirectUrl, FormsRedirectUrl>();
                 container.Register<IUserMapper, FormsUserMapper>();
                 container.Register<IUserRepository, FormsUserRepository>();
             }

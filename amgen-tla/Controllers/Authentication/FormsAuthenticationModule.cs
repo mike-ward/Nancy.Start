@@ -10,8 +10,8 @@ namespace TLA.Controllers.Authentication
 {
     public class FormsAuthenticationModule : BaseModule
     {
-        public FormsAuthenticationModule(IAuthenticationReirectUrl authenticationReirectUrl, IUserMapper userMapper, IViewRenderer viewRenderer)
-            : base(authenticationReirectUrl)
+        public FormsAuthenticationModule(IAuthenticationRedirectUrl authenticationRedirectUrl, IUserMapper userMapper, IViewRenderer viewRenderer)
+            : base(authenticationRedirectUrl)
         {
             Get[FormsRedirectUrl.Url] = p => View["account/login"];
             Post[FormsRedirectUrl.Url] = p => Authenticate(this.Bind<UserCredentials>(), userMapper, viewRenderer);

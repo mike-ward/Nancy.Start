@@ -186,7 +186,7 @@
     <Compile Include="Models\Authentication\Forms\FormsRedirectUrl.cs" />
     <Compile Include="Models\Authentication\Forms\FormsUserMapper.cs" />
     <Compile Include="Models\Authentication\Forms\FormsUserRepository.cs" />
-    <Compile Include="Models\Authentication\IAuthenticationReirectUrl.cs" />
+    <Compile Include="Models\Authentication\IAuthenticationRedirectUrl.cs" />
     <Compile Include="Models\Authentication\IUserRepository.cs" />
     <Compile Include="Models\Authentication\UserIdentity.cs" />
     <Compile Include="Models\Authentication\UserMapper.cs" />

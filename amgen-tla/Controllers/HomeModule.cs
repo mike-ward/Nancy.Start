@@ -5,8 +5,8 @@ namespace TLA.Controllers
 {
     public class HomeModule : BaseModule
     {
-        public HomeModule(IAuthenticationReirectUrl authenticationReirectUrl)
-            : base(authenticationReirectUrl)
+        public HomeModule(IAuthenticationRedirectUrl authenticationRedirectUrl)
+            : base(authenticationRedirectUrl)
         {
             this.RequiresAuthentication();
 
