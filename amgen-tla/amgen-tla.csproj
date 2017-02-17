@@ -175,15 +175,14 @@
     <Compile Include="Controllers\Authentication\ActiveDirectoryAuthenticateModule.cs" />
     <Compile Include="Controllers\Authentication\FormsAuthenticationModule.cs" />
     <Compile Include="Models\Authentication\IUserMapper.cs" />
+    <Compile Include="Models\Authentication\AuthenticationRedirectUrl.cs" />
     <Compile Include="Models\Authentication\UserCredentials.cs" />
     <Compile Include="Controllers\Bootstrapper.cs" />
     <Compile Include="Controllers\HomeModule.cs" />
     <Compile Include="Controllers\WelcomeModule.cs" />
     <Compile Include="Controllers\BaseModule.cs" />
-    <Compile Include="Models\Authentication\ActiveDirectory\ActiveDirectoryRedirectUrl.cs" />
     <Compile Include="Models\Authentication\ActiveDirectory\ActiveDirectoryUserMapper.cs" />
     <Compile Include="Models\Authentication\ActiveDirectory\ActiveDirectoryUserRepository.cs" />
-    <Compile Include="Models\Authentication\Forms\FormsRedirectUrl.cs" />
     <Compile Include="Models\Authentication\Forms\FormsUserMapper.cs" />
     <Compile Include="Models\Authentication\Forms\FormsUserRepository.cs" />
     <Compile Include="Models\Authentication\IAuthenticationRedirectUrl.cs" />

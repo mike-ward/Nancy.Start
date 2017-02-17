@@ -16,13 +16,11 @@ namespace TLA.Controllers
         {
             Before += ctx =>
             {
-                ViewBag.AuthenticationUrl = AuthenticationRedirectUrl?.GetUrl;
+                ViewBag.AuthenticationUrl = AuthenticationRedirectUrl.Url;
                 return null;
             };
 
             Get["/logout"] = p => this.LogoutAndRedirect("~/");
         }
-
-        public static IAuthenticationRedirectUrl AuthenticationRedirectUrl { get; set; }
     }
 }

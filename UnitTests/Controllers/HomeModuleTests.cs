@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Nancy;
 using Nancy.Testing;
 using TLA.Controllers;
-using TLA.Models.Authentication.Forms;
+using TLA.Models.Authentication;
 
 namespace UnitTests.Controllers
 {
@@ -17,7 +17,7 @@ namespace UnitTests.Controllers
             {
                 with.RootPathProvider(new ViewFolderRootPathProvider());
                 with.Module<HomeModule>();
-                with.Dependency<FormsRedirectUrl>();
+                with.Dependency<AuthenticationRedirectUrl>();
             });
 
             var response = browser.Get("/home");

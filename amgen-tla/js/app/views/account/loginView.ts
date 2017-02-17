@@ -1,6 +1,7 @@
 ﻿module App.Views.Account {
   class LoginView {
     constructor(
+      private readonly authenticationUrl: string,
       private readonly returnUrl: string,
       private readonly errorMessage: string) {
     }
@@ -13,7 +14,7 @@
           m('h2', 'Login'),
           m('h2.error-text', this.errorMessage),
 
-          m(`form.pure-form.pure-form-stacked[action="account/forms-authenticate?returnUrl=${this.returnUrl}"][method="POST"])`, [
+          m(`form.pure-form.pure-form-stacked[action="${this.authenticationUrl}?returnUrl=${this.returnUrl}"][method="POST"])`, [
 
             m('div.pure-control-group', [
               m('label[for="name"]', 'Email'),
@@ -37,5 +38,5 @@
     }
   }
 
-  export const loginView = (url, msg) => new LoginView(url, msg);
+  export const loginView = (authenticationUrl, returnUrl, msg) => new LoginView(authenticationUrl, returnUrl, msg);
 }

@@ -1,5 +1,6 @@
 ﻿using System.Configuration;
 using TLA.Controllers.Authentication;
+using TLA.Models.Authentication.ActiveDirectory;
 
 namespace TLA.Models
 {
@@ -7,13 +8,13 @@ namespace TLA.Models
     {
         public static string[] ActiveDirectoryUserGroups()
         {
-            var groups = ConfigurationManager.AppSettings[ActiveDirectoryAuthenticateModule.UserGroups];
+            var groups = ConfigurationManager.AppSettings[ActiveDirectoryUserMapper.UserGroups];
             return string.IsNullOrWhiteSpace(groups) ? new string[0] : groups.Split('|');
         }
 
         public static string[] ActiveDirectoryAdminGroups()
         {
-            var groups = ConfigurationManager.AppSettings[ActiveDirectoryAuthenticateModule.AdminGroups];
+            var groups = ConfigurationManager.AppSettings[ActiveDirectoryUserMapper.AdminGroups];
             return string.IsNullOrWhiteSpace(groups) ? new string[0] : groups.Split('|');
         }
     }

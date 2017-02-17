@@ -40,18 +40,14 @@ namespace TLA.Controllers
 
             if (Configuration.ActiveDirectoryUserGroups().Any())
             {
-                container.Register<IAuthenticationRedirectUrl, ActiveDirectoryRedirectUrl>();
                 container.Register<IUserMapper, ActiveDirectoryUserMapper>();
                 container.Register<IUserRepository, ActiveDirectoryUserRepository>();
             }
             else
             {
-                container.Register<IAuthenticationRedirectUrl, FormsRedirectUrl>();
                 container.Register<IUserMapper, FormsUserMapper>();
                 container.Register<IUserRepository, FormsUserRepository>();
             }
-
-            BaseModule.AuthenticationRedirectUrl = container.Resolve<IAuthenticationRedirectUrl>();
         }
     }
 }

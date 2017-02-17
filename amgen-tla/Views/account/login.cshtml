@@ -4,8 +4,9 @@
 }
 
 <script>
+  const authenticationUrl = '@ViewBag.AuthenticationUrl';
   const returnUrl = '@(Request.Query["returnUrl"])';
   const errorMsg = '@ViewBag.AuthenticationError';
 
-  mountView(App.Views.Account.loginView(returnUrl, errorMsg));
+  mountView(App.Views.Account.loginView(authenticationUrl, returnUrl, errorMsg));
 </script>

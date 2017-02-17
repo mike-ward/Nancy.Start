@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Nancy;
 using Nancy.Security;
+using Nancy.ViewEngines;
 
 namespace TLA.Models.Authentication
 {
@@ -29,6 +30,11 @@ namespace TLA.Models.Authentication
             });
 
             return guid;
+        }
+
+        public virtual Response Authenticate(INancyModule nancyModule, IUserMapper userMapper, UserCredentials userCredentials, IViewRenderer viewRenderer)
+        {
+            throw new NotImplementedException();
         }
     }
 }
