@@ -17,5 +17,11 @@ namespace TLA.Models
             var groups = ConfigurationManager.AppSettings[ActiveDirectoryUserMapper.AdminGroups];
             return string.IsNullOrWhiteSpace(groups) ? new string[0] : groups.Split('|');
         }
+
+        public static string UserRepositoryPath()
+        {
+            var path = ConfigurationManager.AppSettings["UserRepository"];
+            return path;
+        }
     }
 }

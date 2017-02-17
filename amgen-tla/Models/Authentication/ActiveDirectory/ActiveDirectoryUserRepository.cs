@@ -6,22 +6,37 @@ namespace TLA.Models.Authentication.ActiveDirectory
 {
     public class ActiveDirectoryUserRepository : IUserRepository
     {
-        public IUserIdentity User(Guid id)
+        public UserIdentity User(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public IUserIdentity User(string username)
+        public UserIdentity User(string username)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<IUserIdentity> GetAllUsers()
+        public IEnumerable<UserIdentity> GetAllUsers()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<IUserIdentity> GetAdminUsers()
+        public IEnumerable<UserIdentity> GetAdminUsers()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddUser(UserIdentity userIdentity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteUser(UserIdentity userIdentity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateUser(UserIdentity userIdentity)
         {
             throw new NotImplementedException();
         }

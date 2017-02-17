@@ -6,7 +6,7 @@ namespace TLA.Controllers.Authentication
     {
         public ActiveDirectoryAuthenticateModule(IUserMapper userMapper)
         {
-            Get[AuthenticationRedirectUrl.Url] = p => userMapper.Authenticate(this, userMapper, null, null);
+            Get[AuthenticationRedirectUrl.Url] = p => userMapper.Authenticate(this, userMapper, null, null, null);
         }
     }
 }

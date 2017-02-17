@@ -19,6 +19,7 @@ namespace TLA.Models.Authentication.ActiveDirectory
         public override Response Authenticate(
             INancyModule nancyModule,
             IUserMapper userMapper,
+            IUserRepository userRepositoryNotUsed,
             UserCredentials userCredentialsNotUsed,
             IViewRenderer viewRendererNotUsed)
         {

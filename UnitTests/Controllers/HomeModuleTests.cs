@@ -17,7 +17,6 @@ namespace UnitTests.Controllers
             {
                 with.RootPathProvider(new ViewFolderRootPathProvider());
                 with.Module<HomeModule>();
-                with.Dependency<AuthenticationRedirectUrl>();
             });
 
             var response = browser.Get("/home");

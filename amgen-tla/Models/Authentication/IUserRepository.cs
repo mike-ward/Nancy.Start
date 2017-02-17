@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using Nancy.Security;
 
 namespace TLA.Models.Authentication
 {
     public interface IUserRepository
     {
-        IUserIdentity User(Guid id);
-        IUserIdentity User(string username);
-        IEnumerable<IUserIdentity> GetAllUsers();
-        IEnumerable<IUserIdentity> GetAdminUsers();
+        UserIdentity User(Guid id);
+        UserIdentity User(string username);
+        IEnumerable<UserIdentity> GetAllUsers();
+        IEnumerable<UserIdentity> GetAdminUsers();
+        void AddUser(UserIdentity userIdentity);
+        void DeleteUser(UserIdentity userIdentity);
+        void UpdateUser(UserIdentity userIdentity);
     }
 }

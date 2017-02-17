@@ -1,0 +1,30 @@
+[
+  {
+    "Id": "57ee26d8-a4b9-48a2-a6f6-71c119ac4226",
+    "UserName": "admin@admin.com",
+    "Password": "0e379e0493aab63dfa0d9047e52620ae",
+    "Claims": [
+      "admin"
+    ],
+    "FirstName": "my",
+    "LastName": "admin",
+    "CreatedOn": "2017-02-17T21:17:56.3380258Z",
+    "LastModified": "2017-02-17T21:17:56.3380258Z",
+    "LastPasswordChange": "2017-02-17T21:17:56.3380258Z",
+    "LastLogin": "2017-02-17T21:17:56.342028Z"
+  },
+  {
+    "Id": "ba791344-a2eb-4688-8799-a20524bc660d",
+    "UserName": "admin@admin.com",
+    "Password": "22d477b17417471c40dbdc8d8d0b0d00",
+    "Claims": [
+      "admin"
+    ],
+    "FirstName": "my",
+    "LastName": "admin",
+    "CreatedOn": "2017-02-17T21:17:56.3430291Z",
+    "LastModified": "2017-02-17T21:17:56.3430291Z",
+    "LastPasswordChange": "2017-02-17T21:17:56.3430291Z",
+    "LastLogin": "0001-01-01T00:00:00"
+  }
+]

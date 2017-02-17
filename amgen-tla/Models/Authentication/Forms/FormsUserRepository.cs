@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Web;
-using Nancy.Security;
 using Newtonsoft.Json;
 
 namespace TLA.Models.Authentication.Forms
@@ -13,24 +12,26 @@ namespace TLA.Models.Authentication.Forms
     {
         private static readonly object LockObj = new object();
 
-        public IUserIdentity User(Guid id)
+        public UserIdentity User(Guid id)
         {
-            throw new NotImplementedException();
+            var users = ReadUsers();
+            return users.SingleOrDefault(user => user.Id == id);
         }
 
-        public IUserIdentity User(string username)
+        public UserIdentity User(string username)
         {
-            throw new NotImplementedException();
+            var users = ReadUsers();
+            return users.SingleOrDefault(user => user.UserName.Equals(username, StringComparison.CurrentCultureIgnoreCase));
         }
 
-        public IEnumerable<IUserIdentity> GetAllUsers()
+        public IEnumerable<UserIdentity> GetAllUsers()
         {
-            throw new NotImplementedException();
+            return ReadUsers();
         }
 
-        public IEnumerable<IUserIdentity> GetAdminUsers()
+        public IEnumerable<UserIdentity> GetAdminUsers()
         {
-            throw new NotImplementedException();
+            return ReadUsers().Where(user => user.Claims.Contains("admin")).ToList();
         }
 
         private static List<UserIdentity> ReadUsers()
@@ -45,7 +46,7 @@ namespace TLA.Models.Authentication.Forms
                 var path = GetFilePath();
 
                 return !File.Exists(path)
-                    ? new List<UserIdentity>()
+                    ? new List<UserIdentity> {new UserIdentity("admin@admin.com", "admin", new[] {"admin"}, "my", "admin")}
                     : JsonConvert.DeserializeObject<List<UserIdentity>>(File.ReadAllText(path));
             }
             finally
@@ -54,7 +55,7 @@ namespace TLA.Models.Authentication.Forms
             }
         }
 
-        private static void WriteUsers(IReadOnlyCollection<UserIdentity> users)
+        private static void WriteUsers(IEnumerable<UserIdentity> users)
         {
             try
             {
@@ -76,7 +77,8 @@ namespace TLA.Models.Authentication.Forms
                 // Rename existing file
                 if (File.Exists(path)) File.Move(path, backup);
 
-                File.WriteAllText(path, JsonConvert.SerializeObject(users, Formatting.Indented));
+                var orderedUsers = users.OrderBy(user => user.Id).ToList();
+                File.WriteAllText(path, JsonConvert.SerializeObject(orderedUsers, Formatting.Indented));
             }
             finally
             {
@@ -87,31 +89,40 @@ namespace TLA.Models.Authentication.Forms
         private static string GetFilePath()
         {
             // If no config setting, return default
-            var cfg = ConfigurationManager.AppSettings["UserRepository"];
-            if (cfg == null)
-            {
-                return HttpContext.Current.Server.MapPath("~/App_Data/Users.dat");
-            }
+            var cfg = Configuration.UserRepositoryPath() ?? "Users.dat";
 
-            // If config setting is rooted, return as is
             var path = Path.IsPathRooted(cfg)
                 ? cfg
-                : HttpContext.Current.Server.MapPath("~/App_Data/" + cfg); // Otherwise, root the setting in the default path
-
-            if (!File.Exists(path))
-            {
-
-            }
+                : HttpContext.Current.Server.MapPath("~/App_Data/" + cfg);
 
             return path;
         }
 
         public void AddUser(UserIdentity userIdentity)
         {
-            if (userIdentity == null) throw new ArgumentNullException(nameof(userIdentity));
+            Require.ArgumentNotNull(userIdentity, nameof(userIdentity));
             var users = ReadUsers();
             users.Add(userIdentity);
             WriteUsers(users);
+        }
+
+        public void DeleteUser(UserIdentity userIdentity)
+        {
+            Require.ArgumentNotNull(userIdentity, nameof(userIdentity));
+            var users = ReadUsers();
+            var updatedUsers = users.Where(user => user.Id != userIdentity.Id).ToList();
+            WriteUsers(updatedUsers);
+        }
+
+        public void UpdateUser(UserIdentity userIdentity)
+        {
+            Require.ArgumentNotNull(userIdentity, nameof(userIdentity));
+            var users = ReadUsers();
+            var updatedUsers = users
+                .Where(user => user.Id != userIdentity.Id)
+                .Concat(new[] {userIdentity})
+                .ToList();
+            WriteUsers(updatedUsers);
         }
     }
 }

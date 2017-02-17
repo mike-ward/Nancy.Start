@@ -32,7 +32,12 @@ namespace TLA.Models.Authentication
             return guid;
         }
 
-        public virtual Response Authenticate(INancyModule nancyModule, IUserMapper userMapper, UserCredentials userCredentials, IViewRenderer viewRenderer)
+        public virtual Response Authenticate(
+            INancyModule nancyModule, 
+            IUserMapper userMapper,
+            IUserRepository userRepository, 
+            UserCredentials userCredentials, 
+            IViewRenderer viewRenderer)
         {
             throw new NotImplementedException();
         }
