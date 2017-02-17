@@ -6,21 +6,23 @@ namespace TLA.Controllers
 {
     public class BaseModule : NancyModule
     {
-        public BaseModule(IAuthenticationRedirectUrl authenticationRedirectUrl)
-            : this(string.Empty, authenticationRedirectUrl)
+        public BaseModule()
+            : this(string.Empty)
         {
         }
 
-        public BaseModule(string modulePath, IAuthenticationRedirectUrl authenticationRedirectUrl)
+        public BaseModule(string modulePath)
             : base(modulePath)
         {
             Before += ctx =>
             {
-                ViewBag.AuthenticationUrl = authenticationRedirectUrl.GetUrl;
+                ViewBag.AuthenticationUrl = AuthenticationRedirectUrl?.GetUrl;
                 return null;
             };
 
             Get["/logout"] = p => this.LogoutAndRedirect("~/");
         }
+
+        public static IAuthenticationRedirectUrl AuthenticationRedirectUrl { get; set; }
     }
 }

@@ -1,12 +1,8 @@
-﻿
-using TLA.Models.Authentication;
-
-namespace TLA.Controllers
+﻿namespace TLA.Controllers
 {
     public class WelcomeModule : BaseModule
     {
-        public WelcomeModule(IAuthenticationRedirectUrl authenticationRedirectUrl)
-            : base(authenticationRedirectUrl)
+        public WelcomeModule()
         {
             Get["/"] = parameters => View["welcome"];
         }

@@ -50,6 +50,8 @@ namespace TLA.Controllers
                 container.Register<IUserMapper, FormsUserMapper>();
                 container.Register<IUserRepository, FormsUserRepository>();
             }
+
+            BaseModule.AuthenticationRedirectUrl = container.Resolve<IAuthenticationRedirectUrl>();
         }
     }
 }
