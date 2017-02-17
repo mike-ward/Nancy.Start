@@ -2,7 +2,7 @@
 {
     public class AuthenticationRedirectUrl : IAuthenticationRedirectUrl
     {
-        public const string Url = "account/authenticate";
+        public const string Url = "login";
         public string GetUrl => Url;
     }
 }
