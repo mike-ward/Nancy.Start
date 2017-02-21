@@ -35,6 +35,7 @@ namespace TLA.Models.Authentication
         public virtual Response Authenticate(
             INancyModule nancyModule, 
             IUserMapper userMapper,
+            IConfiguration configuration,
             IUserRepository userRepository, 
             UserCredentials userCredentials, 
             IViewRenderer viewRenderer)

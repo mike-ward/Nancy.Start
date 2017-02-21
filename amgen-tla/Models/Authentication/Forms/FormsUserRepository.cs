@@ -1,16 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Web;
 using Newtonsoft.Json;
+using TLA.Models.System;
 
 namespace TLA.Models.Authentication.Forms
 {
     public class FormsUserRepository : IUserRepository
     {
         private static readonly object LockObj = new object();
+        private readonly IConfiguration _configuration;
+        private readonly IFile _file;
+        private readonly IPath _path;
+
+        public FormsUserRepository(IPath path, IFile file, IConfiguration configuration)
+        {
+            _path = path;
+            _file = file;
+            _configuration = configuration;
+        }
 
         public UserIdentity User(Guid id)
         {
@@ -61,68 +70,44 @@ namespace TLA.Models.Authentication.Forms
             WriteUsers(updatedUsers);
         }
 
-        private static List<UserIdentity> ReadUsers()
+        private List<UserIdentity> ReadUsers()
         {
-            try
+            var path = GetFilePath();
+
+            if (!_file.Exists(path))
             {
-                if (!Monitor.TryEnter(LockObj, 2000))
-                {
-                    return new List<UserIdentity>();
-                }
-
-                var path = GetFilePath();
-
-                if (!File.Exists(path))
-                {
-                    var defaultUser = new List<UserIdentity> {new UserIdentity("admin@admin.com", "admin", new[] {"admin"}, "my", "admin")};
-                    WriteUsers(defaultUser);
-                }
-
-                return JsonConvert.DeserializeObject<List<UserIdentity>>(File.ReadAllText(path));
+                var defaultUser = new List<UserIdentity> {new UserIdentity("admin@admin.com", "admin", new[] {"admin"}, "my", "admin")};
+                WriteUsers(defaultUser);
             }
-            finally
-            {
-                Monitor.Exit(LockObj);
-            }
+
+            return JsonConvert.DeserializeObject<List<UserIdentity>>(_file.ReadAllText(path));
         }
 
-        private static void WriteUsers(IEnumerable<UserIdentity> users)
+        private void WriteUsers(IEnumerable<UserIdentity> users)
         {
-            try
-            {
-                if (!Monitor.TryEnter(LockObj, 2000))
-                {
-                    throw new Exception("User repository is locked, cannot update users");
-                }
+            var path = GetFilePath();
 
-                var path = GetFilePath();
+            var name = _path.GetFileNameWithoutExtension(path);
+            var dir = _path.GetDirectoryName(path);
+            if (dir == null) throw new Exception("Cannot get repository directory");
+            var backup = _path.Combine(dir, name + ".bak");
 
-                var name = Path.GetFileNameWithoutExtension(path);
-                var dir = Path.GetDirectoryName(path);
-                if (dir == null) throw new Exception("Cannot get repository directory");
-                var backup = Path.Combine(dir, name + ".bak");
+            // Remove Backup
+            if (_file.Exists(backup)) _file.Delete(backup);
 
-                // Remove Backup
-                if (File.Exists(backup)) File.Delete(backup);
+            // Rename existing file
+            if (_file.Exists(path)) _file.Move(path, backup);
 
-                // Rename existing file
-                if (File.Exists(path)) File.Move(path, backup);
-
-                var orderedUsers = users.OrderBy(user => user.Id).ToList();
-                File.WriteAllText(path, JsonConvert.SerializeObject(orderedUsers, Formatting.Indented));
-            }
-            finally
-            {
-                Monitor.Exit(LockObj);
-            }
+            var orderedUsers = users.OrderBy(user => user.Id).ToList();
+            _file.WriteAllText(path, JsonConvert.SerializeObject(orderedUsers, Formatting.Indented));
         }
 
-        private static string GetFilePath()
+        private string GetFilePath()
         {
             // If no config setting, return default
-            var cfg = Configuration.UserRepositoryPath() ?? "Users.dat";
+            var cfg = _configuration.UserRepositoryPath() ?? "Users.dat";
 
-            var path = Path.IsPathRooted(cfg)
+            var path = _path.IsPathRooted(cfg)
                 ? cfg
                 : HttpContext.Current.Server.MapPath("~/App_Data/" + cfg);
 

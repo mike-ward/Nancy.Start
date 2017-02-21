@@ -19,13 +19,14 @@ namespace TLA.Models.Authentication.ActiveDirectory
         public override Response Authenticate(
             INancyModule nancyModule,
             IUserMapper userMapper,
+            IConfiguration configuration,
             IUserRepository userRepositoryNotUsed,
             UserCredentials userCredentialsNotUsed,
             IViewRenderer viewRendererNotUsed)
         {
             try
             {
-                var userAndClaims = AuthenticateAndAuthorizeUser(HttpContext.Current.ApplicationInstance.User);
+                var userAndClaims = AuthenticateAndAuthorizeUser(HttpContext.Current.ApplicationInstance.User, configuration);
                 var names = userAndClaims.Item1.Split(',').Reverse().ToArray();
                 var userName = string.Join(" ", names);
                 var guid = userMapper.AddUser(userName, names[0] ?? "", names[1] ?? "", userAndClaims.Item2);
@@ -38,10 +39,10 @@ namespace TLA.Models.Authentication.ActiveDirectory
             }
         }
 
-        private static Tuple<string, string[]> AuthenticateAndAuthorizeUser(IPrincipal user)
+        private static Tuple<string, string[]> AuthenticateAndAuthorizeUser(IPrincipal user, IConfiguration configuration)
         {
-            var userRoles = Configuration.ActiveDirectoryUserGroups();
-            var adminRoles = Configuration.ActiveDirectoryUserGroups();
+            var userRoles = configuration.ActiveDirectoryUserGroups();
+            var adminRoles = configuration.ActiveDirectoryUserGroups();
 
             var claims = new string[0];
             if (adminRoles.Any(user.IsInRole))

@@ -12,6 +12,7 @@ namespace TLA.Models.Authentication
         Response Authenticate(
             INancyModule nancyModule, 
             IUserMapper userMapper, 
+            IConfiguration configuration,
             IUserRepository userRepository, 
             UserCredentials userCredentials, 
             IViewRenderer viewRenderer);

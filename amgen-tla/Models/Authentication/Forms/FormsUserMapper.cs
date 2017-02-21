@@ -11,6 +11,7 @@ namespace TLA.Models.Authentication.Forms
         public override Response Authenticate(
             INancyModule nancyModule,
             IUserMapper userMapper,
+            IConfiguration configuration,
             IUserRepository userRepository,
             UserCredentials userCredentials,
             IViewRenderer viewRenderer)

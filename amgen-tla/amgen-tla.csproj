@@ -191,7 +191,14 @@
     <Compile Include="Models\Authentication\UserMapper.cs" />
     <Compile Include="Models\Configuration.cs" />
     <Compile Include="Models\Extensions\ExceptionExtensions.cs" />
+    <Compile Include="Models\IConfiguration.cs" />
     <Compile Include="Models\Require.cs" />
+    <Compile Include="Models\System\File.cs" />
+    <Compile Include="Models\System\IFile.cs" />
+    <Compile Include="Models\System\IMonitor.cs" />
+    <Compile Include="Models\System\IPath.cs" />
+    <Compile Include="Models\System\Monitor.cs" />
+    <Compile Include="Models\System\Path.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

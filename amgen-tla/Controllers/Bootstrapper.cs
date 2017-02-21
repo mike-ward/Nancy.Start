@@ -38,7 +38,9 @@ namespace TLA.Controllers
         {
             base.ConfigureApplicationContainer(container);
 
-            if (Configuration.ActiveDirectoryUserGroups().Any())
+            var configuration = container.Resolve<IConfiguration>();
+
+            if (configuration.ActiveDirectoryUserGroups().Any())
             {
                 container.Register<IUserMapper, ActiveDirectoryUserMapper>();
                 container.Register<IUserRepository, ActiveDirectoryUserRepository>();
