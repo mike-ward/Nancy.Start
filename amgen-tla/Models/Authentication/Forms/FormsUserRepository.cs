@@ -34,6 +34,33 @@ namespace TLA.Models.Authentication.Forms
             return ReadUsers().Where(user => user.Claims.Contains("admin")).ToList();
         }
 
+        public void AddUser(UserIdentity userIdentity)
+        {
+            Require.ArgumentNotNull(userIdentity, nameof(userIdentity));
+            var users = ReadUsers();
+            users.Add(userIdentity);
+            WriteUsers(users);
+        }
+
+        public void DeleteUser(UserIdentity userIdentity)
+        {
+            Require.ArgumentNotNull(userIdentity, nameof(userIdentity));
+            var users = ReadUsers();
+            var updatedUsers = users.Where(user => user.Id != userIdentity.Id).ToList();
+            WriteUsers(updatedUsers);
+        }
+
+        public void UpdateUser(UserIdentity userIdentity)
+        {
+            Require.ArgumentNotNull(userIdentity, nameof(userIdentity));
+            var users = ReadUsers();
+            var updatedUsers = users
+                .Where(user => user.Id != userIdentity.Id)
+                .Concat(new[] {userIdentity})
+                .ToList();
+            WriteUsers(updatedUsers);
+        }
+
         private static List<UserIdentity> ReadUsers()
         {
             try
@@ -45,9 +72,13 @@ namespace TLA.Models.Authentication.Forms
 
                 var path = GetFilePath();
 
-                return !File.Exists(path)
-                    ? new List<UserIdentity> {new UserIdentity("admin@admin.com", "admin", new[] {"admin"}, "my", "admin")}
-                    : JsonConvert.DeserializeObject<List<UserIdentity>>(File.ReadAllText(path));
+                if (!File.Exists(path))
+                {
+                    var defaultUser = new List<UserIdentity> {new UserIdentity("admin@admin.com", "admin", new[] {"admin"}, "my", "admin")};
+                    WriteUsers(defaultUser);
+                }
+
+                return JsonConvert.DeserializeObject<List<UserIdentity>>(File.ReadAllText(path));
             }
             finally
             {
@@ -96,33 +127,6 @@ namespace TLA.Models.Authentication.Forms
                 : HttpContext.Current.Server.MapPath("~/App_Data/" + cfg);
 
             return path;
-        }
-
-        public void AddUser(UserIdentity userIdentity)
-        {
-            Require.ArgumentNotNull(userIdentity, nameof(userIdentity));
-            var users = ReadUsers();
-            users.Add(userIdentity);
-            WriteUsers(users);
-        }
-
-        public void DeleteUser(UserIdentity userIdentity)
-        {
-            Require.ArgumentNotNull(userIdentity, nameof(userIdentity));
-            var users = ReadUsers();
-            var updatedUsers = users.Where(user => user.Id != userIdentity.Id).ToList();
-            WriteUsers(updatedUsers);
-        }
-
-        public void UpdateUser(UserIdentity userIdentity)
-        {
-            Require.ArgumentNotNull(userIdentity, nameof(userIdentity));
-            var users = ReadUsers();
-            var updatedUsers = users
-                .Where(user => user.Id != userIdentity.Id)
-                .Concat(new[] {userIdentity})
-                .ToList();
-            WriteUsers(updatedUsers);
         }
     }
 }

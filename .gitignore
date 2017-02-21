@@ -6,7 +6,7 @@
 */Content/vendor.min.js
 */Content/app.css
 */Content/app.js
-*/App_Data/Users.dat
+*/App_Data/Users.*
 
 # User-specific files
 *.suo
