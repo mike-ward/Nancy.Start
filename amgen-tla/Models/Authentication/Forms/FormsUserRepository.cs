@@ -75,7 +75,7 @@ namespace TLA.Models.Authentication.Forms
 
             if (!_file.Exists(path))
             {
-                var defaultUser = new List<UserIdentity> {new UserIdentity("admin@admin.com", "admin", new[] {"admin"}, "my", "admin")};
+                var defaultUser = new List<UserIdentity> {new UserIdentity("admin@admin.com", "admin", new[] {"admin"}, "you", "da admin")};
                 WriteUsers(defaultUser);
             }
 
