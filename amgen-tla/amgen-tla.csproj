@@ -89,6 +89,10 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Moq, Version=4.7.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.7.0\lib\net45\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Nancy, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Nancy.1.4.3\lib\net40\Nancy.dll</HintPath>
       <Private>True</Private>
@@ -174,6 +178,7 @@
   <ItemGroup>
     <Compile Include="Controllers\Authentication\ActiveDirectoryAuthenticateModule.cs" />
     <Compile Include="Controllers\Authentication\FormsAuthenticationModule.cs" />
+    <Compile Include="Models\Authentication\ModuleStaticWrappers.cs" />
     <Compile Include="Models\Authentication\IUserMapper.cs" />
     <Compile Include="Models\Authentication\AuthenticationRedirectUrl.cs" />
     <Compile Include="Models\Authentication\UserCredentials.cs" />

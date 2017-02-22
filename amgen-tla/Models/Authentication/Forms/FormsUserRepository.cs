@@ -9,7 +9,6 @@ namespace TLA.Models.Authentication.Forms
 {
     public class FormsUserRepository : IUserRepository
     {
-        private static readonly object LockObj = new object();
         private readonly IConfiguration _configuration;
         private readonly IFile _file;
         private readonly IPath _path;

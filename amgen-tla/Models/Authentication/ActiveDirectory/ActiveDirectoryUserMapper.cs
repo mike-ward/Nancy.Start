@@ -5,7 +5,6 @@ using System.Security.Authentication;
 using System.Security.Principal;
 using System.Web;
 using Nancy;
-using Nancy.Authentication.Forms;
 using Nancy.ViewEngines;
 using TLA.Models.Extensions;
 
@@ -22,7 +21,8 @@ namespace TLA.Models.Authentication.ActiveDirectory
             IConfiguration configuration,
             IUserRepository userRepositoryNotUsed,
             UserCredentials userCredentialsNotUsed,
-            IViewRenderer viewRendererNotUsed)
+            IViewRenderer viewRendererNotUsed,
+            IModuleStaticWrappers moduleStaticWrappers)
         {
             try
             {
@@ -30,7 +30,7 @@ namespace TLA.Models.Authentication.ActiveDirectory
                 var names = userAndClaims.Item1.Split(',').Reverse().ToArray();
                 var userName = string.Join(" ", names);
                 var guid = userMapper.AddUser(userName, names[0] ?? "", names[1] ?? "", userAndClaims.Item2);
-                return nancyModule.LoginAndRedirect(guid, null);
+                return moduleStaticWrappers.LoginAndRedirect(nancyModule, guid, null, "~/home");
             }
             catch (Exception ex)
             {

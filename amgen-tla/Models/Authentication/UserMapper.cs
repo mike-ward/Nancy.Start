@@ -19,6 +19,11 @@ namespace TLA.Models.Authentication
 
         public Guid AddUser(string userName, string firstName, string lastName, IEnumerable<string> claims)
         {
+            Require.ArgumentNotNullEmpty(userName, nameof(userName));
+            Require.ArgumentNotNullEmpty(firstName, nameof(firstName));
+            Require.ArgumentNotNullEmpty(lastName, nameof(lastName));
+            Require.ArgumentNotNull(claims, nameof(claims));
+
             var guid = Guid.NewGuid();
 
             Users.Add(guid, new UserIdentity
@@ -38,7 +43,8 @@ namespace TLA.Models.Authentication
             IConfiguration configuration,
             IUserRepository userRepository, 
             UserCredentials userCredentials, 
-            IViewRenderer viewRenderer)
+            IViewRenderer viewRenderer,
+            IModuleStaticWrappers moduleStaticWrappers)
         {
             throw new NotImplementedException();
         }

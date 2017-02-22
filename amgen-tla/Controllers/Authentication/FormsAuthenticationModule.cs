@@ -7,11 +7,11 @@ namespace TLA.Controllers.Authentication
 {
     public class FormsAuthenticationModule : BaseModule
     {
-        public FormsAuthenticationModule(IUserMapper userMapper, IConfiguration configuration, IUserRepository userRepository, IViewRenderer viewRenderer)
+        public FormsAuthenticationModule(IUserMapper userMapper, IConfiguration configuration, IUserRepository userRepository, IViewRenderer viewRenderer, IModuleStaticWrappers moduleStaticWrappers)
         {
             Get[AuthenticationRedirectUrl.Url] = p => View["account/login"];
             Post[AuthenticationRedirectUrl.Url] = p => userMapper.Authenticate(
-                this, userMapper, configuration, userRepository, this.Bind<UserCredentials>(), viewRenderer);
+                this, userMapper, configuration, userRepository, this.Bind<UserCredentials>(), viewRenderer, moduleStaticWrappers);
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using Nancy;
-using Nancy.Authentication.Forms;
 using Nancy.ViewEngines;
 
 namespace TLA.Models.Authentication.Forms
@@ -14,7 +13,8 @@ namespace TLA.Models.Authentication.Forms
             IConfiguration configuration,
             IUserRepository userRepository,
             UserCredentials userCredentials,
-            IViewRenderer viewRenderer)
+            IViewRenderer viewRenderer,
+            IModuleStaticWrappers moduleStaticWrappers)
         {
             var validUser = userRepository
                 .GetAllUsers()
@@ -31,7 +31,7 @@ namespace TLA.Models.Authentication.Forms
             var guid = userMapper.AddUser(userCredentials.User, validUser.FirstName, validUser.LastName, new string[0]);
             validUser.LastLogin = DateTime.UtcNow;
             userRepository.UpdateUser(validUser);
-            return nancyModule.LoginAndRedirect(guid, null, "~/home");
+            return moduleStaticWrappers.LoginAndRedirect(nancyModule, guid, null, "~/home");
         }
     }
 }

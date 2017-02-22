@@ -15,6 +15,7 @@ namespace TLA.Models.Authentication
             IConfiguration configuration,
             IUserRepository userRepository, 
             UserCredentials userCredentials, 
-            IViewRenderer viewRenderer);
+            IViewRenderer viewRenderer,
+            IModuleStaticWrappers moduleStaticWrappers);
     }
 }
