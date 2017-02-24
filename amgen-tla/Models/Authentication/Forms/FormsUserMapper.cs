@@ -2,6 +2,7 @@
 using System.Linq;
 using Nancy;
 using Nancy.ViewEngines;
+using TLA.Controllers.Authentication;
 
 namespace TLA.Models.Authentication.Forms
 {
@@ -24,14 +25,14 @@ namespace TLA.Models.Authentication.Forms
 
             if (validUser == null)
             {
-                nancyModule.Context.ViewBag.AuthenticationError = "Invalid user name or password";
-                return viewRenderer.RenderView(nancyModule.Context, "account/login");
+                nancyModule.Context.ViewBag.AuthenticationError = Constants.AuthenticationError;
+                return viewRenderer.RenderView(nancyModule.Context, FormsAuthenticationModule.AccountUserLogin);
             }
 
             var guid = userMapper.AddUser(userCredentials.User, validUser.FirstName, validUser.LastName, new string[0]);
             validUser.LastLogin = DateTime.UtcNow;
             userRepository.UpdateUser(validUser);
-            return moduleStaticWrappers.LoginAndRedirect(nancyModule, guid, null, "~/home");
+            return moduleStaticWrappers.LoginAndRedirect(nancyModule, guid, null, ModuleStaticWrappers.FallbackRedirectUrl);
         }
     }
 }

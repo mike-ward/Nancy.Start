@@ -4,7 +4,6 @@ using Nancy;
 using Nancy.Testing;
 using TLA.Controllers;
 using TLA.Controllers.Authentication;
-using TLA.Models.Authentication;
 
 namespace UnitTests.Controllers
 {

@@ -195,6 +195,7 @@
     <Compile Include="Models\Authentication\UserIdentity.cs" />
     <Compile Include="Models\Authentication\UserMapper.cs" />
     <Compile Include="Models\Configuration.cs" />
+    <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\Extensions\ExceptionExtensions.cs" />
     <Compile Include="Models\IConfiguration.cs" />
     <Compile Include="Models\Require.cs" />
@@ -213,12 +214,14 @@
     <Content Include="js\app\views\account\loginView.tst" />
     <Content Include="js\app\components\pageFooter.tst" />
     <Content Include="js\app\components\pageHeader.tst" />
+    <Content Include="js\app\views\account\addView.tst" />
     <None Include="packages.config" />
     <Content Include="Views\welcome.cshtml" />
     <Content Include="App_Data\README.md" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <Content Include="Views\home.cshtml" />
-    <Content Include="Views\account\login.cshtml" />
+    <Content Include="Views\account\user\login.cshtml" />
+    <Content Include="Views\account\user\addUser.cshtml" />
     <None Include="Views\master.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -235,6 +238,7 @@
     <TypeScriptCompile Include="js\app\app.ts" />
     <TypeScriptCompile Include="js\app\components\pageFooter.ts" />
     <TypeScriptCompile Include="js\app\components\pageHeader.ts" />
+    <TypeScriptCompile Include="js\app\views\account\addView.ts" />
     <TypeScriptCompile Include="js\app\views\account\loginView.ts" />
     <TypeScriptCompile Include="js\app\views\homeView.ts" />
     <TypeScriptCompile Include="js\app\views\welcomeView.ts" />

@@ -111,6 +111,7 @@
     <Compile Include="Controllers\WelcomeModuleTests.cs" />
     <Compile Include="Models\Authentication\AuthenticationRediretUrlTests.cs" />
     <Compile Include="Models\Authentication\Forms\FormsUserMapperTests.cs" />
+    <Compile Include="Models\Authentication\Forms\FormsUserRepositoryTests.cs" />
     <Compile Include="Models\Authentication\UserIdentityTests.cs" />
     <Compile Include="Models\Authentication\UserMapperTests.cs" />
     <Compile Include="Models\RequireTests.cs" />
