@@ -9,6 +9,7 @@ using TLA.Models;
 using TLA.Models.Authentication;
 using TLA.Models.Authentication.ActiveDirectory;
 using TLA.Models.Authentication.Forms;
+using TLA.Models.Piplelines;
 using IUserMapper = TLA.Models.Authentication.IUserMapper;
 
 namespace TLA.Controllers
@@ -21,7 +22,9 @@ namespace TLA.Controllers
         {
             base.ApplicationStartup(container, pipelines);
 
+            ViewBagItems.Enable(pipelines);
             Elmahlogging.Enable(pipelines, "elmah");
+
             JsonSettings.RetainCasing = true;
             JsonSettings.MaxJsonLength = int.MaxValue;
             StaticConfiguration.DisableErrorTraces = false;

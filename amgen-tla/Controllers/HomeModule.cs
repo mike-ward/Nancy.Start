@@ -1,8 +1,9 @@
-﻿using Nancy.Security;
+﻿using Nancy;
+using Nancy.Security;
 
 namespace TLA.Controllers
 {
-    public class HomeModule : BaseModule
+    public class HomeModule : NancyModule
     {
         public HomeModule()
         {

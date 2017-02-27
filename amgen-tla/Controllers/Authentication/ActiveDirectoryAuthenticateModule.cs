@@ -1,9 +1,10 @@
-﻿using TLA.Models;
+﻿using Nancy;
+using TLA.Models;
 using TLA.Models.Authentication;
 
 namespace TLA.Controllers.Authentication
 {
-    public class ActiveDirectoryAuthenticateModule : BaseModule
+    public class ActiveDirectoryAuthenticateModule : NancyModule
     {
         public ActiveDirectoryAuthenticateModule(IUserMapper userMapper, IConfiguration configuration, IModuleStaticWrappers moduleStaticWrappers)
         {

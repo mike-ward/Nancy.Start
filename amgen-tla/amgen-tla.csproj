@@ -185,7 +185,6 @@
     <Compile Include="Controllers\Bootstrapper.cs" />
     <Compile Include="Controllers\HomeModule.cs" />
     <Compile Include="Controllers\WelcomeModule.cs" />
-    <Compile Include="Controllers\BaseModule.cs" />
     <Compile Include="Models\Authentication\ActiveDirectory\ActiveDirectoryUserMapper.cs" />
     <Compile Include="Models\Authentication\ActiveDirectory\ActiveDirectoryUserRepository.cs" />
     <Compile Include="Models\Authentication\Forms\FormsUserMapper.cs" />
@@ -198,6 +197,7 @@
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\Extensions\ExceptionExtensions.cs" />
     <Compile Include="Models\IConfiguration.cs" />
+    <Compile Include="Models\Piplelines\ViewBagItems.cs" />
     <Compile Include="Models\Require.cs" />
     <Compile Include="Models\System\File.cs" />
     <Compile Include="Models\System\IFile.cs" />
@@ -211,10 +211,10 @@
     <Content Include="js\package.json" />
     <Content Include="js\app\views\welcomeView.tst" />
     <Content Include="js\app\views\homeView.tst" />
-    <Content Include="js\app\views\account\loginView.tst" />
+    <Content Include="js\app\views\account\user\loginView.tst" />
     <Content Include="js\app\components\pageFooter.tst" />
     <Content Include="js\app\components\pageHeader.tst" />
-    <Content Include="js\app\views\account\addView.tst" />
+    <Content Include="js\app\views\account\user\addView.tst" />
     <None Include="packages.config" />
     <Content Include="Views\welcome.cshtml" />
     <Content Include="App_Data\README.md" />
@@ -238,8 +238,8 @@
     <TypeScriptCompile Include="js\app\app.ts" />
     <TypeScriptCompile Include="js\app\components\pageFooter.ts" />
     <TypeScriptCompile Include="js\app\components\pageHeader.ts" />
-    <TypeScriptCompile Include="js\app\views\account\addView.ts" />
-    <TypeScriptCompile Include="js\app\views\account\loginView.ts" />
+    <TypeScriptCompile Include="js\app\views\account\user\addView.ts" />
+    <TypeScriptCompile Include="js\app\views\account\user\loginView.ts" />
     <TypeScriptCompile Include="js\app\views\homeView.ts" />
     <TypeScriptCompile Include="js\app\views\welcomeView.ts" />
   </ItemGroup>

@@ -8,6 +8,7 @@ namespace TLA.Models.Authentication
     public interface IModuleStaticWrappers
     {
         Response LoginAndRedirect(INancyModule module, Guid guid, DateTime? cookieExpiry, string fallbackRedirectUrl);
+        Response LogoutAndRedirect(INancyModule module, string redirectUrl);
     }
 
     public class ModuleStaticWrappers : IModuleStaticWrappers
@@ -17,6 +18,11 @@ namespace TLA.Models.Authentication
         public Response LoginAndRedirect(INancyModule module, Guid guid, DateTime? cookieExpiry, string fallbackRedirectUrl)
         {
             return module.LoginAndRedirect(guid, cookieExpiry, fallbackRedirectUrl);
+        }
+
+        public Response LogoutAndRedirect(INancyModule module, string redirectUrl)
+        {
+            return module.LogoutAndRedirect(redirectUrl);
         }
     }
 }

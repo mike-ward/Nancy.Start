@@ -1,11 +1,12 @@
-﻿using Nancy.ModelBinding;
+﻿using Nancy;
+using Nancy.ModelBinding;
 using Nancy.ViewEngines;
 using TLA.Models;
 using TLA.Models.Authentication;
 
 namespace TLA.Controllers.Authentication
 {
-    public class FormsAuthenticationModule : BaseModule
+    public class FormsAuthenticationModule : NancyModule
     {
         public const string  AccountUserLogin = "account/user/login";
         public const string  AccountUserAdd = "account/user/add";

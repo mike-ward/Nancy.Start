@@ -7,11 +7,9 @@ namespace UnitTests
 {
     public class ViewFolderRootPathProvider : IRootPathProvider
     {
-        private static string _cachedRootPath;
-
         public string GetRootPath()
         {
-            return _cachedRootPath ?? (_cachedRootPath = RootPath());
+            return RootPath();
         }
 
         private static string RootPath()

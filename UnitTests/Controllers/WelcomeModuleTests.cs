@@ -4,6 +4,7 @@ using Nancy;
 using Nancy.Testing;
 using TLA.Controllers;
 using TLA.Controllers.Authentication;
+using TLA.Models.Authentication;
 
 namespace UnitTests.Controllers
 {
@@ -18,6 +19,7 @@ namespace UnitTests.Controllers
                 with.RootPathProvider(new ViewFolderRootPathProvider());
                 with.Module<WelcomeModule>();
                 with.Dependency<FormsAuthenticationModule>();
+                with.Dependency<ModuleStaticWrappers>();
             });
 
             var response = browser.Get("/");

@@ -1,4 +1,6 @@
-﻿module App.Views {
+﻿// ReSharper disable RedundantQualifier
+
+module App.Views {
   class HomeView {
     view() {
       return m('view', [
