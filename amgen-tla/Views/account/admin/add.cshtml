@@ -1,0 +1,10 @@
+﻿@using TLA.Controllers.Account
+@{
+    Layout = "master.cshtml";
+    ViewBag.Title = "Add User";
+}
+
+<script>
+  mountView(App.Views.Account.Admin.addView('~/@AdminModule.AccountUserAdd', '@ViewBag.ErrorMessage'));
+</script>
+

@@ -13,7 +13,6 @@ namespace TLA.Models.Piplelines
 
         private static Response AddViewBagItems(NancyContext ctx)
         {
-            ctx.ViewBag.AuthenticationUrl = AuthenticationRedirectUrl.Url;
             return null;
         }
     }

@@ -1,6 +1,6 @@
 ﻿// ReSharper disable RedundantQualifier
 
-module App.Views.Account.User {
+module App.Views.Account.Admin {
   class AddView {
     constructor(
       private readonly addUserUrl: string,

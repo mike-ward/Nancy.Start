@@ -17,7 +17,7 @@
   <div class="current-user-login">
     @if (Html.CurrentUser == null)
     {
-        <a href="@ViewBag.AuthenticationUrl">log in</a>
+        <a href="~/@AuthenticationRedirectUrl.Url">log in</a>
     }
     else
     {

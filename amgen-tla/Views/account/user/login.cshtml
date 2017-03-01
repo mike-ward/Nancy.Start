@@ -1,12 +1,12 @@
-﻿@{
+﻿@using TLA.Models.Authentication
+@{
     Layout = "master.cshtml";
     ViewBag.Title = "Login";
 }
 
 <script>
-  const authenticationUrl = '@ViewBag.AuthenticationUrl';
   const returnUrl = '@(Request.Query["returnUrl"])';
   const errorMsg = '@ViewBag.AuthenticationError';
 
-  mountView(App.Views.Account.User.loginView(authenticationUrl, returnUrl, errorMsg));
+  mountView(App.Views.Account.User.loginView('~/@AuthenticationRedirectUrl.Url', returnUrl, errorMsg));
 </script>
