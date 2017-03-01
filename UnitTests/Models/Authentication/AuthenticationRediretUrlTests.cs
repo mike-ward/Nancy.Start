@@ -11,7 +11,7 @@ namespace UnitTests.Models.Authentication
         public void GetUrlShouldReturnLoginUrl()
         {
             var authenticationRedirectUrl = new AuthenticationRedirectUrl();
-            authenticationRedirectUrl.GetUrl.Should().Be("login");
+            authenticationRedirectUrl.GetUrl.Should().Be($"~/{AuthenticationRedirectUrl.Url}");
         }
     }
 }

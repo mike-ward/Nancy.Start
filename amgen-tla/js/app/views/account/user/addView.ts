@@ -1,7 +1,7 @@
 ﻿// ReSharper disable RedundantQualifier
 
 module App.Views.Account.User {
-  class AddUserView {
+  class AddView {
     constructor(
       private readonly addUserUrl: string,
       private readonly errorMessage: string) {
@@ -48,5 +48,5 @@ module App.Views.Account.User {
     }
   }
 
-  export const addUserView = (addUserUrl, msg) => new AddUserView(addUserUrl, msg);
+  export const addView = (addUserUrl, msg) => new AddView(addUserUrl, msg);
 }

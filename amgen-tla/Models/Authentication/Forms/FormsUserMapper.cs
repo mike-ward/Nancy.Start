@@ -26,13 +26,13 @@ namespace TLA.Models.Authentication.Forms
             if (validUser == null)
             {
                 nancyModule.Context.ViewBag.AuthenticationError = Constants.AuthenticationError;
-                return viewRenderer.RenderView(nancyModule.Context, FormsAuthenticationModule.AccountUserLogin);
+                return viewRenderer.RenderView(nancyModule.Context, AuthenticationRedirectUrl.Url);
             }
 
-            var guid = userMapper.AddUser(userCredentials.User, validUser.FirstName, validUser.LastName, new string[0]);
+            var guid = userMapper.AddUser(userCredentials.User, validUser.FirstName, validUser.LastName, validUser.Claims);
             validUser.LastLogin = DateTime.UtcNow;
             userRepository.UpdateUser(validUser);
-            return moduleStaticWrappers.LoginAndRedirect(nancyModule, guid, null, ModuleStaticWrappers.FallbackRedirectUrl);
+            return moduleStaticWrappers.LoginAndRedirect(nancyModule, guid, null, ModuleStaticWrappers.DefaultFallbackRedirectUrl);
         }
     }
 }

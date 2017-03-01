@@ -30,7 +30,7 @@ namespace TLA.Models.Authentication.ActiveDirectory
                 var names = userAndClaims.Item1.Split(',').Reverse().ToArray();
                 var userName = string.Join(" ", names);
                 var guid = userMapper.AddUser(userName, names[0] ?? "", names[1] ?? "", userAndClaims.Item2);
-                return moduleStaticWrappers.LoginAndRedirect(nancyModule, guid, null, ModuleStaticWrappers.FallbackRedirectUrl);
+                return moduleStaticWrappers.LoginAndRedirect(nancyModule, guid, null, ModuleStaticWrappers.DefaultFallbackRedirectUrl);
             }
             catch (Exception ex)
             {

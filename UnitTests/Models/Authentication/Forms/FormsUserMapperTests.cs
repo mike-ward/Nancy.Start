@@ -44,7 +44,7 @@ namespace UnitTests.Models.Authentication.Forms
             var viewRenderer = new Mock<IViewRenderer>();
             var moduleStaticWrappers = new Mock<IModuleStaticWrappers>();
 
-            var user = new UserIdentity("name", "xxx", new string[0], "first", "last");
+            var user = new UserIdentity("name", "xxx", new [] {"admin"}, "first", "last");
             var allUsers = new List<UserIdentity> {user};
             userRepository.Setup(ur => ur.GetAllUsers()).Returns(allUsers).Verifiable();
             userRepository.Setup(ur => ur.UpdateUser(user)).Verifiable();
@@ -78,7 +78,7 @@ namespace UnitTests.Models.Authentication.Forms
             var viewRenderer = new Mock<IViewRenderer>();
             var moduleStaticWrappers = new Mock<IModuleStaticWrappers>();
 
-            var user = new UserIdentity("name", "xyz", new string[0], "first", "last");
+            var user = new UserIdentity("name", "xyz", new[] { "admin" }, "first", "last");
             var allUsers = new List<UserIdentity> { user };
 
             userRepository.Setup(ur => ur.GetAllUsers()).

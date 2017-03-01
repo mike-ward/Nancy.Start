@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Newtonsoft.Json;
+using TLA.Controllers.Account;
 using TLA.Models.System;
 
 namespace TLA.Models.Authentication.Forms
@@ -75,7 +76,7 @@ namespace TLA.Models.Authentication.Forms
 
             if (!_file.Exists(path))
             {
-                var defaultUser = new List<UserIdentity> {new UserIdentity("admin@admin.com", "admin", new[] {"admin"}, "you", "da admin")};
+                var defaultUser = new List<UserIdentity> {new UserIdentity("admin@admin.com", "admin", new[] {AdminModule.AdminClaim}, "you", "da admin")};
                 WriteUsers(defaultUser);
             }
 

@@ -13,7 +13,7 @@ namespace TLA.Models.Authentication
 
     public class ModuleStaticWrappers : IModuleStaticWrappers
     {
-        public const string FallbackRedirectUrl = "~/home";
+        public const string DefaultFallbackRedirectUrl = "~/home";
 
         public Response LoginAndRedirect(INancyModule module, Guid guid, DateTime? cookieExpiry, string fallbackRedirectUrl)
         {

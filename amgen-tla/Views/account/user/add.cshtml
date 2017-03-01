@@ -1,0 +1,9 @@
+﻿@{
+    Layout = "master.cshtml";
+    ViewBag.Title = "Add User";
+}
+
+<script>
+  mountView(App.Views.Account.User.addView('~/account/user/add', '@ViewBag.ErrorMessage'));
+</script>
+
