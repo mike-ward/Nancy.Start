@@ -1,4 +1,6 @@
-﻿@using TLA.Models.Authentication
+﻿@using TLA.Controllers.Account
+@using TLA.Models.Authentication
+@using System.Linq;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,8 +23,13 @@
     }
     else
     {
-        <a href="~/account/update">@(((UserIdentity)Html.CurrentUser).UserName)</a>
+        <a href="~/@AdminModule.AccountUserUpdate">@(((UserIdentity)Html.CurrentUser).UserName)</a>
         <span>|</span>
+      if (((UserIdentity)Html.CurrentUser).Claims.Any(c => c == AdminModule.AdminClaim))
+      {
+            <a href="~/@AdminModule.AdminDashboardUrl">Admin</a>
+            <span>|</span>
+      }
         <a href="~/logout">log out</a>
     }
   </div>
