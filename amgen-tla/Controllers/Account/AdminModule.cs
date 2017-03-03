@@ -9,23 +9,24 @@ namespace TLA.Controllers.Account
     {
         public const string AdminClaim = "admin";
         public const string AdminDashboardUrl = "account/admin/dashboard";
-        public const string AccountUserAdd = "account/admin/add";
-        public const string AccountUserUpdate = "account/admin/update";
-        public const string AccountUserDelete = "account/admin/delete";
+        public const string AdminUserActionUrl = "account/admin/user";
 
         public AdminModule(IUserRepository userRepository)
         {
             this.RequiresAuthentication();
             this.RequiresClaims(AdminClaim);
 
-            Get[AccountUserAdd] = p => View[AccountUserAdd];
-            Post[AccountUserAdd] = p => Models.Account.AdminModel.AddUser(this.Bind<UserIdentity>(), userRepository);
+            Get[AdminDashboardUrl] = p => View["account/admin/dashboard"];
+            Get["account/admin/allUsers"] = p => Response.AsJson(userRepository.GetAllUsers());
 
-            Get[AccountUserUpdate] = p => View[AccountUserUpdate];
-            Post[AccountUserUpdate] = p => Models.Account.AdminModel.UpdateUser(this.Bind<UserIdentity>(), userRepository);
+            Get["account/admin/add"] = p => View["account/admin/add"];
+            Post[AdminUserActionUrl] = p => Models.Account.AdminModel.AddUser(this.Bind<UserIdentity>(), userRepository);
 
-            Get[AccountUserDelete] = p => View[AccountUserDelete];
-            Post[AccountUserDelete] = p => Models.Account.AdminModel.DeleteUser(this.Bind<UserIdentity>(), userRepository);
+            Get["account/admin/update"] = p => View["account/admin/update"];
+            Put[AdminUserActionUrl] = p => Models.Account.AdminModel.UpdateUser(this.Bind<UserIdentity>(), userRepository);
+
+            Get["account/admin/delete"] = p => View["account/admin/delete"];
+            Delete[AdminUserActionUrl] = p => Models.Account.AdminModel.DeleteUser(this.Bind<UserIdentity>(), userRepository);
         }
     }
 }

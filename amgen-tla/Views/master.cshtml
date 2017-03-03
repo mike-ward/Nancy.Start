@@ -23,7 +23,7 @@
     }
     else
     {
-        <a href="~/@AdminModule.AccountUserUpdate">@(((UserIdentity)Html.CurrentUser).UserName)</a>
+        <a href="~/@UserModule.AccountUserUpdate">@(((UserIdentity)Html.CurrentUser).UserName)</a>
         <span>|</span>
       if (((UserIdentity)Html.CurrentUser).Claims.Any(c => c == AdminModule.AdminClaim))
       {

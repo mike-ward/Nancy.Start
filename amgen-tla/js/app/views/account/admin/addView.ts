@@ -1,9 +1,11 @@
 ﻿// ReSharper disable RedundantQualifier
 
 module App.Views.Account.Admin {
+  export const addView = (userActionUrl:string, msg: string) => new AddView(userActionUrl, msg);
+
   class AddView {
     constructor(
-      private readonly addUserUrl: string,
+      private readonly userActionUrl: string,
       private readonly errorMessage: string) {
     }
 
@@ -15,7 +17,7 @@ module App.Views.Account.Admin {
           m('h2', 'New User'),
           m('h2.error-text', this.errorMessage),
 
-          m(`form.pure-form.pure-form-stacked[action="${this.addUserUrl}"][method="POST"])`, [
+          m(`form.pure-form.pure-form-stacked[action="${this.userActionUrl}"][method="POST"])`, [
             m('div.pure-control-group', [
               m('label[for="name"]', 'Email'),
               m('input[autofocus="autofocus"][id="name"][name="userName"][required=""][type="email"]')
@@ -47,6 +49,4 @@ module App.Views.Account.Admin {
       ]);
     }
   }
-
-  export const addView = (addUserUrl, msg) => new AddView(addUserUrl, msg);
 }
