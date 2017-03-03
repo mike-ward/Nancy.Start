@@ -167,6 +167,7 @@
     <Content Include="Content\vendor.min.js" />
     <Content Include="css\app\account\login.css" />
     <Content Include="css\app\base.css" />
+    <Content Include="css\app\components\grid.css" />
     <Content Include="css\app\components\pageFooter.css" />
     <Content Include="css\app\components\pageHeader.css" />
     <Content Include="css\vendor\pure-min.css" />
@@ -235,15 +236,14 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="js\app\services\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <TypeScriptCompile Include="js\app\app.ts" />
     <TypeScriptCompile Include="js\app\components\grid.ts" />
     <TypeScriptCompile Include="js\app\components\pageFooter.ts" />
     <TypeScriptCompile Include="js\app\components\pageHeader.ts" />
     <TypeScriptCompile Include="js\app\models\gridOptions.ts" />
+    <TypeScriptCompile Include="js\app\services\Renderers.ts" />
     <TypeScriptCompile Include="js\app\views\account\admin\addView.ts" />
     <TypeScriptCompile Include="js\app\views\account\admin\dashboardView.ts" />
     <TypeScriptCompile Include="js\app\views\account\user\loginView.ts" />

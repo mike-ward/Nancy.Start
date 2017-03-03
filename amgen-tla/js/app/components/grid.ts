@@ -26,12 +26,19 @@ module App.Components {
     }
 
     private emitBody() {
-      const body = this.gridOptions.data.map(row =>
-        m('tbody', [
-          m('tr', this.gridOptions.cells.map(cell => m('td', row[cell.id])))
-        ])
-      );
+      const body = m('tbody', [
+
+        this.gridOptions.data.map(row => m('tr', this.gridOptions.cells.map(
+          cell => m('td', this.renderCell(row[cell.id], cell.renderer)
+        ))))
+
+      ]);
       return body;
+    }
+
+    private renderCell(value: any, renderer: (v:any) => string): string {
+      const td = renderer ? renderer(value) : value;
+      return td;
     }
   }
 }

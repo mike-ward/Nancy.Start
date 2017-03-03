@@ -31,14 +31,24 @@ module App.Views.Account.Admin {
     }
 
     private allUsersGrid() {
+      const hideColumns = ['id', 'password'];
+      const dateColumns = ['createdOn', 'lastModified', 'lastPasswordChange', 'lastLogin'];
       const gridOptions = new App.Models.GridOptions();
+
       if (this.allUsers.length > 0) {
         const keys = Object.keys(this.allUsers[0]);
         gridOptions.cells = keys
-          .map(key => ({ id: key, title: key }))
-          .filter(cell => cell.id !== 'Password');
+          .filter(key => hideColumns.every(hc => hc !== key))
+          .map(key => ({
+            id: key,
+            title: App.Services.Renderers.camelIdentifierToTitle(key),
+            renderer: dateColumns.some(dc => dc === key)
+              ? App.Services.Renderers.toDateTime
+              : null
+          }));
         gridOptions.data = this.allUsers;
       }
+
       return m(App.Components.grid(gridOptions));
     }
   }
