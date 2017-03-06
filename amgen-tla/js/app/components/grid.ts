@@ -1,44 +1,68 @@
 ﻿// ReSharper disable RedundantQualifier
 
 module App.Components {
-  export const grid = (gridOptions: App.Models.GridOptions) => new Grid(gridOptions);
+  import GridOptions = App.Models.GridOptions;
+  import GridColumn = App.Models.GridColumn;
+
+  export const grid = (gridOptions: GridOptions) => new Grid(gridOptions);
 
   class Grid {
-    constructor(private readonly gridOptions: App.Models.GridOptions) {
+    constructor(private readonly gridOptions: GridOptions) {
     }
 
+    private sortedColumnId: string;
+    private sortDirection: boolean;
+
     view() {
-      return m('div.components-grid', [
+      return m('div.grid', [
 
         m('table.pure-table.pure-table-bordered', [
-          this.emitHead(),
-          this.emitBody()
+          this.tableHead(),
+          this.tableBody()
         ])
 
       ]);
     }
 
-    private emitHead() {
-      const header = m('thead', [
-        m('tr', this.gridOptions.cells.map(cell => m('th', cell.title)))
+    private tableHead() {
+      const thead = m('thead', [
+
+        m('tr', this.gridOptions.columns.map(column => m('th.grid-column-title', [
+          column.title,
+          this.sortIndicator(column)
+        ])))
+
       ]);
-      return header;
+      return thead;
     }
 
-    private emitBody() {
-      const body = m('tbody', [
+    private tableBody() {
+      const tbody = m('tbody', [
 
-        this.gridOptions.data.map(row => m('tr', this.gridOptions.cells.map(
+        this.gridOptions.data.map(row => m('tr', this.gridOptions.columns.map(
           cell => m('td', this.renderCell(row[cell.id], cell.renderer)
         ))))
 
       ]);
-      return body;
+      return tbody;
     }
 
     private renderCell(value: any, renderer: (v:any) => string): string {
-      const td = renderer ? renderer(value) : value;
-      return td;
+      const cellContents = renderer ? renderer(value) : value;
+      return cellContents;
+    }
+
+    private sortIndicator(column: GridColumn) {
+      if (!column.allowSort) return m('');
+      const isSorted = column.id === this.sortedColumnId;
+      const sortSymbol = isSorted ? (this.sortDirection ? '▲' : '▼') : '□';
+      const cssClass = `grid-column-sort-indicator${isSorted ? '' : '.grid-column-sort-indicator-hidden'}`;
+      const vnode = m(`span.${cssClass}`, sortSymbol);
+      return vnode;
+    }
+
+    private sortColumns(rows: {}[], column: string): any[] {
+      return rows.sort((l, r) => l[column] - r[column]);
     }
   }
 }

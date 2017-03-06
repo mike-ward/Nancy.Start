@@ -37,11 +37,12 @@ module App.Views.Account.Admin {
 
       if (this.allUsers.length > 0) {
         const keys = Object.keys(this.allUsers[0]);
-        gridOptions.cells = keys
+        gridOptions.columns = keys
           .filter(key => hideColumns.every(hc => hc !== key))
           .map(key => ({
             id: key,
             title: App.Services.Renderers.camelIdentifierToTitle(key),
+            allowSort: true,
             renderer: dateColumns.some(dc => dc === key)
               ? App.Services.Renderers.toDateTime
               : null

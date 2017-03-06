@@ -1,10 +1,13 @@
 ﻿module App.Models {
   export class GridOptions {
-    cells: {
-      id: string,
-      title: string,
-      renderer?: (v: any) => string
-    }[] = [];
+    columns: GridColumn[] = [];
     data: {}[] = [];
+  }
+
+  export class GridColumn {
+    id: string;
+    title: string;
+    renderer?: (v: any) => string;
+    allowSort?: boolean;
   }
 }

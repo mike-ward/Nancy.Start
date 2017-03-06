@@ -1,3 +1,20 @@
-﻿div.components-grid th, div.components-grid td {
+﻿.grid th, .grid td {
    white-space: nowrap;
 }
+
+.grid-column-title:hover {
+  cursor: pointer;
+}
+
+.grid-column-sort-indicator {
+  margin-left: 1em;  
+}
+
+.grid-column-sort-indicator-hidden {
+  visibility: collapse;
+}
+
+.grid-column-title:hover .grid-column-sort-indicator-hidden {
+  visibility: visible;
+}
+
