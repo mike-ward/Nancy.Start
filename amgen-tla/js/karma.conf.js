@@ -1,7 +1,7 @@
 // Karma configuration
 // Generated on Tue May 20 2014 10:33:38 GMT-0400 (Eastern Daylight Time)
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -29,7 +29,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      '**/*.ts':  ['typescript'],
+      '**/*.ts': ['typescript'],
       '**/*.tst': ['typescript']
     },
 
@@ -71,8 +71,8 @@ module.exports = function(config) {
       Chrome_small: {
         base: 'Chrome',
         flags: [
-            '--window-size=400,400',
-            '--window-position=-400,0'
+          '--window-size=400,400',
+          '--window-position=-400,0'
         ]
       }
     },

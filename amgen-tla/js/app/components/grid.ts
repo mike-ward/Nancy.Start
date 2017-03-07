@@ -39,15 +39,17 @@ module App.Components {
     private tableBody() {
       const tbody = m('tbody', [
 
-        this.gridOptions.data.map(row => m('tr', this.gridOptions.columns.map(
-          cell => m('td', this.renderCell(row[cell.id], cell.renderer)
-        ))))
+        this.gridOptions.data.map(row => m('tr',
+          this.gridOptions.columns.map(
+            column => m('td', this.renderCell(row[column.id], column.renderer))
+          )
+        ))
 
       ]);
       return tbody;
     }
 
-    private renderCell(value: any, renderer: (v:any) => string): string {
+    private renderCell(value: any, renderer: (v: any) => string): string {
       const cellContents = renderer ? renderer(value) : value;
       return cellContents;
     }
@@ -61,7 +63,7 @@ module App.Components {
       return vnode;
     }
 
-    private sortColumns(rows: {}[], column: string): any[] {
+    private sortColumns(rows: {}[], column: string): {}[] {
       return rows.sort((l, r) => l[column] - r[column]);
     }
   }
