@@ -9,37 +9,38 @@ module App.Components {
   class Grid {
     constructor(private readonly gridOptions: GridOptions) {
     }
-
-    private sortedColumnId: string;
-    private sortDirection: boolean;
-
     view() {
-      return m('div.grid', [
+      return this.gridOptions
+        ? m('div.grid', [
 
-        m('table.pure-table.pure-table-bordered', [
-          this.tableHead(),
-          this.tableBody()
+          m('table.pure-table.pure-table-bordered', [
+            this.tableHead(),
+            this.tableBody()
+          ])
+
         ])
-
-      ]);
+        : null;
     }
 
     private tableHead() {
       const thead = m('thead', [
 
-        m('tr', this.gridOptions.columns.map(column => m('th.grid-column-title', [
-          column.title,
-          this.sortIndicator(column)
-        ])))
+        m('tr', this.gridOptions.columns.map(column =>
+          m('th.grid-column-title',
+            { onclick: () => this.sortColumn(column) }, [
+              column.title,
+              this.sortIndicator(column)
+            ])))
 
       ]);
       return thead;
     }
 
     private tableBody() {
+      const data = this.sortByColumn();
       const tbody = m('tbody', [
 
-        this.gridOptions.data.map(row => m('tr',
+        data.map(row => m('tr',
           this.gridOptions.columns.map(
             column => m('td', this.renderCell(row[column.id], column.renderer))
           )
@@ -56,15 +57,31 @@ module App.Components {
 
     private sortIndicator(column: GridColumn) {
       if (!column.allowSort) return m('');
-      const isSorted = column.id === this.sortedColumnId;
-      const sortSymbol = isSorted ? (this.sortDirection ? '▲' : '▼') : '□';
+      const isSorted = column.id === this.gridOptions.sortedColumnId;
+      const sortSymbol = isSorted ? (this.gridOptions.sortDirection ? '▲' : '▼') : '▲';
       const cssClass = `grid-column-sort-indicator${isSorted ? '' : '.grid-column-sort-indicator-hidden'}`;
       const vnode = m(`span.${cssClass}`, sortSymbol);
       return vnode;
     }
 
-    private sortColumns(rows: {}[], column: string): {}[] {
-      return rows.sort((l, r) => l[column] - r[column]);
+    private sortByColumn() {
+      const data = this.gridOptions.data.slice();
+      if (!this.gridOptions.sortedColumnId) return data;
+      const columnId = this.gridOptions.sortedColumnId;
+      data.sort((l, r) =>
+        this.gridOptions.sortDirection
+          ? l[columnId] - r[columnId]
+          : r[columnId] - l[columnId]);
+
+      return data;
+    }
+
+    private sortColumn(column: GridColumn) {
+      this.gridOptions.sortDirection = this.gridOptions.sortedColumnId === column.id
+        ? !this.gridOptions.sortDirection
+        : true;
+
+      this.gridOptions.sortedColumnId = column.id;
     }
   }
 }

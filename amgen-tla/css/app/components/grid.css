@@ -15,6 +15,7 @@
 }
 
 .grid-column-title:hover .grid-column-sort-indicator-hidden {
+  color: gray !important;
   visibility: visible;
 }
 

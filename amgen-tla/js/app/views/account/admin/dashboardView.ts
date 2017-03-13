@@ -4,8 +4,12 @@ module App.Views.Account.Admin {
   export const dashboardView = () => new DashboardView();
 
   class DashboardView {
-    private allUsers = [];
     private errorMessage: string;
+    private gridOptions: App.Models.GridOptions;
+
+    oninit() {
+      this.getAllUsers();
+    }
 
     view() {
       return m('view', [
@@ -14,30 +18,26 @@ module App.Views.Account.Admin {
           m('h2', 'Administrator Dashboard'),
           m('h2.error-text', this.errorMessage)
         ]),
-        m('div.admin-dashboard-allusers', this.allUsersGrid()),
+        m('div.admin-dashboard-allusers', [ m(App.Components.grid(this.gridOptions)) ]),
         m(App.Components.pageFooter)
       ]);
-    }
-
-    oncreate() {
-      this.getAllUsers();
     }
 
     private getAllUsers() {
       m
         .request({ url: 'account/admin/allUsers', withCredentials: true })
-        .then(users => this.allUsers = users)
+        .then(users => this.initGridOptions(users))
         .catch(error => this.errorMessage = error.message);
     }
 
-    private allUsersGrid() {
+    private initGridOptions(allUsers: any[]) {
+      this.gridOptions = new App.Models.GridOptions();
       const hideColumns = ['id', 'password'];
       const dateColumns = ['createdOn', 'lastModified', 'lastPasswordChange', 'lastLogin'];
-      const gridOptions = new App.Models.GridOptions();
 
-      if (this.allUsers.length > 0) {
-        const keys = Object.keys(this.allUsers[0]);
-        gridOptions.columns = keys
+      if (allUsers.length > 0) {
+        const keys = Object.keys(allUsers[0]);
+        this.gridOptions.columns = keys
           .filter(key => hideColumns.every(hc => hc !== key))
           .map(key => ({
             id: key,
@@ -47,10 +47,8 @@ module App.Views.Account.Admin {
               ? App.Services.Renderers.toDateTime
               : null
           }));
-        gridOptions.data = this.allUsers;
+        this.gridOptions.data = allUsers;
       }
-
-      return m(App.Components.grid(gridOptions));
     }
   }
 }
