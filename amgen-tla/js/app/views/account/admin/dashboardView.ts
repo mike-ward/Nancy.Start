@@ -22,30 +22,34 @@ module App.Views.Account.Admin {
     }
 
     private getAllUsers() {
-      m
-        .request({ url: 'account/admin/allUsers', withCredentials: true })
-        .then(users => this.initGridOptions(users), error => this.errorMessage = error.message);
+      m.request({ url: 'account/admin/allUsers', withCredentials: true })
+        .then(users => this.createGridOptions(users))
+        .catch(error => this.errorMessage = error.message);
     }
 
-    private initGridOptions(allUsers: any[]) {
+    private createGridOptions(allUsers: any[]) {
       this.gridOptions = new App.Models.GridOptions();
+      if (allUsers.length <= 0) return;
+
       const hideColumns = ['id', 'password'];
       const dateColumns = ['createdOn', 'lastModified', 'lastPasswordChange', 'lastLogin'];
+      const keys = Object.keys(allUsers[0]);
 
-      if (allUsers.length > 0) {
-        const keys = Object.keys(allUsers[0]);
-        this.gridOptions.columns = keys
-          .filter(key => hideColumns.every(hc => hc !== key))
-          .map(key => ({
-            id: key,
-            title: App.Services.Renderers.camelIdentifierToTitle(key),
-            allowSort: true,
-            renderer: dateColumns.some(dc => dc === key)
-              ? App.Services.Renderers.toDateTime
-              : null
-          }));
-        this.gridOptions.data = allUsers;
-      }
+      this.gridOptions.columns = keys
+        .filter(key => hideColumns.every(hc => hc !== key))
+        .map(key => ({
+          id: key,
+          title: App.Services.Renderers.camelIdentifierToTitle(key),
+          allowSort: true,
+          renderer: dateColumns.some(dc => dc === key)
+            ? App.Services.Renderers.toDateTime
+            : null
+        }));
+
+      this.gridOptions.data = allUsers.map(u => {
+        u.key = u.id; // mithril can render faster with keys
+        return u;
+      });
     }
   }
 

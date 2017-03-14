@@ -48,7 +48,7 @@ module App.Components {
     }
 
     private sortIndicator(column: GridColumn, state: any) {
-      if (!column.allowSort) return m('');
+      if (!column.allowSort) return '';
       const isSorted = column.id === state.sortedColumnId;
       const sortSymbol = isSorted && !state.sortDirection ? '▼' : '▲';
       const cssClass = `grid-column-sort-indicator${isSorted ? '' : '.grid-column-sort-indicator-hidden'}`;
@@ -76,6 +76,28 @@ module App.Components {
 
       state.sortedColumnId = column.id;
     }
+
+    // language=CSS
+    css = `.grid th, .grid td {
+      white-space: nowrap;
+    }
+
+    .grid-column-title:hover {
+      cursor: pointer;
+    }
+
+    .grid-column-sort-indicator {
+      margin-left: 1em;  
+    }
+
+    .grid-column-sort-indicator-hidden {
+      visibility: collapse;
+    }
+
+    .grid-column-title:hover .grid-column-sort-indicator-hidden {
+      color: gray !important;
+      visibility: visible;
+    }`;
   }
 
   export const grid = new Grid();

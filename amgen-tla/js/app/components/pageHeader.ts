@@ -6,6 +6,12 @@
         m('hr')
       ]);
     }
+
+    // language=CSS
+    css = `.header {
+      text-align: center;
+      clear: both;
+    }`;
   }
 
   export const pageHeader = new PageHeader();
