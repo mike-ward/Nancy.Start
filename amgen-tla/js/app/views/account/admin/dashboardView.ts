@@ -1,8 +1,6 @@
 ﻿// ReSharper disable RedundantQualifier
 
 module App.Views.Account.Admin {
-  export const dashboardView = () => new DashboardView();
-
   class DashboardView {
     private errorMessage: string;
     private gridOptions: App.Models.GridOptions;
@@ -18,7 +16,7 @@ module App.Views.Account.Admin {
           m('h2', 'Administrator Dashboard'),
           m('h2.error-text', this.errorMessage)
         ]),
-        m('div.admin-dashboard-allusers', [ m(App.Components.grid(this.gridOptions)) ]),
+        m(App.Components.grid, { 'gridOptions': this.gridOptions }),
         m(App.Components.pageFooter)
       ]);
     }
@@ -26,8 +24,7 @@ module App.Views.Account.Admin {
     private getAllUsers() {
       m
         .request({ url: 'account/admin/allUsers', withCredentials: true })
-        .then(users => this.initGridOptions(users))
-        .catch(error => this.errorMessage = error.message);
+        .then(users => this.initGridOptions(users), error => this.errorMessage = error.message);
     }
 
     private initGridOptions(allUsers: any[]) {
@@ -51,4 +48,6 @@ module App.Views.Account.Admin {
       }
     }
   }
+
+  export const dashboardView = new DashboardView();
 }

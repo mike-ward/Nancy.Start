@@ -2,8 +2,6 @@
   export class GridOptions {
     columns: GridColumn[] = [];
     data: {}[] = [];
-    sortedColumnId: string;
-    sortDirection: boolean;
   }
 
   export class GridColumn {

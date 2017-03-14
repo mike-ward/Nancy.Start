@@ -4,48 +4,40 @@ module App.Components {
   import GridOptions = App.Models.GridOptions;
   import GridColumn = App.Models.GridColumn;
 
-  export const grid = (gridOptions: GridOptions) => new Grid(gridOptions);
-
   class Grid {
-    constructor(private readonly gridOptions: GridOptions) {
-    }
-    view() {
-      return this.gridOptions
+    view(vnode) {
+      const gridOptions = vnode.attrs.gridOptions as GridOptions;
+      return gridOptions
         ? m('div.grid', [
-
           m('table.pure-table.pure-table-bordered', [
-            this.tableHead(),
-            this.tableBody()
+            this.tableHead(gridOptions, vnode.state),
+            this.tableBody(gridOptions, vnode.state)
           ])
-
         ])
         : null;
     }
 
-    private tableHead() {
+    private tableHead(gridOptions: GridOptions, state: any) {
       const thead = m('thead', [
-
-        m('tr', this.gridOptions.columns.map(column =>
+        m('tr', gridOptions.columns.map(column =>
           m('th.grid-column-title',
-            { onclick: () => this.sortColumn(column) }, [
+            { onclick: () => this.sortColumn(column, state) }, [
               column.title,
-              this.sortIndicator(column)
-            ])))
-
+              this.sortIndicator(column, state)
+            ])
+        ))
       ]);
       return thead;
     }
 
-    private tableBody() {
-      const data = this.sortByColumn();
+    private tableBody(gridOptions: GridOptions, state: any) {
+      const data = this.sortByColumn(gridOptions, state);
       const tbody = m('tbody', [
-
         data.map(row => m('tr',
-          this.gridOptions.columns.map(
+          gridOptions.columns.map(
             column => m('td', this.renderCell(row[column.id], column.renderer))
           )
         ))
-
       ]);
       return tbody;
     }
@@ -55,33 +47,36 @@ module App.Components {
       return cellContents;
     }
 
-    private sortIndicator(column: GridColumn) {
+    private sortIndicator(column: GridColumn, state: any) {
       if (!column.allowSort) return m('');
-      const isSorted = column.id === this.gridOptions.sortedColumnId;
-      const sortSymbol = isSorted ? (this.gridOptions.sortDirection ? '▲' : '▼') : '▲';
+      const isSorted = column.id === state.sortedColumnId;
+      const sortSymbol = isSorted && !state.sortDirection ? '▼' : '▲';
       const cssClass = `grid-column-sort-indicator${isSorted ? '' : '.grid-column-sort-indicator-hidden'}`;
-      const vnode = m(`span.${cssClass}`, sortSymbol);
-      return vnode;
+      const vn = m(`span.${cssClass}`, sortSymbol);
+      return vn;
     }
 
-    private sortByColumn() {
-      const data = this.gridOptions.data.slice();
-      if (!this.gridOptions.sortedColumnId) return data;
-      const columnId = this.gridOptions.sortedColumnId;
-      data.sort((l, r) =>
-        this.gridOptions.sortDirection
-          ? l[columnId] - r[columnId]
-          : r[columnId] - l[columnId]);
+    private sortByColumn(gridOptions: GridOptions, state: any) {
+      const data = gridOptions.data.slice();
+      if (!state.sortedColumnId) return data;
+      const columnId = state.sortedColumnId;
 
+      const sorter = state.sortDirection
+        ? (l, r) => l[columnId] - r[columnId]
+        : (l, r) => r[columnId] - l[columnId];
+
+      data.sort(sorter);
       return data;
     }
 
-    private sortColumn(column: GridColumn) {
-      this.gridOptions.sortDirection = this.gridOptions.sortedColumnId === column.id
-        ? !this.gridOptions.sortDirection
+    private sortColumn(column: GridColumn, state: any) {
+      state.sortDirection = state.sortedColumnId === column.id
+        ? !state.sortDirection
         : true;
 
-      this.gridOptions.sortedColumnId = column.id;
+      state.sortedColumnId = column.id;
     }
   }
+
+  export const grid = new Grid();
 }

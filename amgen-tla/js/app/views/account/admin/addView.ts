@@ -1,7 +1,7 @@
 ﻿// ReSharper disable RedundantQualifier
 
 module App.Views.Account.Admin {
-  export const addView = (userActionUrl:string, msg: string) => new AddView(userActionUrl, msg);
+  export const addView = (userActionUrl:string, errorMessage: string) => new AddView(userActionUrl, errorMessage);
 
   class AddView {
     constructor(
