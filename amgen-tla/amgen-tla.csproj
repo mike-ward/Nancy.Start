@@ -165,8 +165,6 @@
     <Content Include="Content\app.js" />
     <Content Include="Content\vendor.min.css" />
     <Content Include="Content\vendor.min.js" />
-    <Content Include="css\app\account\login.css" />
-    <Content Include="css\app\base.css" />
     <Content Include="css\vendor\pure-min.css" />
     <Content Include="js\karma.conf.js" />
     <Content Include="Web.config">
@@ -233,7 +231,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="css\app\" />
+  </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="js\app\app.ts" />
     <TypeScriptCompile Include="js\app\components\grid.ts" />
@@ -304,17 +304,7 @@ xcopy /s /y /R "$(SolutionDir)packages\Nancy.Viewengines.Razor.1.4.3\lib\Net40\N
     </ItemGroup>
     <WriteLinesToFile File="Content\vendor.min.css" Lines="@(VendorCssFileContents)" Overwrite="true" />
   </Target>
-  <Target Name="ConcatenateAppCss" AfterTargets="AfterBuild" Condition="$(NCrunch) != '1'">
-    <ItemGroup>
-      <AppCssFiles Include="css\app\base.css" />
-      <AppCssFiles Include="css\app\**\*.css" />
-    </ItemGroup>
-    <ItemGroup>
-      <AppCssFileContents Include="$([System.IO.File]::ReadAllText(%(AppCssFiles.Identity)))" />
-    </ItemGroup>
-    <WriteLinesToFile File="Content\app.css" Lines="@(AppCssFileContents)" Overwrite="true" />
-  </Target>
-  <Target Name="Minify" AfterTargets="ConcatenateAppCss" Condition="$(NCrunch) != '1' And $(ConfigurationName) == 'Release'">
-    <AjaxMin CssSourceFiles="Content\app.css" CssSourceExtensionPattern="\.css$" CssTargetExtension=".css" JsSourceFiles="Content\app.js" JsSourceExtensionPattern="\.js$" JsTargetExtension=".js" />
+  <Target Name="Minify" AfterTargets="AfterBuild" Condition="$(NCrunch) != '1' And $(ConfigurationName) == 'Release'">
+    <AjaxMin JsSourceFiles="Content\app.js" JsSourceExtensionPattern="\.js$" JsTargetExtension=".js" />
   </Target>
 </Project>

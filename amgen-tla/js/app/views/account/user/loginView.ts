@@ -38,6 +38,11 @@ module App.Views.Account.User {
         m(App.Components.pageFooter)
       ]);
     }
+
+    // language=CSS
+    css = `.login-form {
+      margin-left: 5rem;
+    }`;
   }
 
   export const loginView = (authenticationUrl, returnUrl, msg) => new LoginView(authenticationUrl, returnUrl, msg);
