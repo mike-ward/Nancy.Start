@@ -1,4 +1,5 @@
 ﻿// ReSharper disable RedundantQualifier
+// ReSharper disable once SimilarExpressionsComparison
 
 module App.Components {
   import GridOptions = App.Models.GridOptions;
@@ -21,7 +22,7 @@ module App.Components {
       const thead = m('thead', [
         m('tr', gridOptions.columns.map(column =>
           m('th.grid-column-title',
-            { onclick: () => this.sortColumn(column, state) }, [
+            { onclick: () => this.sortColumnClick(column, state) }, [
               column.title,
               this.sortIndicator(column, state)
             ])
@@ -60,21 +61,45 @@ module App.Components {
       const data = gridOptions.data.slice();
       if (!state.sortedColumnId) return data;
       const columnId = state.sortedColumnId;
+      const column = gridOptions.columns[columnId];
 
-      const sorter = state.sortDirection
-        ? (l, r) => l[columnId] - r[columnId]
-        : (l, r) => r[columnId] - l[columnId];
+      const comparer = column && column.comparer
+        ? column.comparer
+        : this.defaultComparer;
 
-      data.sort(sorter);
+      data.sort((l, r) => {
+        const result = comparer(l[columnId], r[columnId]);
+        return state.sortDirection ? result : -result;
+      });
+
       return data;
     }
 
-    private sortColumn(column: GridColumn, state: any) {
+    private defaultComparer(a, b) {
+      if (a === b) return 0; // NaN, and only NaN, will compare unequal to itself
+
+      if (typeof a === 'number') {
+        const aa = isNaN(a);
+        const bb = isNaN(b);
+        if (aa && bb) return 0;
+        if (aa && !bb) return 1;
+        if (!aa && bb) return -1;
+        return a - b;
+      }
+
+      if (a != null && b == null) return 1;
+      if (a == null && b != null) return -1;
+      return a.localeCompare(b);
+    }
+
+    private sortColumnClick(column: GridColumn, state: any) {
       state.sortDirection = state.sortedColumnId === column.id
         ? !state.sortDirection
         : true;
 
-      state.sortedColumnId = column.id;
+      state.sortedColumnId = state.sortedColumnId === column.id && state.sortDirection
+        ? null
+        : column.id;
     }
 
     // language=CSS

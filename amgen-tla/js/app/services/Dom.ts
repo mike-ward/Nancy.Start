@@ -1,25 +1,25 @@
 ﻿module App.Services {
   export class Dom {
-    static loadAllCss(obj) {
+    static loadCss(obj) {
       const css = this.findAllCss(obj, []);
-      this.addCss(css.join('\n'));
+      Dom.addCssToHead(css.join('\n'));
     }
 
-    static findAllCss(obj, allCss) {
+    static findAllCss(obj, css) {
       const keys = Object.keys(obj);
 
       keys.forEach(function (key) {
         const value = obj[key];
         if (value && typeof value === 'object') {
-          if (value.css) allCss.push(value.css);
-          Dom.findAllCss(value, allCss);
+          if (value.css) css.push(value.css);
+          Dom.findAllCss(value, css);
         }
       });
 
-      return allCss;
+      return css;
     }
 
-    static addCss(css: string) {
+    static addCssToHead(css: string) {
       const style = document.createElement('style');
       style.type = 'text/css';
       style.innerHTML = css;

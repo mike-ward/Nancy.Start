@@ -2,7 +2,6 @@
 using System.Linq;
 using Nancy;
 using Nancy.ViewEngines;
-using TLA.Controllers.Authentication;
 
 namespace TLA.Models.Authentication.Forms
 {

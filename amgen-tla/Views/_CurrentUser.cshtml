@@ -1,0 +1,23 @@
+﻿@using TLA.Controllers.Account
+@using TLA.Models.Authentication
+@using System.Linq
+
+<div class="current-user-login">
+  @if (Html.CurrentUser == null)
+  {
+      <a href="~/@AuthenticationRedirectUrl.Url">log in</a>
+  }
+  else
+  {
+      <a href="~/@UserModule.AccountUserUpdate">@(((UserIdentity)Html.CurrentUser).UserName)</a>
+      <span>|</span>
+    if (((UserIdentity)Html.CurrentUser).Claims.Any(c => c == AdminModule.AdminClaim))
+    {
+          <a href="~/@AdminModule.AdminDashboardRoute">Admin</a>
+          <span>|</span>
+    }
+      <a href="~/logout">log out</a>
+  }
+</div>
+
+

@@ -1,8 +1,9 @@
-﻿module App.Services {
+﻿// ReSharper disable once InconsistentNaming
+module App.Services {
   export class Renderers {
-    static toDateTime(v: string): string {
+    static dateToISO(v: string): string {
       if (!v) return 'null';
-      const date = new Date(v).toLocaleString();
+      const date = new Date(v).toISOString();
       return date;
     }
 

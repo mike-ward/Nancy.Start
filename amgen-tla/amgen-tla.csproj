@@ -215,6 +215,7 @@
     <Content Include="js\app\components\pageHeader.tst" />
     <Content Include="js\app\views\account\admin\addView.tst" />
     <Content Include="js\app\views\account\admin\dashboardView.tst" />
+    <Content Include="js\app\components\grid.tst" />
     <None Include="packages.config" />
     <Content Include="Views\welcome.cshtml" />
     <Content Include="App_Data\README.md" />
@@ -224,6 +225,7 @@
     <Content Include="Views\account\admin\add.cshtml" />
     <Content Include="Views\account\admin\dashboard.cshtml" />
     <None Include="Views\master.cshtml" />
+    <Content Include="Views\_CurrentUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

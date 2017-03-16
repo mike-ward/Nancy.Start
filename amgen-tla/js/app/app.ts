@@ -40,5 +40,5 @@ module App {
     }`
   }
 
-  export const global = new Styles();
+  export const styles = new Styles();
 }

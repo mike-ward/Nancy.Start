@@ -1,8 +1,4 @@
-﻿@using TLA.Controllers.Account
-@using TLA.Models.Authentication
-@using System.Linq;
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -12,27 +8,11 @@
   <link href="~/Content/vendor.min.css" rel="stylesheet" />
   <script src="~/Content/vendor.min.js"></script>
   <script src="~/Content/app.js"></script>
-  <script>App.Services.Dom.loadAllCss(this.App)</script>
+  <script>App.Services.Dom.loadCss(this.App)</script>
 </head>
 
 <body>
-  <div class="current-user-login">
-    @if (Html.CurrentUser == null)
-    {
-        <a href="~/@AuthenticationRedirectUrl.Url">log in</a>
-    }
-    else
-    {
-        <a href="~/@UserModule.AccountUserUpdate">@(((UserIdentity)Html.CurrentUser).UserName)</a>
-        <span>|</span>
-      if (((UserIdentity)Html.CurrentUser).Claims.Any(c => c == AdminModule.AdminClaim))
-      {
-            <a href="~/@AdminModule.AdminDashboardUrl">Admin</a>
-            <span>|</span>
-      }
-        <a href="~/logout">log out</a>
-    }
-  </div>
+  @Html.Partial("_CurrentUser")
 
   <div id="content">
     @RenderBody()

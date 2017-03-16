@@ -5,7 +5,7 @@ module App.Views.Account.Admin {
     private errorMessage: string;
     private gridOptions: App.Models.GridOptions;
 
-    oninit() {
+    oncreate() {
       this.getAllUsers();
     }
 
@@ -16,13 +16,16 @@ module App.Views.Account.Admin {
           m('h2', 'Administrator Dashboard'),
           m('h2.error-text', this.errorMessage)
         ]),
+        m('div', { style: { 'margin-bottom': '1em' } }, [
+          m('a.pure-button', { href: 'account/admin/add' }, 'Add User')
+        ]),
         m(App.Components.grid, { 'gridOptions': this.gridOptions }),
         m(App.Components.pageFooter)
       ]);
     }
 
     private getAllUsers() {
-      m.request({ url: 'account/admin/allUsers', withCredentials: true })
+      m.request({ url: 'account/admin/allUsers', data: { r: Date.now() } })
         .then(users => this.createGridOptions(users))
         .catch(error => this.errorMessage = error.message);
     }
@@ -42,7 +45,7 @@ module App.Views.Account.Admin {
           title: App.Services.Renderers.camelIdentifierToTitle(key),
           allowSort: true,
           renderer: dateColumns.some(dc => dc === key)
-            ? App.Services.Renderers.toDateTime
+            ? App.Services.Renderers.dateToISO
             : null
         }));
 

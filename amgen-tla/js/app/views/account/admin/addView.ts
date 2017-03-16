@@ -14,7 +14,7 @@ module App.Views.Account.Admin {
         m(App.Components.pageHeader),
 
         m('div.add-user-form', [
-          m('h2', 'New User'),
+          m('h2', 'Add User'),
           m('h2.error-text', this.errorMessage),
 
           m(`form.pure-form.pure-form-stacked[action="${this.userActionUrl}"][method="POST"])`, [

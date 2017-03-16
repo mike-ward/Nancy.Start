@@ -9,5 +9,6 @@
     title: string;
     renderer?: (v: any) => string;
     allowSort?: boolean;
+    comparer?: (a, b) => number;
   }
 }
