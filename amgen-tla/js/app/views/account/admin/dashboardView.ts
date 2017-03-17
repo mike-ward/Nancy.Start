@@ -19,7 +19,7 @@ module App.Views.Account.Admin {
         m('div', { style: { 'margin-bottom': '1em' } }, [
           m('a.pure-button', { href: 'account/admin/add' }, 'Add User')
         ]),
-        m(App.Components.grid, { 'gridOptions': this.gridOptions }),
+        m(App.Components.grid, { 'gridOptions': this.gridOptions, style: {'font-size': 'smaller'} }),
         m(App.Components.pageFooter)
       ]);
     }
@@ -39,11 +39,11 @@ module App.Views.Account.Admin {
       const keys = Object.keys(allUsers[0]);
 
       this.gridOptions.columns = keys
-        .filter(key => hideColumns.every(hc => hc !== key))
         .map(key => ({
           id: key,
           title: App.Services.Renderers.camelIdentifierToTitle(key),
           allowSort: true,
+          hide: hideColumns.some(hc => hc === key),
           renderer: dateColumns.some(dc => dc === key)
             ? App.Services.Renderers.dateToISO
             : null

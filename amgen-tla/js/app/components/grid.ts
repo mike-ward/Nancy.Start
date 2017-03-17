@@ -7,39 +7,40 @@ module App.Components {
 
   class Grid {
     view(vnode) {
+      const styles = vnode.attrs.style || {};
       const gridOptions = vnode.attrs.gridOptions as GridOptions;
       return gridOptions
-        ? m('div.grid', [
-          m('table.pure-table.pure-table-bordered', [
-            this.tableHead(gridOptions, vnode.state),
-            this.tableBody(gridOptions, vnode.state)
+        ? m('div.grid', { style: styles }, [
+            m('table.pure-table.pure-table-bordered', [
+              this.tableHead(gridOptions, vnode.state),
+              this.tableBody(gridOptions, vnode.state)
+            ])
           ])
-        ])
         : null;
     }
 
     private tableHead(gridOptions: GridOptions, state: any) {
       const thead = m('thead', [
-        m('tr', gridOptions.columns.map(column =>
+        m('tr', gridOptions.columns.filter(c => !c.hide).map(column =>
           m('th.grid-column-title',
             { onclick: () => this.sortColumnClick(column, state) }, [
               column.title,
               this.sortIndicator(column, state)
             ])
-        ))
-      ]);
+          ))
+        ]);
       return thead;
     }
 
     private tableBody(gridOptions: GridOptions, state: any) {
       const data = this.sortByColumn(gridOptions, state);
+      const columns = gridOptions.columns.filter(c => !c.hide);
       const tbody = m('tbody', [
-        data.map(row => m('tr',
-          gridOptions.columns.map(
+          data.map(row => m('tr', columns.map(
             column => m('td', this.renderCell(row[column.id], column.renderer))
+            ))
           )
-        ))
-      ]);
+        ]);
       return tbody;
     }
 
