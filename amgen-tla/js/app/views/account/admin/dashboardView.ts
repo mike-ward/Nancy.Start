@@ -1,6 +1,8 @@
 ﻿// ReSharper disable RedundantQualifier
 
 module App.Views.Account.Admin {
+  import GridColumn = App.Models.GridColumn;
+
   class DashboardView {
     private errorMessage: string;
     private gridOptions: App.Models.GridOptions;
@@ -26,19 +28,27 @@ module App.Views.Account.Admin {
 
     private getAllUsers() {
       m.request({ url: 'account/admin/allUsers', data: { r: Date.now() } })
-        .then(users => this.createGridOptions(users))
+        .then(users => this.gridOptions = this.createGridOptions(users))
         .catch(error => this.errorMessage = error.message);
     }
 
     private createGridOptions(allUsers: any[]) {
-      this.gridOptions = new App.Models.GridOptions();
-      if (allUsers.length <= 0) return;
+      const gridOptions = new App.Models.GridOptions();
+      if (allUsers.length <= 0) return gridOptions;
 
       const hideColumns = ['id', 'password'];
       const dateColumns = ['createdOn', 'lastModified', 'lastPasswordChange', 'lastLogin'];
       const keys = Object.keys(allUsers[0]);
 
-      this.gridOptions.columns = keys
+      const editColumns: GridColumn[] = [
+        {
+          id: '✗',
+          title: '✗',
+          contentIfNull: '✗'
+        }
+      ];
+
+      const dataColumns: GridColumn[] = keys
         .map(key => ({
           id: key,
           title: App.Services.Renderers.camelIdentifierToTitle(key),
@@ -49,10 +59,14 @@ module App.Views.Account.Admin {
             : null
         }));
 
-      this.gridOptions.data = allUsers.map(u => {
+      gridOptions.columns = editColumns.concat(dataColumns);
+
+      gridOptions.data = allUsers.map(u => {
         u.key = u.id; // mithril can render faster with keys
         return u;
       });
+
+      return gridOptions;
     }
   }
 

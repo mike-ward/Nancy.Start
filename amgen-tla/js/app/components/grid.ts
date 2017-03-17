@@ -11,11 +11,11 @@ module App.Components {
       const gridOptions = vnode.attrs.gridOptions as GridOptions;
       return gridOptions
         ? m('div.grid', { style: styles }, [
-            m('table.pure-table.pure-table-bordered', [
-              this.tableHead(gridOptions, vnode.state),
-              this.tableBody(gridOptions, vnode.state)
-            ])
+          m('table.pure-table.pure-table-bordered', [
+            this.tableHead(gridOptions, vnode.state),
+            this.tableBody(gridOptions, vnode.state)
           ])
+        ])
         : null;
     }
 
@@ -23,12 +23,12 @@ module App.Components {
       const thead = m('thead', [
         m('tr', gridOptions.columns.filter(c => !c.hide).map(column =>
           m('th.grid-column-title',
-            { onclick: () => this.sortColumnClick(column, state) }, [
+            { onclick: () => this.columnClickActions(column, state) }, [
               column.title,
               this.sortIndicator(column, state)
             ])
-          ))
-        ]);
+        ))
+      ]);
       return thead;
     }
 
@@ -36,12 +36,20 @@ module App.Components {
       const data = this.sortByColumn(gridOptions, state);
       const columns = gridOptions.columns.filter(c => !c.hide);
       const tbody = m('tbody', [
-          data.map(row => m('tr', columns.map(
-            column => m('td', this.renderCell(row[column.id], column.renderer))
-            ))
-          )
-        ]);
+        data.map(row => m('tr', columns.map(
+            column => m('td', this.renderCell(this.columnValue(row, column), column.renderer))
+          ))
+        )
+      ]);
       return tbody;
+    }
+
+    private columnValue(row, column: GridColumn) {
+      const value = row[column.id];
+      // isNaN(undefined) === true, unfortunately
+      // NaN, and only NaN, will compare unequal to itself
+      if (value || value === 0 || value !== value) return value;
+      return column.contentIfNull || '';
     }
 
     private renderCell(value: any, renderer: (v: any) => string): string {
@@ -93,7 +101,11 @@ module App.Components {
       return a.localeCompare(b);
     }
 
-    private sortColumnClick(column: GridColumn, state: any) {
+    private columnClickActions(column: GridColumn, state: any) {
+      if (column.allowSort) this.columnSortAction(column, state);
+    }
+
+    private columnSortAction(column: GridColumn, state: any) {
       state.sortDirection = state.sortedColumnId === column.id
         ? !state.sortDirection
         : true;
@@ -104,26 +116,12 @@ module App.Components {
     }
 
     // language=CSS
-    css = `.grid th, .grid td {
-      white-space: nowrap;
-    }
-
-    .grid-column-title:hover {
-      cursor: pointer;
-    }
-
-    .grid-column-sort-indicator {
-      margin-left: 1em;  
-    }
-
-    .grid-column-sort-indicator-hidden {
-      visibility: collapse;
-    }
-
-    .grid-column-title:hover .grid-column-sort-indicator-hidden {
-      color: gray !important;
-      visibility: visible;
-    }`;
+    css = `
+      .grid th, .grid td{white-space:nowrap;}
+      .grid-column-title:hover{cursor:pointer;}
+      .grid-column-sort-indicator{margin-left:1em;}
+      .grid-column-sort-indicator-hidden{visibility:collapse;}
+      .grid-column-title:hover .grid-column-sort-indicator-hidden{color:gray !important;visibility:visible;}`;
   }
 
   export const grid = new Grid();

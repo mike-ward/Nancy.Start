@@ -7,7 +7,8 @@
   export class GridColumn {
     id: string;
     title: string;
-    hide: boolean;
+    hide?: boolean;
+    contentIfNull?: string;
     renderer?: (v: any) => string;
     allowSort?: boolean;
     comparer?: (a, b) => number;
