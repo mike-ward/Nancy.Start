@@ -35,7 +35,12 @@ namespace TLA.Models.Authentication.Forms
 
         public IEnumerable<UserIdentity> GetAllUsers()
         {
-            return ReadUsers();
+            return ReadUsers()
+                .Select(user =>
+                {
+                    user.Password = "";
+                    return user;
+                });
         }
 
         public IEnumerable<UserIdentity> GetAdminUsers()
@@ -68,6 +73,19 @@ namespace TLA.Models.Authentication.Forms
                 .Concat(new[] {userIdentity})
                 .ToList();
             WriteUsers(updatedUsers);
+        }
+
+        public UserIdentity Authenticate(string username, string password)
+        {
+            Require.ArgumentNotNullEmpty(username, nameof(username));
+            Require.ArgumentNotNullEmpty(password, nameof(password));
+
+            var validUser = ReadUsers()
+                .SingleOrDefault(user =>
+                    user.UserName == username &&
+                    user.Password == Encryption.ComputeHash(password, user.Id));
+
+            return validUser;
         }
 
         private List<UserIdentity> ReadUsers()

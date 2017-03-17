@@ -194,6 +194,7 @@
     <Compile Include="Models\Authentication\UserMapper.cs" />
     <Compile Include="Models\Configuration.cs" />
     <Compile Include="Models\Constants.cs" />
+    <Compile Include="Models\Encryption.cs" />
     <Compile Include="Models\Extensions\ExceptionExtensions.cs" />
     <Compile Include="Models\IConfiguration.cs" />
     <Compile Include="Models\Piplelines\ViewBagItems.cs" />

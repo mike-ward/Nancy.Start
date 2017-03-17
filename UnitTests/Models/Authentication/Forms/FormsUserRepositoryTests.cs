@@ -87,8 +87,9 @@ namespace UnitTests.Models.Authentication.Forms
         [TestMethod]
         public void GetAllUsers()
         {
-            var users = _userRepository.GetAllUsers();
+            var users = _userRepository.GetAllUsers().ToList();
             users.Count().Should().Be(2);
+            users.All(user => string.IsNullOrEmpty(user.Password)).Should().BeTrue();
         }
 
         [TestMethod]

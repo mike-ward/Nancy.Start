@@ -61,22 +61,10 @@ namespace TLA.Models.Authentication
             Require.ArgumentNotNullEmpty(lastName, nameof(lastName));
 
             UserName = userName;
-            Password = EncryptPassword(password, Id);
+            Password = Encryption.ComputeHash(password, Id);
             Claims = claims.ToArray();
             FirstName = firstName;
             LastName = lastName;
-        }
-
-        public static string EncryptPassword(string password, Guid salt)
-        {
-            Require.ArgumentNotNullEmpty(password, nameof(password));
-            if (salt == Guid.Empty) throw new ArgumentException("empty", nameof(salt));
-
-            using (var md5 = MD5.Create())
-            {
-                var bytes = md5.ComputeHash(Encoding.UTF8.GetBytes(password + salt));
-                return string.Join(null, bytes.Select(b => b.ToString("x2")));
-            }
         }
     }
 }

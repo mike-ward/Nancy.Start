@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Nancy.Security;
 
 namespace TLA.Models.Authentication.ActiveDirectory
 {
@@ -37,6 +36,11 @@ namespace TLA.Models.Authentication.ActiveDirectory
         }
 
         public void UpdateUser(UserIdentity userIdentity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public UserIdentity Authenticate(string username, string password)
         {
             throw new NotImplementedException();
         }

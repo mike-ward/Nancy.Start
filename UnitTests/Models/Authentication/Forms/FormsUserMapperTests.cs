@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -44,10 +43,9 @@ namespace UnitTests.Models.Authentication.Forms
             var viewRenderer = new Mock<IViewRenderer>();
             var moduleStaticWrappers = new Mock<IModuleStaticWrappers>();
 
-            var user = new UserIdentity("name", "xxx", new [] {"admin"}, "first", "last");
-            var allUsers = new List<UserIdentity> {user};
-            userRepository.Setup(ur => ur.GetAllUsers()).Returns(allUsers).Verifiable();
+            var user = new UserIdentity("name", "xxx", new[] {"admin"}, "first", "last");
             userRepository.Setup(ur => ur.UpdateUser(user)).Verifiable();
+            userRepository.Setup(ur => ur.Authenticate(userCredentials.User, userCredentials.Password)).Returns(user).Verifiable();
 
             moduleStaticWrappers
                 .Setup(msw => msw.LoginAndRedirect(nancyModule.Object, It.IsAny<Guid>(), null, "~/home"))
@@ -74,19 +72,17 @@ namespace UnitTests.Models.Authentication.Forms
             var userMapper = new FormsUserMapper();
             var configuration = new Mock<IConfiguration>();
             var userRepository = new Mock<IUserRepository>();
-            var userCredentials = new UserCredentials { User = "name", Password = "xxx" };
+            var userCredentials = new UserCredentials {User = "name", Password = "xxx"};
             var viewRenderer = new Mock<IViewRenderer>();
             var moduleStaticWrappers = new Mock<IModuleStaticWrappers>();
 
-            var user = new UserIdentity("name", "xyz", new[] { "admin" }, "first", "last");
-            var allUsers = new List<UserIdentity> { user };
-
-            userRepository.Setup(ur => ur.GetAllUsers()).
-                Returns(allUsers)
+            nancyModule
+                .Setup(nm => nm.Context)
+                .Returns(new NancyContext())
                 .Verifiable();
 
-            nancyModule.Setup(nm => nm.Context)
-                .Returns(new NancyContext())
+            viewRenderer
+                .Setup(vr => vr.RenderView(nancyModule.Object.Context, AuthenticationRedirectUrl.Url, null))
                 .Verifiable();
 
             userMapper.Authenticate(

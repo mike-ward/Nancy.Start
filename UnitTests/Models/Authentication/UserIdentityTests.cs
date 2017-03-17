@@ -1,6 +1,7 @@
 ﻿using System;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TLA.Models;
 using TLA.Models.Authentication;
 
 namespace UnitTests.Models.Authentication
@@ -38,7 +39,7 @@ namespace UnitTests.Models.Authentication
 
             id.Id.Should().NotBe(Guid.Empty);
             id.UserName.Should().Be("name");
-            id.Password.Should().Be(UserIdentity.EncryptPassword("password", id.Id));
+            id.Password.Should().Be(Encryption.ComputeHash("password", id.Id));
             id.Claims.Should().BeEmpty();
             id.FirstName.Should().Be("firstName");
             id.LastName.Should().Be("lastName");
@@ -51,15 +52,15 @@ namespace UnitTests.Models.Authentication
         }
 
         [TestMethod]
-        public void EncryptPasswordParameterTests()
+        public void HashPasswordParameterTests()
         {
-            Action action = () => UserIdentity.EncryptPassword(null, Guid.Empty);
-            action.ShouldThrow<ArgumentException>().WithMessage("*password");
+            Action action = () => Encryption.ComputeHash(null, Guid.Empty);
+            action.ShouldThrow<ArgumentException>().WithMessage("*text");
 
-            action = () => UserIdentity.EncryptPassword("password", Guid.Empty);
-            action.ShouldThrow<ArgumentException>().WithMessage("*salt");
+            action = () => Encryption.ComputeHash("password", Guid.Empty);
+            action.ShouldThrow<ArgumentException>().WithMessage("salt is not a valid GUID");
 
-            action = () => UserIdentity.EncryptPassword("password", Guid.NewGuid());
+            action = () => Encryption.ComputeHash("password", Guid.NewGuid());
             action.ShouldNotThrow();
         }
 
@@ -67,8 +68,8 @@ namespace UnitTests.Models.Authentication
         public void EncryptPasswordShouldBePure()
         {
             var salt = Guid.NewGuid();
-            var pw1 = UserIdentity.EncryptPassword("password", salt);
-            var pw2 = UserIdentity.EncryptPassword("password", salt);
+            var pw1 = Encryption.ComputeHash("password", salt);
+            var pw2 = Encryption.ComputeHash("password", salt);
             pw1.Should().Be(pw2);
         }
     }

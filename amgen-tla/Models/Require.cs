@@ -57,5 +57,10 @@ namespace TLA.Models
         {
             if (func()) throw new InvalidProgramException(message);
         }
+
+        public static void ArgumentValid<T>(T item, Func<T, bool> test, string reason)
+        {
+            if (!test(item)) throw new ArgumentException(reason);
+        }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Nancy;
 using Nancy.ViewEngines;
 
@@ -16,11 +15,7 @@ namespace TLA.Models.Authentication.Forms
             IViewRenderer viewRenderer,
             IModuleStaticWrappers moduleStaticWrappers)
         {
-            var validUser = userRepository
-                .GetAllUsers()
-                .FirstOrDefault(user =>
-                    user.UserName == userCredentials.User &&
-                    user.Password == UserIdentity.EncryptPassword(userCredentials.Password, user.Id));
+            var validUser = userRepository.Authenticate(userCredentials.User, userCredentials.Password);
 
             if (validUser == null)
             {

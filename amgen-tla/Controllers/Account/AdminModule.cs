@@ -1,4 +1,5 @@
-﻿using Nancy;
+﻿using System.Linq;
+using Nancy;
 using Nancy.ModelBinding;
 using Nancy.Security;
 using Nancy.ViewEngines;

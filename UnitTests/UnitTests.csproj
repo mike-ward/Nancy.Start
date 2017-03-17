@@ -114,6 +114,7 @@
     <Compile Include="Models\Authentication\Forms\FormsUserRepositoryTests.cs" />
     <Compile Include="Models\Authentication\UserIdentityTests.cs" />
     <Compile Include="Models\Authentication\UserMapperTests.cs" />
+    <Compile Include="Models\EncryptionTests.cs" />
     <Compile Include="Models\RequireTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewFolderRootPathProvider.cs" />

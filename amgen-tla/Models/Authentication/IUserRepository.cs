@@ -7,6 +7,7 @@ namespace TLA.Models.Authentication
     {
         UserIdentity User(Guid id);
         UserIdentity User(string username);
+        UserIdentity Authenticate(string username, string password);
         IEnumerable<UserIdentity> GetAllUsers();
         IEnumerable<UserIdentity> GetAdminUsers();
         void AddUser(UserIdentity userIdentity);
