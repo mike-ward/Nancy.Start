@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mithril": "1.0.0"
+    "mithril": "1.0.0",
+    "vex-js": "3.1.0"
   },
   "devDependencies": {
     "jasmine-core": "2.5.2",

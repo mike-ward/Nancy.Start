@@ -2,12 +2,12 @@
 if (!-[1,]) alert('Internet Explorer 7 and 8 are not supported');
 
 // Mithril declarations
-
 declare var m: any;
-
-// Global declarations (use sparingly)
-
 const mountView = view => m.mount(document.getElementById('content'), view);
+
+// vex dialog package initialization
+declare var vex: any;
+vex.defaultOptions.className = 'vex-theme-plain';
 
 module App {
   class Styles {

@@ -216,6 +216,7 @@
     <Content Include="js\app\views\account\admin\addView.tst" />
     <Content Include="js\app\views\account\admin\dashboardView.tst" />
     <Content Include="js\app\components\grid.tst" />
+    <Content Include="js\app\services\Renderers.tst" />
     <None Include="packages.config" />
     <Content Include="Views\welcome.cshtml" />
     <Content Include="App_Data\README.md" />
@@ -291,6 +292,7 @@ xcopy /s /y /R "$(SolutionDir)packages\Nancy.Viewengines.Razor.1.4.3\lib\Net40\N
   <Target Name="ConcatenateVendorScripts" AfterTargets="AfterBuild" Condition="$(NCrunch) != '1'">
     <ItemGroup>
       <ScriptFiles Include="js\node_modules\mithril\mithril.min.js" />
+      <ScriptFiles Include="js\node_modules\vex-js\dist\js\vex.combined.min.js" />
     </ItemGroup>
     <ItemGroup>
       <VendorScriptFileContents Include="$([System.IO.File]::ReadAllText(%(ScriptFiles.Identity)))" />
@@ -300,6 +302,8 @@ xcopy /s /y /R "$(SolutionDir)packages\Nancy.Viewengines.Razor.1.4.3\lib\Net40\N
   <Target Name="ConcatenateVendorCss" AfterTargets="AfterBuild" Condition="$(NCrunch) != '1'">
     <ItemGroup>
       <CssFiles Include="css\vendor\pure-min.css" />
+      <CssFiles Include="js\node_modules\vex-js\dist\css\vex.css" />
+      <CssFiles Include="js\node_modules\vex-js\dist\css\vex-theme-plain.css" />
     </ItemGroup>
     <ItemGroup>
       <VendorCssFileContents Include="$([System.IO.File]::ReadAllText(%(CssFiles.Identity)))" />
