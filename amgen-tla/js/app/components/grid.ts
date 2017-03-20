@@ -23,10 +23,11 @@ module App.Components {
       const thead = m('thead', [
         m('tr', gridOptions.columns.filter(c => !c.hide).map(column =>
           m('th.grid-column-title',
-            { onclick: () => this.columnClickActions(column, state) }, [
+            { onclick: () => this.titleClickActions(column, state) }, [
               column.title,
               this.sortIndicator(column, state)
-            ])
+            ]
+          )
         ))
       ]);
       return thead;
@@ -37,7 +38,12 @@ module App.Components {
       const columns = gridOptions.columns.filter(c => !c.hide);
       const tbody = m('tbody', [
         data.map(row => m('tr', columns.map(
-            column => m('td', this.renderCell(this.columnValue(row, column), column.renderer))
+          column => m('td',
+            {
+              onclick: () => column.cellClick ? column.cellClick(this.columnValue(row, column)) : '',
+              'class': column.cellClick ? 'grid-click-action' : ''
+            },
+            this.renderCell(this.columnValue(row, column), column.renderer))
           ))
         )
       ]);
@@ -46,10 +52,7 @@ module App.Components {
 
     private columnValue(row, column: GridColumn) {
       const value = row[column.id];
-      // isNaN(undefined) === true, unfortunately
-      // NaN, and only NaN, will compare unequal to itself
-      if (value || value === 0 || value !== value) return value;
-      return column.contentIfNull || '';
+      return value === null || value === undefined ? column.contentIfNull : value;
     }
 
     private renderCell(value: any, renderer: (v: any) => string): string {
@@ -84,7 +87,7 @@ module App.Components {
       return data;
     }
 
-    private columnClickActions(column: GridColumn, state: any) {
+    private titleClickActions(column: GridColumn, state: any) {
       if (column.allowSort) this.columnSortAction(column, state);
     }
 
@@ -101,6 +104,8 @@ module App.Components {
     // language=CSS
     css = `
       .grid th, .grid td{white-space:nowrap;}
+      .grid-click-action{cursor:pointer;}
+      .grid-click-action:hover{text-decoration: underline;}
       .grid-column-title:hover{cursor:pointer;}
       .grid-column-sort-indicator{margin-left:1em;}
       .grid-column-sort-indicator-hidden{visibility:collapse;}

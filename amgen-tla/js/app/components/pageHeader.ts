@@ -8,10 +8,7 @@
     }
 
     // language=CSS
-    css = `.header {
-      text-align: center;
-      clear: both;
-    }`;
+    css = `.header{clear:both;text-align:center;}`;
   }
 
   export const pageHeader = new PageHeader();

@@ -8,9 +8,7 @@
     }
 
     // language=CSS
-    css = `.footer {
-      margin-top: 5rem;
-    }`;
+    css = `.footer{margin-top:5rem;}`;
   }
 
   export const pageFooter = new PageFooter();

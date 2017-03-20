@@ -13,31 +13,10 @@ module App {
   class Styles {
     // language=CSS
     css = `
-    body
-    {
-      margin: 0;
-      min-width: 320px;
-      max-width: 1200px;
-      line-height: 1.6;
-      color: #333;
-      background-color: #fff;
-      margin: 1em auto;
-    }
-
-    .error-text
-    {
-      color: darkred;
-    }
-
-    view
-    {
-      margin: 1em auto;
-    }
-
-    .current-user-login
-    {
-      text-align: right;
-    }`
+      body{background-color:#fff;color:#333;line-height:1.6;margin:0;margin:1em auto;max-width:1200px;min-width:320px;}
+      view{margin:1em auto;}
+      .error-text{color:darkred;}
+      .current-user-login{text-align:right;}`
   }
 
   export const styles = new Styles();

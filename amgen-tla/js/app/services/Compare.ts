@@ -6,7 +6,9 @@
       // NaN, and only NaN, will compare unequal to itself,
       // and is more reliable than isNaN(). Adding insult
       // to injury, NaN itself is not a number.
+      // ReSharper disable once SimilarExpressionsComparison
       const aIsNaN = a !== a;
+      // ReSharper disable once SimilarExpressionsComparison
       const bIsNaN = b !== b;
 
       if (typeof a === 'number' || typeof b === 'number' || aIsNaN || bIsNaN) {

@@ -246,6 +246,7 @@
     <TypeScriptCompile Include="js\app\components\pageHeader.ts" />
     <TypeScriptCompile Include="js\app\models\gridOptions.ts" />
     <TypeScriptCompile Include="js\app\services\Compare.ts" />
+    <TypeScriptCompile Include="js\app\services\Dialog.ts" />
     <TypeScriptCompile Include="js\app\services\Dom.ts" />
     <TypeScriptCompile Include="js\app\services\Renderers.ts" />
     <TypeScriptCompile Include="js\app\views\account\admin\addView.ts" />

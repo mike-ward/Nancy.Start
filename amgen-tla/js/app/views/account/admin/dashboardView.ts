@@ -44,7 +44,8 @@ module App.Views.Account.Admin {
         {
           id: '✗',
           title: '✗',
-          contentIfNull: '✗'
+          contentIfNull: '✗',
+          cellClick: v => App.Services.Dialog.alert(v)
         }
       ];
 

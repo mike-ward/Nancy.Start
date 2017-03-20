@@ -12,5 +12,6 @@
     renderer?: (v: any) => string;
     allowSort?: boolean;
     comparer?: (a, b) => number;
+    cellClick?: (value: any) => void;
   }
 }
