@@ -74,7 +74,7 @@ module App.Components {
 
       const comparer = column && column.comparer
         ? column.comparer
-        : this.defaultComparer;
+        : App.Services.Compare.compareAny;
 
       data.sort((l, r) => {
         const result = comparer(l[columnId], r[columnId]);
@@ -82,23 +82,6 @@ module App.Components {
       });
 
       return data;
-    }
-
-    private defaultComparer(a, b) {
-      if (a === b) return 0; // NaN, and only NaN, will compare unequal to itself
-
-      if (typeof a === 'number') {
-        const aa = isNaN(a);
-        const bb = isNaN(b);
-        if (aa && bb) return 0;
-        if (aa && !bb) return 1;
-        if (!aa && bb) return -1;
-        return a - b;
-      }
-
-      if (a != null && b == null) return 1;
-      if (a == null && b != null) return -1;
-      return a.localeCompare(b);
     }
 
     private columnClickActions(column: GridColumn, state: any) {

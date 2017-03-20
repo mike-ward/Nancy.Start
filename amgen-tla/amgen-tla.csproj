@@ -218,6 +218,7 @@
     <Content Include="js\app\views\account\admin\dashboardView.tst" />
     <Content Include="js\app\components\grid.tst" />
     <Content Include="js\app\services\Renderers.tst" />
+    <Content Include="js\app\services\Compare.tst" />
     <None Include="packages.config" />
     <Content Include="Views\welcome.cshtml" />
     <Content Include="App_Data\README.md" />
@@ -244,6 +245,7 @@
     <TypeScriptCompile Include="js\app\components\pageFooter.ts" />
     <TypeScriptCompile Include="js\app\components\pageHeader.ts" />
     <TypeScriptCompile Include="js\app\models\gridOptions.ts" />
+    <TypeScriptCompile Include="js\app\services\Compare.ts" />
     <TypeScriptCompile Include="js\app\services\Dom.ts" />
     <TypeScriptCompile Include="js\app\services\Renderers.ts" />
     <TypeScriptCompile Include="js\app\views\account\admin\addView.ts" />
