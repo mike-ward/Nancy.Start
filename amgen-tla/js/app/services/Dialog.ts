@@ -9,12 +9,12 @@ module App.Services {
   }
 
   export interface IDialogOptions {
-    callback?: () => {};
-    afterOpen?: () => {};
+    callback?: () => any;
+    afterOpen?: () => any;
     message?: string;
     unsafeMessage?: string;
     label?: string;
-    placeholder: string;
+    placeholder?: string;
     input?: string;
     buttons?: IDialogButton[];
     showCloseButton?: boolean;
@@ -139,7 +139,7 @@ module App.Services {
     // language=CSS
     css: `
       /* override vex button styles to look like pure.css style buttons */
-      .vex.vex-theme-plain .vex-dialog-button.vex-dialog-button-primary{
+      .vex.vex-theme-plain .vex-dialog-button.vex-dialog-button-primary, .vex.vex-theme-plain .vex-dialog-button.vex-dialog-button-secondary {
         display: inline-block;
         zoom: 1;
         line-height: normal;
@@ -177,11 +177,8 @@ module App.Services {
       }
 
       /* fixes vex closing flashing in IE */
-      .vex.vex-closing .vex-content {
+      .vex.vex-closing .vex-content, .vex.vex-closing .vex-overlay {
         opacity: 0; 
-      }
-      .vex.vex-closing .vex-overlay {
-        opacity: 0;
       }`
   }
 }

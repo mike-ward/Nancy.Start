@@ -21,7 +21,7 @@ module App.Views.Account.Admin {
         m('div', { style: { 'margin-bottom': '1em' } }, [
           m('a.pure-button', { href: 'account/admin/add' }, 'Add User')
         ]),
-        m(App.Components.grid, { 'gridOptions': this.gridOptions, style: {'font-size': 'smaller'} }),
+        m(App.Components.grid, { 'gridOptions': this.gridOptions, style: { 'font-size': 'smaller' } }),
         m(App.Components.pageFooter)
       ]);
     }
@@ -45,6 +45,15 @@ module App.Views.Account.Admin {
           id: '✗',
           title: '✗',
           contentIfNull: '✗',
+          cellClick: v => App.Services.Dialog.confirm({
+            message: `Delete ${v}?`,
+            callback: () => {}
+          })
+        },
+        {
+          id: '✎',
+          title: '✎',
+          contentIfNull: '✎',
           cellClick: v => App.Services.Dialog.alert(v)
         }
       ];
@@ -61,12 +70,7 @@ module App.Views.Account.Admin {
         }));
 
       gridOptions.columns = editColumns.concat(dataColumns);
-
-      gridOptions.data = allUsers.map(u => {
-        u.key = u.id; // mithril can render faster with keys
-        return u;
-      });
-
+      gridOptions.data = allUsers;
       return gridOptions;
     }
   }
