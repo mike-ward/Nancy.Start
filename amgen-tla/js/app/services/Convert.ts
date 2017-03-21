@@ -1,6 +1,6 @@
 ﻿// ReSharper disable once InconsistentNaming
 module App.Services {
-  export class Renderers {
+  export class Convert {
     static dateToISO(v: string): string {
       if (!v) return 'null';
       const date = new Date(v).toISOString();

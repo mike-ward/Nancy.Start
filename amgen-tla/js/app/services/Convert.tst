@@ -1,4 +1,4 @@
-﻿describe('Renderers', () => {
+﻿describe('Convert', () => {
   it('dateToIso should return ISO formated date', () => {
     var iso = App.Services.Renderers.dateToISO('12/1/1970');
     expect(iso).toMatch(/1970-12-01T.+\.000Z/);

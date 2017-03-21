@@ -52,11 +52,11 @@ module App.Views.Account.Admin {
       const dataColumns: GridColumn[] = keys
         .map(key => ({
           id: key,
-          title: App.Services.Renderers.camelIdentifierToTitle(key),
+          title: App.Services.Convert.camelIdentifierToTitle(key),
           allowSort: true,
           hide: hideColumns.some(hc => hc === key),
           renderer: dateColumns.some(dc => dc === key)
-            ? App.Services.Renderers.dateToISO
+            ? App.Services.Convert.dateToISO
             : null
         }));
 

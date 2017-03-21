@@ -217,7 +217,7 @@
     <Content Include="js\app\views\account\admin\addView.tst" />
     <Content Include="js\app\views\account\admin\dashboardView.tst" />
     <Content Include="js\app\components\grid.tst" />
-    <Content Include="js\app\services\Renderers.tst" />
+    <Content Include="js\app\services\Convert.tst" />
     <Content Include="js\app\services\Compare.tst" />
     <None Include="packages.config" />
     <Content Include="Views\welcome.cshtml" />
@@ -249,7 +249,7 @@
     <TypeScriptCompile Include="js\app\services\Compare.ts" />
     <TypeScriptCompile Include="js\app\services\Dialog.ts" />
     <TypeScriptCompile Include="js\app\services\Dom.ts" />
-    <TypeScriptCompile Include="js\app\services\Renderers.ts" />
+    <TypeScriptCompile Include="js\app\services\Convert.ts" />
     <TypeScriptCompile Include="js\app\views\account\admin\addView.ts" />
     <TypeScriptCompile Include="js\app\views\account\admin\dashboardView.ts" />
     <TypeScriptCompile Include="js\app\views\account\user\loginView.ts" />
