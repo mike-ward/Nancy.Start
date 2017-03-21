@@ -1,10 +1,4 @@
-﻿// ReSharper disable RedundantQualifier
-// ReSharper disable once SimilarExpressionsComparison
-
-module App.Components {
-  import GridOptions = App.Models.GridOptions;
-  import GridColumn = App.Models.GridColumn;
-
+﻿module App.Components {
   class Grid {
     view(vnode) {
       const styles = vnode.attrs.style || {};
@@ -77,7 +71,7 @@ module App.Components {
 
       const comparer = column && column.comparer
         ? column.comparer
-        : App.Services.Compare.compareAny;
+        : Services.Compare.compareAny;
 
       data.sort((l, r) => {
         const result = comparer(l[columnId], r[columnId]);

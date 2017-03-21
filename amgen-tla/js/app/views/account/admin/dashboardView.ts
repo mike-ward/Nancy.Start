@@ -1,11 +1,11 @@
 ﻿// ReSharper disable RedundantQualifier
 
 module App.Views.Account.Admin {
-  import GridColumn = App.Models.GridColumn;
+  import GridColumn = App.Components.GridColumn;
 
   class DashboardView {
     private errorMessage: string;
-    private gridOptions: App.Models.GridOptions;
+    private gridOptions: App.Components.GridOptions;
 
     oncreate() {
       this.getAllUsers();
@@ -33,7 +33,7 @@ module App.Views.Account.Admin {
     }
 
     private createGridOptions(allUsers: any[]) {
-      const gridOptions = new App.Models.GridOptions();
+      const gridOptions = new App.Components.GridOptions();
       if (allUsers.length <= 0) return gridOptions;
 
       const hideColumns = ['id', 'password'];

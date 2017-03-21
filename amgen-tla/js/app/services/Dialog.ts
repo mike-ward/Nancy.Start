@@ -133,5 +133,15 @@ module App.Services {
     static getAll() {
       return vex.getAll();
     }
+
+    // language=CSS
+    css = `
+      .vex.vex-theme-plain .vex-dialog-button.vex-dialog-button-primary{
+        filter: alpha(opacity=90);
+        color: inherit;
+        background: inherit;
+        background-image: -webkit-linear-gradient(transparent,rgba(0,0,0,.05) 40%,rgba(0,0,0,.1));
+        background-image: linear-gradient(transparent,rgba(0,0,0,.05) 40%,rgba(0,0,0,.1));
+      }`;
   }
 }

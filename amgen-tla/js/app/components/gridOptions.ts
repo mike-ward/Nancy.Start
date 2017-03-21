@@ -1,4 +1,4 @@
-﻿module App.Models {
+﻿module App.Components {
   export class GridOptions {
     columns: GridColumn[] = [];
     data: {}[] = [];

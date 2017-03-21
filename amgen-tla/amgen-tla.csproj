@@ -238,13 +238,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="css\app\" />
+    <Folder Include="js\app\models\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="js\app\app.ts" />
     <TypeScriptCompile Include="js\app\components\grid.ts" />
     <TypeScriptCompile Include="js\app\components\pageFooter.ts" />
     <TypeScriptCompile Include="js\app\components\pageHeader.ts" />
-    <TypeScriptCompile Include="js\app\models\gridOptions.ts" />
+    <TypeScriptCompile Include="js\app\components\gridOptions.ts" />
     <TypeScriptCompile Include="js\app\services\Compare.ts" />
     <TypeScriptCompile Include="js\app\services\Dialog.ts" />
     <TypeScriptCompile Include="js\app\services\Dom.ts" />
