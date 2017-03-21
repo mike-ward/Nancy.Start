@@ -3,55 +3,63 @@
     view(vnode) {
       const styles = vnode.attrs.style || {};
       const gridOptions = vnode.attrs.gridOptions as GridOptions;
+
       return gridOptions
         ? m('div.grid', { style: styles }, [
           m('table.pure-table.pure-table-bordered', [
-            this.tableHead(gridOptions, vnode.state),
-            this.tableBody(gridOptions, vnode.state)
+            this.head(gridOptions, vnode.state),
+            this.body(gridOptions, vnode.state)
           ])
         ])
         : null;
     }
 
-    private tableHead(gridOptions: GridOptions, state: any) {
+    private head(gridOptions: GridOptions, state: any) {
       const thead = m('thead', [
-        m('tr', gridOptions.columns.filter(c => !c.hide).map(column =>
-          m('th.grid-column-title',
-            { onclick: () => this.titleClickActions(column, state) }, [
-              column.title,
-              this.sortIndicator(column, state)
-            ]
-          )
-        ))
+        m('tr', gridOptions.columns
+          .filter(c => !c.hide)
+          .map(column => this.columnHead(column, state))
+        )
       ]);
       return thead;
     }
 
-    private tableBody(gridOptions: GridOptions, state: any) {
+    private body(gridOptions: GridOptions, state: any) {
       const data = this.sortByColumn(gridOptions, state);
       const columns = gridOptions.columns.filter(c => !c.hide);
       const tbody = m('tbody', [
-        data.map(row => m('tr', columns.map(
-          column => m('td',
-            {
-              onclick: () => column.cellClick ? column.cellClick(this.columnValue(row, column)) : '',
-              'class': column.cellClick ? 'grid-click-action' : ''
-            },
-            this.renderCell(this.columnValue(row, column), column.renderer))
-          ))
-        )
+        data.map(row => m('tr',
+          columns.map(column => this.renderCell(row, column))))
       ]);
       return tbody;
+    }
+
+    private columnHead(column: GridColumn, state: any) {
+      return m('th.grid-column-title',
+        { onclick: () => this.titleClickActions(column, state) }, [
+          column.title,
+          this.sortIndicator(column, state)
+        ]
+      );
+    }
+
+    private renderCell(row: {}, column: GridColumn) {
+      return m('td',
+        {
+          onclick: () => column.cellClick ? column.cellClick(this.columnValue(row, column)) : '',
+          'class': column.cellClick ? 'grid-click-action' : ''
+        },
+        this.renderValue(this.columnValue(row, column), column.renderer));
+    }
+
+    private renderValue(value: any, renderer: (v: any) => string): string {
+      const cellContents = renderer ? renderer(value) : value;
+      return cellContents;
     }
 
     private columnValue(row, column: GridColumn) {
       const value = row[column.id];
       return value === null || value === undefined ? column.contentIfNull : value;
-    }
-
-    private renderCell(value: any, renderer: (v: any) => string): string {
-      const cellContents = renderer ? renderer(value) : value;
-      return cellContents;
     }
 
     private sortIndicator(column: GridColumn, state: any) {
