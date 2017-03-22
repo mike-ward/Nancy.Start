@@ -47,17 +47,14 @@
     }
 
     private renderCell(row: {}, column: GridColumn) {
+      const value = this.columnValue(row, column);
       return m('td',
         {
-          onclick: () => column.cellClick ? column.cellClick(this.columnValue(row, column)) : '',
-          'class': column.cellClick ? 'grid-click-action' : ''
+          'class': column.cellClick ? 'grid-click-action' : '',
+          title: column.cellTooltip ? column.cellTooltip(value) : '',
+          onclick: () => column.cellClick ? column.cellClick(this.columnValue(row, column)) : ''
         },
-        this.renderValue(this.columnValue(row, column), column.renderer));
-    }
-
-    private renderValue(value: any, renderer: (v: any) => string): string {
-      const cellContents = renderer ? renderer(value) : value;
-      return cellContents;
+        column.renderer ? column.renderer(value) : value);
     }
 
     private columnValue(row, column: GridColumn) {

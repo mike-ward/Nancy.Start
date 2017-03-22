@@ -14,5 +14,6 @@
     allowSort?: boolean;
     comparer?: (a, b) => number;
     cellClick?: (value: any) => void;
+    cellTooltip?: (value: any) => void;
   }
 }

@@ -46,7 +46,7 @@ module App.Views.Account.Admin {
           title: '✗',
           tooltip: 'Delete User',
           contentIfNull: '✗',
-          cellClick: v => Services.Dialog.confirm(`Delete ${v}?`)
+          cellClick: v => Services.Dialog.confirm(`Delete ${v}?`),
         },
         {
           id: '✎',
