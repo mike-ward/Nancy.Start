@@ -228,7 +228,7 @@
     <Content Include="Views\account\admin\add.cshtml" />
     <Content Include="Views\account\admin\dashboard.cshtml" />
     <None Include="Views\master.cshtml" />
-    <Content Include="Views\_CurrentUser.cshtml" />
+    <Content Include="Views\_current-user.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

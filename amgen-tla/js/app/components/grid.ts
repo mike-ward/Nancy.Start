@@ -36,7 +36,10 @@
 
     private columnHead(column: GridColumn, state: any) {
       return m('th.grid-column-title',
-        { onclick: () => this.titleClickActions(column, state) }, [
+        {
+          title: column.tooltip || '',
+          onclick: () => this.titleClickActions(column, state)
+        }, [
           column.title,
           this.sortIndicator(column, state)
         ]

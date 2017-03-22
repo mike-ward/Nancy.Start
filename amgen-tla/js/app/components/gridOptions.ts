@@ -7,6 +7,7 @@
   export class GridColumn {
     id: string;
     title: string;
+    tooltip?: string;
     hide?: boolean;
     contentIfNull?: string;
     renderer?: (v: any) => string;

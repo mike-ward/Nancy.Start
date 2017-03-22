@@ -44,12 +44,14 @@ module App.Views.Account.Admin {
         {
           id: '✗',
           title: '✗',
+          tooltip: 'Delete User',
           contentIfNull: '✗',
           cellClick: v => Services.Dialog.confirm(`Delete ${v}?`)
         },
         {
           id: '✎',
           title: '✎',
+          tooltip: 'Edit User',
           contentIfNull: '✎',
           cellClick: v => Services.Dialog.alert(v)
         }
