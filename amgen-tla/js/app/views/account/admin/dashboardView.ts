@@ -45,27 +45,24 @@ module App.Views.Account.Admin {
           id: '✗',
           title: '✗',
           contentIfNull: '✗',
-          cellClick: v => App.Services.Dialog.confirm({
-            message: `Delete ${v}?`,
-            callback: () => {}
-          })
+          cellClick: v => Services.Dialog.confirm(`Delete ${v}?`)
         },
         {
           id: '✎',
           title: '✎',
           contentIfNull: '✎',
-          cellClick: v => App.Services.Dialog.alert(v)
+          cellClick: v => Services.Dialog.alert(v)
         }
       ];
 
       const dataColumns: GridColumn[] = keys
         .map(key => ({
           id: key,
-          title: App.Services.Convert.camelIdentifierToTitle(key),
+          title: Services.Convert.camelIdentifierToTitle(key),
           allowSort: true,
           hide: hideColumns.some(hc => hc === key),
           renderer: dateColumns.some(dc => dc === key)
-            ? App.Services.Convert.dateToISO
+            ? Services.Convert.dateToISO
             : null
         }));
 

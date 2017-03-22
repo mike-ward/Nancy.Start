@@ -62,7 +62,7 @@
     <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
     <TypeScriptModuleKind>None</TypeScriptModuleKind>
     <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
-    <TypeScriptOutFile>js\out\app.js</TypeScriptOutFile>
+    <TypeScriptOutFile>Content\app.js</TypeScriptOutFile>
     <TypeScriptOutDir>
     </TypeScriptOutDir>
     <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
@@ -161,7 +161,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Elmah\elmah.txt" />
-    <Content Include="Content\app.css" />
     <Content Include="Content\app.js" />
     <Content Include="Content\vendor.min.css" />
     <Content Include="Content\vendor.min.js" />
@@ -238,6 +237,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\images\" />
     <Folder Include="css\app\" />
     <Folder Include="js\app\models\" />
   </ItemGroup>
@@ -299,7 +299,6 @@ xcopy /s /y /R "$(SolutionDir)packages\Nancy.Viewengines.Razor.1.4.3\lib\Net40\N
   <Target Name="ConcatenateVendorScripts" AfterTargets="AfterBuild" Condition="$(NCrunch) != '1'">
     <ItemGroup>
       <ScriptFiles Include="js\node_modules\mithril\mithril.min.js" />
-      <ScriptFiles Include="js\node_modules\vex-js\dist\js\vex.combined.min.js" />
     </ItemGroup>
     <ItemGroup>
       <VendorScriptFileContents Include="$([System.IO.File]::ReadAllText(%(ScriptFiles.Identity)))" />
@@ -309,8 +308,6 @@ xcopy /s /y /R "$(SolutionDir)packages\Nancy.Viewengines.Razor.1.4.3\lib\Net40\N
   <Target Name="ConcatenateVendorCss" AfterTargets="AfterBuild" Condition="$(NCrunch) != '1'">
     <ItemGroup>
       <CssFiles Include="css\vendor\pure-min.css" />
-      <CssFiles Include="js\node_modules\vex-js\dist\css\vex.css" />
-      <CssFiles Include="js\node_modules\vex-js\dist\css\vex-theme-plain.css" />
     </ItemGroup>
     <ItemGroup>
       <VendorCssFileContents Include="$([System.IO.File]::ReadAllText(%(CssFiles.Identity)))" />

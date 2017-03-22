@@ -16,7 +16,6 @@
         margin: 0 1em;
         white-space: nowrap;
         text-decoration: none;
-        color: inherit;
       }
       .nav-bar a:hover {
         border-bottom: solid 1px;
