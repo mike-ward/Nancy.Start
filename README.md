@@ -1,7 +1,9 @@
 Nancy.Start
 ===========
 
-Things you should know:
+Admittedly, this is not a normal bootstrap project since it doesn't
+follow the current industry norms. I value fewer dependencies and
+shorter code paths which has led me to this arrangement. YMMV
 
 -   [NancyFx](http://nancyfx.org) for the back end. ASP.NET MVC and it's
     various flavors are not my thing.
@@ -10,22 +12,26 @@ Things you should know:
 -   I don't like Gulp/Grunt and don't use them.
 -   Karma/Jasmine is used for testing.
 -   Typescript because it's better.
--   I like using Visual Studio to edit back and front ends.
--   For JavaScript I don't use a bundler so you can use require. I find
-    namespaces in Typescript are all I need. You probably don't agree. I
-    don't care. I also don't need to deal with WebPack and it's
-    variants. Instead, I add a few lines of custom post build code to
-    the project file. This concatenates and minifies as needed.
--   There's no hot loading (admittedly a cool thing). I run Karma in
-    watch mode. This rebuilds the JavaScript so I can simply refresh the
-    browser. Works for me.
+-   I like using Visual Studio to edit back and front end code. I also
+    like the debugging environment.
+-   For JavaScript I use my own bundler. I find namespaces in Typescript
+    are all I need. You can't use `require(module)` in this setup. It
+    also means there's no WebPack (or other bundler). Instead, I add a
+    few lines of custom post build code to the project file that
+    concatenates and minifies as needed.
 -   App style sheets are embedded in JavaScript. Any object with a `css`
     member is found and inserted into the DOM.
--   Thre's a simple grid component that supports column sorting. Custom
-    cell renders and click actions are supported.
--   Dialogs use the vex package.
+-   There's no hot loading (admittedly a cool thing). I run Karma in
+    watch mode. This rebuilds the JavaScript so I can simply refresh the
+    browser. Since CSS is embedded in JavaScript, it also refreshes the
+    styesheets. F5 to reload the page.
 -   Basic account support with login/logout.
--   Active directory support
--   Elmah
+-   Active Directory support
+-   There's a simple `grid` component that supports column sorting.
+    Custom cell renders and click actions are supported.
+-   Elmah for error logging.
 -   Purecss.io for styles. It's super small and does what I need.
+-   NPM for JavaScript package managment and test scripting.
+-   Mithril has a router but I don't use it. I find loading pages from
+    the server works better for my purposes.
 
