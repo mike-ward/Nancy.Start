@@ -35,3 +35,9 @@ shorter code paths which has led me to this arrangement. YMMV
 -   Mithril has a router but I don't use it. I find loading pages from
     the server works better for my purposes.
 
+Notes:
+
+To login:
+
+User: admin@admin.com  
+Password: admin
