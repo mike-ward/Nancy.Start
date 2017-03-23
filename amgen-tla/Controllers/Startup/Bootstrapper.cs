@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Nancy;
 using Nancy.Authentication.Forms;
 using Nancy.Bootstrapper;
@@ -9,10 +10,10 @@ using TLA.Models;
 using TLA.Models.Authentication;
 using TLA.Models.Authentication.ActiveDirectory;
 using TLA.Models.Authentication.Forms;
-using TLA.Models.Piplelines;
+using TLA.Models.SystemInformation;
 using IUserMapper = TLA.Models.Authentication.IUserMapper;
 
-namespace TLA.Controllers
+namespace TLA.Controllers.Startup
 {
     public class Bootstrapper : DefaultNancyBootstrapper
     {
@@ -22,9 +23,7 @@ namespace TLA.Controllers
         {
             base.ApplicationStartup(container, pipelines);
 
-            ViewBagItems.Enable(pipelines);
             Elmahlogging.Enable(pipelines, "elmah");
-
             JsonSettings.RetainCasing = true;
             JsonSettings.MaxJsonLength = int.MaxValue;
             StaticConfiguration.DisableErrorTraces = false;
@@ -40,7 +39,6 @@ namespace TLA.Controllers
         protected override void ConfigureApplicationContainer(TinyIoCContainer container)
         {
             base.ConfigureApplicationContainer(container);
-
             var configuration = container.Resolve<IConfiguration>();
 
             if (configuration.ActiveDirectoryUserGroups().Any())
@@ -52,6 +50,16 @@ namespace TLA.Controllers
             {
                 container.Register<IUserMapper, FormsUserMapper>();
                 container.Register<IUserRepository, FormsUserRepository>();
+            }
+        }
+
+        protected override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context)
+        {
+            base.ConfigureRequestContainer(container, context);
+
+            if (context.Request.Path.EndsWith("system-information", StringComparison.OrdinalIgnoreCase))
+            {
+                context.ViewBag.SystemInformationComponents = container.ResolveAll<ISystemInformationComponent>();
             }
         }
     }

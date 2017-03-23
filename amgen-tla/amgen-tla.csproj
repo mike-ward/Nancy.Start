@@ -175,12 +175,13 @@
     <Compile Include="Controllers\Account\UserModule.cs" />
     <Compile Include="Controllers\Authentication\ActiveDirectoryAuthenticateModule.cs" />
     <Compile Include="Controllers\Authentication\FormsAuthenticationModule.cs" />
+    <Compile Include="Controllers\Startup\NancyGzipCompression.cs" />
     <Compile Include="Models\Account\AdminModel.cs" />
     <Compile Include="Models\Authentication\ModuleStaticWrappers.cs" />
     <Compile Include="Models\Authentication\IUserMapper.cs" />
     <Compile Include="Models\Authentication\AuthenticationRedirectUrl.cs" />
     <Compile Include="Models\Authentication\UserCredentials.cs" />
-    <Compile Include="Controllers\Bootstrapper.cs" />
+    <Compile Include="Controllers\Startup\Bootstrapper.cs" />
     <Compile Include="Controllers\HomeModule.cs" />
     <Compile Include="Controllers\WelcomeModule.cs" />
     <Compile Include="Models\Authentication\ActiveDirectory\ActiveDirectoryUserMapper.cs" />
@@ -196,8 +197,10 @@
     <Compile Include="Models\Encryption.cs" />
     <Compile Include="Models\Extensions\ExceptionExtensions.cs" />
     <Compile Include="Models\IConfiguration.cs" />
-    <Compile Include="Models\Piplelines\ViewBagItems.cs" />
+    <Compile Include="Models\SystemInformation\ISystemInformationComponent.cs" />
     <Compile Include="Models\Require.cs" />
+    <Compile Include="Models\SystemInformation\Version.cs" />
+    <Compile Include="Models\SystemInformation\VersionSystemInformationComponent.cs" />
     <Compile Include="Models\System\File.cs" />
     <Compile Include="Models\System\IFile.cs" />
     <Compile Include="Models\System\IMonitor.cs" />
@@ -229,6 +232,7 @@
     <Content Include="Views\account\admin\dashboard.cshtml" />
     <None Include="Views\master.cshtml" />
     <Content Include="Views\_current-user.cshtml" />
+    <Content Include="Views\system-information.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -9,6 +9,7 @@ namespace TLA.Controllers
         {
             Get["/"] = parameters => View["welcome"];
             Get["/logout"] = p => moduleStaticWrappers.LogoutAndRedirect(this, "~/");
+            Get["system-information"] = p => View["system-information"];
         }
     }
 }
