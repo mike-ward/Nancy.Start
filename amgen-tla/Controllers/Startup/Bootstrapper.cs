@@ -7,10 +7,10 @@ using Nancy.Elmah;
 using Nancy.Json;
 using Nancy.TinyIoc;
 using TLA.Models;
+using TLA.Models.Account.Admin.SystemInformation;
 using TLA.Models.Authentication;
 using TLA.Models.Authentication.ActiveDirectory;
 using TLA.Models.Authentication.Forms;
-using TLA.Models.SystemInformation;
 using IUserMapper = TLA.Models.Authentication.IUserMapper;
 
 namespace TLA.Controllers.Startup
@@ -59,7 +59,12 @@ namespace TLA.Controllers.Startup
 
             if (context.Request.Path.EndsWith("system-information", StringComparison.OrdinalIgnoreCase))
             {
-                context.ViewBag.SystemInformationComponents = container.ResolveAll<ISystemInformationComponent>();
+                context.ViewBag.SystemInformationComponents = container
+                    .ResolveAll<ISystemInformationComponent>()
+                    .Distinct(new SystemInformationComponentEqualityComparer())
+                    .OrderBy(c => c.Cardinality)
+                    .ToArray();
+
             }
         }
     }

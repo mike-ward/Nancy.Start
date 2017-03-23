@@ -6,7 +6,7 @@ using Nancy.ViewEngines;
 using TLA.Controllers.Account;
 using TLA.Models.Authentication;
 
-namespace TLA.Models.Account
+namespace TLA.Models.Account.Admin
 {
     public static class AdminModel
     {

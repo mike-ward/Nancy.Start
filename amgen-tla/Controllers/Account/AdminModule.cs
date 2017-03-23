@@ -2,6 +2,7 @@
 using Nancy.ModelBinding;
 using Nancy.ViewEngines;
 using TLA.Models.Account;
+using TLA.Models.Account.Admin;
 using TLA.Models.Authentication;
 using TLA.Models.Extensions;
 

@@ -176,8 +176,10 @@
     <Compile Include="Controllers\Authentication\ActiveDirectoryAuthenticateModule.cs" />
     <Compile Include="Controllers\Authentication\FormsAuthenticationModule.cs" />
     <Compile Include="Controllers\Startup\NancyGzipCompression.cs" />
-    <Compile Include="Controllers\SystemInformationModule.cs" />
-    <Compile Include="Models\Account\AdminModel.cs" />
+    <Compile Include="Controllers\Account\SystemInformationModule.cs" />
+    <Compile Include="Models\Account\Admin\AdminModel.cs" />
+    <Compile Include="Models\Account\Admin\SystemInformation\ElmahSystemInformationComponent.cs" />
+    <Compile Include="Models\Account\Admin\SystemInformation\SystemInformationComponentEqualityComparer.cs" />
     <Compile Include="Models\Authentication\ModuleStaticWrappers.cs" />
     <Compile Include="Models\Authentication\IUserMapper.cs" />
     <Compile Include="Models\Authentication\AuthenticationRedirectUrl.cs" />
@@ -199,10 +201,10 @@
     <Compile Include="Models\Extensions\ExceptionExtensions.cs" />
     <Compile Include="Models\Extensions\ModuleExtensions.cs" />
     <Compile Include="Models\IConfiguration.cs" />
-    <Compile Include="Models\SystemInformation\ISystemInformationComponent.cs" />
+    <Compile Include="Models\Account\Admin\SystemInformation\ISystemInformationComponent.cs" />
     <Compile Include="Models\Require.cs" />
-    <Compile Include="Models\SystemInformation\Version.cs" />
-    <Compile Include="Models\SystemInformation\VersionSystemInformationComponent.cs" />
+    <Compile Include="Models\System\Version.cs" />
+    <Compile Include="Models\Account\Admin\SystemInformation\VersionSystemInformationComponent.cs" />
     <Compile Include="Models\System\File.cs" />
     <Compile Include="Models\System\IFile.cs" />
     <Compile Include="Models\System\IMonitor.cs" />
