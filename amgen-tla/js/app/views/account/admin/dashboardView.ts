@@ -16,15 +16,23 @@ module App.Views.Account.Admin {
         m(App.Components.pageHeader),
         m('div.admin-dashboard', [
           m('h2', 'Administrator Dashboard'),
-          m('h2.error-text', this.errorMessage)
+          m('h3.error-text', this.errorMessage),
+          m('div.admin-dashboard-buttons', [
+            m('a.pure-button', { href: 'account/admin/add' }, 'Add User'),
+            m('a.pure-button', { href: 'account/admin/system-information' }, 'System Information')
+          ]),
+          m(App.Components.grid, { gridOptions: this.gridOptions })
         ]),
-        m('div', { style: { 'margin-bottom': '1em' } }, [
-          m('a.pure-button', { href: 'account/admin/add' }, 'Add User')
-        ]),
-        m(App.Components.grid, { 'gridOptions': this.gridOptions, style: { 'font-size': 'smaller' } }),
         m(App.Components.pageFooter)
       ]);
     }
+
+    // language=css
+    css = `
+      .admin-dashboard .grid { font-size: smaller; }
+      .admin-dashboard-buttons { margin-bottom: 1em }
+      .admin-dashboard-buttons a { margin-right: 1em; }
+    `;
 
     private getAllUsers() {
       m.request({ url: 'account/admin/allUsers', data: { r: Date.now() } })
@@ -46,7 +54,7 @@ module App.Views.Account.Admin {
           title: '✗',
           tooltip: 'Delete User',
           contentIfNull: '✗',
-          cellClick: v => Services.Dialog.confirm(`Delete ${v}?`),
+          cellClick: v => Services.Dialog.confirm(`Delete ${v}?`)
         },
         {
           id: '✎',

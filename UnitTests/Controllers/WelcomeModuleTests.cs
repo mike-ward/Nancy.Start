@@ -17,7 +17,7 @@ namespace UnitTests.Controllers
             var browser = new Browser(with =>
             {
                 with.RootPathProvider(new ViewFolderRootPathProvider());
-                with.Module<WelcomeModule>();
+                with.Module<IndexModule>();
                 with.Dependency<FormsAuthenticationModule>();
                 with.Dependency<ModuleStaticWrappers>();
             });

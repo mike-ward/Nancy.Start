@@ -1,10 +1,9 @@
-﻿using System.Linq;
-using Nancy;
+﻿using Nancy;
 using Nancy.ModelBinding;
-using Nancy.Security;
 using Nancy.ViewEngines;
 using TLA.Models.Account;
 using TLA.Models.Authentication;
+using TLA.Models.Extensions;
 
 namespace TLA.Controllers.Account
 {
@@ -20,8 +19,7 @@ namespace TLA.Controllers.Account
 
         public AdminModule(IUserRepository userRepository, IViewRenderer viewRenderer)
         {
-            this.RequiresAuthentication();
-            this.RequiresClaims(AdminClaim);
+            this.RequiresAdminClaim();
 
             Get["account/admin/allUsers"] = p => Response.AsJson(userRepository.GetAllUsers());
 

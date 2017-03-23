@@ -8,7 +8,6 @@ namespace TLA.Controllers.Authentication
 {
     public class FormsAuthenticationModule : NancyModule
     {
-
         public FormsAuthenticationModule(
             IUserMapper userMapper,
             IConfiguration configuration,
@@ -17,6 +16,7 @@ namespace TLA.Controllers.Authentication
             IModuleStaticWrappers moduleStaticWrappers)
         {
             Get[AuthenticationRedirectUrl.Url] = p => View[AuthenticationRedirectUrl.Url];
+
             Post[AuthenticationRedirectUrl.Url] = p => userMapper.Authenticate(
                 this,
                 userMapper,

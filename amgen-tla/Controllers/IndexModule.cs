@@ -3,13 +3,12 @@ using TLA.Models.Authentication;
 
 namespace TLA.Controllers
 {
-    public class WelcomeModule : NancyModule
+    public class IndexModule : NancyModule
     {
-        public WelcomeModule(IModuleStaticWrappers moduleStaticWrappers)
+        public IndexModule(IModuleStaticWrappers moduleStaticWrappers)
         {
             Get["/"] = parameters => View["welcome"];
             Get["/logout"] = p => moduleStaticWrappers.LogoutAndRedirect(this, "~/");
-            Get["system-information"] = p => View["system-information"];
         }
     }
 }
