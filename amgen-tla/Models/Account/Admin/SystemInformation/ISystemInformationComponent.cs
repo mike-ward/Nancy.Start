@@ -1,4 +1,4 @@
-﻿namespace TLA.Models.Account.Admin.SystemInformation
+namespace App.Models.Account.Admin.SystemInformation
 {
     /// <summary>
     ///  Add components to the System Information page by implementing this interface.

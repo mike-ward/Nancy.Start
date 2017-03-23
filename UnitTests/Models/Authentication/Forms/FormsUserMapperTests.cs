@@ -1,12 +1,12 @@
 ﻿using System;
+using App.Models;
+using App.Models.Authentication;
+using App.Models.Authentication.Forms;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Nancy;
 using Nancy.ViewEngines;
-using TLA.Models;
-using TLA.Models.Authentication;
-using TLA.Models.Authentication.Forms;
 
 namespace UnitTests.Models.Authentication.Forms
 {

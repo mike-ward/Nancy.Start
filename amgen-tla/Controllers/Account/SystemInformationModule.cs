@@ -1,7 +1,7 @@
-﻿using Nancy;
-using TLA.Models.Extensions;
+﻿using App.Models.Extensions;
+using Nancy;
 
-namespace TLA.Controllers.Account
+namespace App.Controllers.Account
 {
     public class SystemInformationModule : NancyModule
     {

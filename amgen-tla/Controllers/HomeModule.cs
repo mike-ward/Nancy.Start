@@ -1,7 +1,7 @@
 ﻿using Nancy;
 using Nancy.Security;
 
-namespace TLA.Controllers
+namespace App.Controllers
 {
     public class HomeModule : NancyModule
     {

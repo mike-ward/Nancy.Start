@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
-using TLA.Models.Authentication.ActiveDirectory;
+using App.Models.Authentication.ActiveDirectory;
 
-namespace TLA.Models
+namespace App.Models
 {
     public class Configuration : IConfiguration
     {

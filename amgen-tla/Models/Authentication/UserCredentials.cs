@@ -1,6 +1,6 @@
 using System.Runtime.Serialization;
 
-namespace TLA.Models.Authentication
+namespace App.Models.Authentication
 {
     [DataContract]
     public class UserCredentials

@@ -1,19 +1,19 @@
-﻿using System;
+using System;
 using System.Linq;
+using App.Models;
+using App.Models.Account.Admin.SystemInformation;
+using App.Models.Authentication;
+using App.Models.Authentication.ActiveDirectory;
+using App.Models.Authentication.Forms;
 using Nancy;
 using Nancy.Authentication.Forms;
 using Nancy.Bootstrapper;
 using Nancy.Elmah;
 using Nancy.Json;
 using Nancy.TinyIoc;
-using TLA.Models;
-using TLA.Models.Account.Admin.SystemInformation;
-using TLA.Models.Authentication;
-using TLA.Models.Authentication.ActiveDirectory;
-using TLA.Models.Authentication.Forms;
-using IUserMapper = TLA.Models.Authentication.IUserMapper;
+using IUserMapper = App.Models.Authentication.IUserMapper;
 
-namespace TLA.Controllers.Startup
+namespace App.Controllers.Startup
 {
     public class Bootstrapper : DefaultNancyBootstrapper
     {
@@ -57,7 +57,7 @@ namespace TLA.Controllers.Startup
         {
             base.ConfigureRequestContainer(container, context);
 
-            if (context.Request.Path.EndsWith("system-information", StringComparison.OrdinalIgnoreCase))
+            if (context.Request.Url.Path.EndsWith("system-information", StringComparison.OrdinalIgnoreCase))
             {
                 context.ViewBag.SystemInformationComponents = container
                     .ResolveAll<ISystemInformationComponent>()

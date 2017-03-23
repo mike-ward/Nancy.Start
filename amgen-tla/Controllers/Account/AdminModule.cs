@@ -1,12 +1,11 @@
-﻿using Nancy;
+﻿using App.Models.Account.Admin;
+using App.Models.Authentication;
+using App.Models.Extensions;
+using Nancy;
 using Nancy.ModelBinding;
 using Nancy.ViewEngines;
-using TLA.Models.Account;
-using TLA.Models.Account.Admin;
-using TLA.Models.Authentication;
-using TLA.Models.Extensions;
 
-namespace TLA.Controllers.Account
+namespace App.Controllers.Account
 {
     public class AdminModule : NancyModule
     {

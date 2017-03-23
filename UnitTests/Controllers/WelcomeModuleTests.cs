@@ -1,10 +1,10 @@
-﻿using FluentAssertions;
+﻿using App.Controllers;
+using App.Controllers.Authentication;
+using App.Models.Authentication;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Nancy;
 using Nancy.Testing;
-using TLA.Controllers;
-using TLA.Controllers.Authentication;
-using TLA.Models.Authentication;
 
 namespace UnitTests.Controllers
 {

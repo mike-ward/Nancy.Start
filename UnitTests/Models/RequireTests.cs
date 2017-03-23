@@ -1,7 +1,7 @@
 ﻿using System;
+using App.Models;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TLA.Models;
 
 namespace UnitTests.Models
 {

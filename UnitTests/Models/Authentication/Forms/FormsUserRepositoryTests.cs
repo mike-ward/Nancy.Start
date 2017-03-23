@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
+using App.Models;
+using App.Models.Authentication;
+using App.Models.Authentication.Forms;
+using App.Models.System;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using TLA.Models;
-using TLA.Models.Authentication;
-using TLA.Models.Authentication.Forms;
-using TLA.Models.System;
 
 namespace UnitTests.Models.Authentication.Forms
 {

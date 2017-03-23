@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Threading;
 using Elmah;
 using Microsoft.Win32;
-using Version = TLA.Models.System.Version;
+using Version = App.Models.System.Version;
 
-namespace TLA.Models.Account.Admin.SystemInformation
+namespace App.Models.Account.Admin.SystemInformation
 {
     public class VersionSystemInformationComponent : ISystemInformationComponent
     {

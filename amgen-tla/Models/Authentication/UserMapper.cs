@@ -5,7 +5,7 @@ using Nancy;
 using Nancy.Security;
 using Nancy.ViewEngines;
 
-namespace TLA.Models.Authentication
+namespace App.Models.Authentication
 {
     public class UserMapper : IUserMapper
     {

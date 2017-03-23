@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using System.Security.Cryptography;
-using System.Text;
 using Nancy.Security;
 
-namespace TLA.Models.Authentication
+namespace App.Models.Authentication
 {
     [DataContract]
     public class UserIdentity : IUserIdentity

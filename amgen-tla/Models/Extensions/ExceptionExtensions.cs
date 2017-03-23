@@ -2,7 +2,7 @@
 using System.Web;
 using Elmah;
 
-namespace TLA.Models.Extensions
+namespace App.Models.Extensions
 {
     public static class ExceptionExtensions
     {

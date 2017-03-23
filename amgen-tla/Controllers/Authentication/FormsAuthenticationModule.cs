@@ -1,10 +1,10 @@
-﻿using Nancy;
+﻿using App.Models;
+using App.Models.Authentication;
+using Nancy;
 using Nancy.ModelBinding;
 using Nancy.ViewEngines;
-using TLA.Models;
-using TLA.Models.Authentication;
 
-namespace TLA.Controllers.Authentication
+namespace App.Controllers.Authentication
 {
     public class FormsAuthenticationModule : NancyModule
     {

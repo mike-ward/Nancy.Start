@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TLA.Models.Authentication
+namespace App.Models.Authentication
 {
     public interface IUserRepository
     {

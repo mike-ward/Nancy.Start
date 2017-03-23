@@ -1,7 +1,7 @@
 ﻿using System;
+using App.Models.Authentication;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TLA.Models.Authentication;
 
 namespace UnitTests.Models.Authentication
 {

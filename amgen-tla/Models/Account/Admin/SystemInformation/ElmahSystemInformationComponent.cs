@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
 using System.Xml;
 using Elmah;
 using Nancy;
 
-namespace TLA.Models.Account.Admin.SystemInformation
+namespace App.Models.Account.Admin.SystemInformation
 {
     public class ElmahSystemInformationComponent : ISystemInformationComponent
     {

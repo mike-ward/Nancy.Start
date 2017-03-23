@@ -1,4 +1,4 @@
-﻿namespace TLA.Models.System
+﻿namespace App.Models.System
 {
     public class File : IFile
     {

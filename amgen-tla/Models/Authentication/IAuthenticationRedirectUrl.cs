@@ -1,4 +1,4 @@
-﻿namespace TLA.Models.Authentication
+﻿namespace App.Models.Authentication
 {
     public interface IAuthenticationRedirectUrl
     {

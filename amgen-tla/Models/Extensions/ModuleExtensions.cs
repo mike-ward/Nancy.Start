@@ -1,8 +1,8 @@
-﻿using Nancy;
+﻿using App.Controllers.Account;
+using Nancy;
 using Nancy.Security;
-using TLA.Controllers.Account;
 
-namespace TLA.Models.Extensions
+namespace App.Models.Extensions
 {
     public static class ModuleExtensions
     {

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
+using App.Controllers.Account;
+using App.Models.Authentication;
 using Nancy;
 using Nancy.Responses.Negotiation;
 using Nancy.ViewEngines;
-using TLA.Controllers.Account;
-using TLA.Models.Authentication;
 
-namespace TLA.Models.Account.Admin
+namespace App.Models.Account.Admin
 {
     public static class AdminModel
     {

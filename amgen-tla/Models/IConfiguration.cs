@@ -1,4 +1,4 @@
-﻿namespace TLA.Models
+﻿namespace App.Models
 {
     public interface IConfiguration
     {

@@ -1,7 +1,7 @@
-﻿using Nancy;
-using TLA.Models.Authentication;
+﻿using App.Models.Authentication;
+using Nancy;
 
-namespace TLA.Controllers
+namespace App.Controllers
 {
     public class IndexModule : NancyModule
     {

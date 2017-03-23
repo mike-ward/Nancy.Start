@@ -2,7 +2,7 @@
 using Nancy;
 using Nancy.Authentication.Forms;
 
-namespace TLA.Models.Authentication
+namespace App.Models.Authentication
 {
 
     public interface IModuleStaticWrappers

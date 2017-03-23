@@ -4,11 +4,11 @@ using System.Linq;
 using System.Security.Authentication;
 using System.Security.Principal;
 using System.Web;
+using App.Models.Extensions;
 using Nancy;
 using Nancy.ViewEngines;
-using TLA.Models.Extensions;
 
-namespace TLA.Models.Authentication.ActiveDirectory
+namespace App.Models.Authentication.ActiveDirectory
 {
     public class ActiveDirectoryUserMapper : UserMapper
     {

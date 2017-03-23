@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Nancy;
 using Nancy.ViewEngines;
 
-namespace TLA.Models.Authentication
+namespace App.Models.Authentication
 {
     public interface IUserMapper : Nancy.Authentication.Forms.IUserMapper
     {

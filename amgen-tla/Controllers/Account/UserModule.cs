@@ -1,6 +1,6 @@
 ﻿using Nancy;
 
-namespace TLA.Controllers.Account
+namespace App.Controllers.Account
 {
     public class UserModule : NancyModule
     {

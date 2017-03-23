@@ -4,7 +4,7 @@ using System.Linq;
 using Nancy;
 using Nancy.Bootstrapper;
 
-namespace TLA.Controllers.Startup
+namespace App.Controllers.Startup
 {
     public class NancyGzipCompression : IApplicationStartup
     {

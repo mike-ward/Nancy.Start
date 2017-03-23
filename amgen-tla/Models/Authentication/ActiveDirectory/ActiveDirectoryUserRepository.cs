@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TLA.Models.Authentication.ActiveDirectory
+namespace App.Models.Authentication.ActiveDirectory
 {
     public class ActiveDirectoryUserRepository : IUserRepository
     {

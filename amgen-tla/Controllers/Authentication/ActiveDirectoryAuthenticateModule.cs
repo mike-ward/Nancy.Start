@@ -1,8 +1,8 @@
-﻿using Nancy;
-using TLA.Models;
-using TLA.Models.Authentication;
+﻿using App.Models;
+using App.Models.Authentication;
+using Nancy;
 
-namespace TLA.Controllers.Authentication
+namespace App.Controllers.Authentication
 {
     public class ActiveDirectoryAuthenticateModule : NancyModule
     {

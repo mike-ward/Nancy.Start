@@ -2,7 +2,7 @@
 using Nancy;
 using Nancy.ViewEngines;
 
-namespace TLA.Models.Authentication.Forms
+namespace App.Models.Authentication.Forms
 {
     public class FormsUserMapper : UserMapper
     {

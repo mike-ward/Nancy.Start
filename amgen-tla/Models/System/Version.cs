@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Reflection;
 
-namespace TLA.Models.System
+namespace App.Models.System
 {
     public static class Version
     {
