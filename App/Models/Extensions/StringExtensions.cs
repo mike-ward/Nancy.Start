@@ -1,5 +1,5 @@
-﻿using System.Text.RegularExpressions;
-using System.Web;
+﻿using System.Net;
+using System.Text.RegularExpressions;
 
 namespace App.Models.Extensions
 {
@@ -9,7 +9,7 @@ namespace App.Models.Extensions
         {
             var reg = new Regex("<[^>]+>", RegexOptions.IgnoreCase);
             var stripped = reg.Replace(html, "");
-            return decode ? HttpUtility.HtmlDecode(stripped) : stripped;
+            return decode ? WebUtility.HtmlDecode(stripped) : stripped;
         }
     }
 }

@@ -231,7 +231,6 @@
     <Content Include="js\app\components\navBar.tst" />
     <None Include="packages.config" />
     <Content Include="Views\welcome.cshtml" />
-    <Content Include="App_Data\README.md" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <Content Include="Views\home.cshtml" />
     <Content Include="Views\account\user\login.cshtml" />

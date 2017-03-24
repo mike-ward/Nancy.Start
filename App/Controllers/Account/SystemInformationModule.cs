@@ -10,8 +10,6 @@ namespace App.Controllers.Account
 {
     public class SystemInformationModule : NancyModule
     {
-        private static string _systemInformation = string.Empty;
-
         public SystemInformationModule()
             : base("account/admin")
         {

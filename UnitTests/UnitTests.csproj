@@ -115,6 +115,8 @@
     <Compile Include="Models\Authentication\UserIdentityTests.cs" />
     <Compile Include="Models\Authentication\UserMapperTests.cs" />
     <Compile Include="Models\EncryptionTests.cs" />
+    <Compile Include="Models\Extensions\StreamExtensionsTests.cs" />
+    <Compile Include="Models\Extensions\StringExtensionsTests.cs" />
     <Compile Include="Models\RequireTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewFolderRootPathProvider.cs" />
@@ -123,9 +125,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\Extensions\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\App\App.csproj">
       <Project>{b4f9c525-5c56-440e-b4c2-972a33d7c8cd}</Project>
