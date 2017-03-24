@@ -1,6 +1,6 @@
 ﻿using Nancy;
 
-namespace App.Controllers.Account
+namespace App.Controllers.Account.User
 {
     public class UserModule : NancyModule
     {

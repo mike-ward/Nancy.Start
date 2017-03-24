@@ -1,4 +1,4 @@
-﻿using App.Controllers.Account;
+﻿using App.Controllers.Account.Admin;
 using Nancy;
 using Nancy.Security;
 

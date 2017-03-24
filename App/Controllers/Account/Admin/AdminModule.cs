@@ -5,7 +5,7 @@ using Nancy;
 using Nancy.ModelBinding;
 using Nancy.ViewEngines;
 
-namespace App.Controllers.Account
+namespace App.Controllers.Account.Admin
 {
     public class AdminModule : NancyModule
     {

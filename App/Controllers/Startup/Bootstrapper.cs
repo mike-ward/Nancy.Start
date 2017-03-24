@@ -64,7 +64,6 @@ namespace App.Controllers.Startup
                     .Distinct(new SystemInformationComponentEqualityComparer())
                     .OrderBy(c => c.Cardinality)
                     .ToArray();
-
             }
         }
     }

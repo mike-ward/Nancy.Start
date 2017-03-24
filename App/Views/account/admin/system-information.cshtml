@@ -4,6 +4,12 @@
 }
 
 <h1>System Information</h1>
+<h3>@DateTime.UtcNow.ToString("u")</h3>
+
+<div style="margin:.5rem 0">
+  <a class="pure-button" href="account/admin/download-system-information">Download</a>  
+</div>
+
 @foreach (var component in ViewBag.SystemInformationComponents)
 {
   <h2>@Html.Raw(component.Title())</h2>

@@ -171,8 +171,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\Account\AdminModule.cs" />
-    <Compile Include="Controllers\Account\UserModule.cs" />
+    <Compile Include="Controllers\Account\Admin\AdminModule.cs" />
+    <Compile Include="Controllers\Account\User\UserModule.cs" />
     <Compile Include="Controllers\Authentication\ActiveDirectoryAuthenticateModule.cs" />
     <Compile Include="Controllers\Authentication\FormsAuthenticationModule.cs" />
     <Compile Include="Controllers\Startup\NancyGzipCompression.cs" />
@@ -200,6 +200,9 @@
     <Compile Include="Models\Encryption.cs" />
     <Compile Include="Models\Extensions\ExceptionExtensions.cs" />
     <Compile Include="Models\Extensions\ModuleExtensions.cs" />
+    <Compile Include="Models\Extensions\ResponseExtensions.cs" />
+    <Compile Include="Models\Extensions\StreamExtensions.cs" />
+    <Compile Include="Models\Extensions\StringExtensions.cs" />
     <Compile Include="Models\IConfiguration.cs" />
     <Compile Include="Models\Account\Admin\SystemInformation\ISystemInformationComponent.cs" />
     <Compile Include="Models\Require.cs" />
@@ -246,7 +249,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\images\" />
-    <Folder Include="css\app\" />
     <Folder Include="js\app\models\" />
   </ItemGroup>
   <ItemGroup>
