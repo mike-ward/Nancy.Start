@@ -125,6 +125,7 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Diagnostics.Contracts" />
     <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.DynamicData" />
@@ -175,8 +176,10 @@
     <Compile Include="Controllers\Account\User\UserModule.cs" />
     <Compile Include="Controllers\Authentication\ActiveDirectoryAuthenticateModule.cs" />
     <Compile Include="Controllers\Authentication\FormsAuthenticationModule.cs" />
+    <Compile Include="Controllers\Startup\CultureEnforcer.cs" />
     <Compile Include="Controllers\Startup\NancyGzipCompression.cs" />
     <Compile Include="Controllers\Account\SystemInformationModule.cs" />
+    <Compile Include="Controllers\Startup\SessionCacheMemory.cs" />
     <Compile Include="Models\Account\Admin\AdminModel.cs" />
     <Compile Include="Models\Account\Admin\SystemInformation\ElmahSystemInformationComponent.cs" />
     <Compile Include="Models\Account\Admin\SystemInformation\SystemInformationComponentEqualityComparer.cs" />
@@ -214,6 +217,9 @@
     <Compile Include="Models\System\IPath.cs" />
     <Compile Include="Models\System\Monitor.cs" />
     <Compile Include="Models\System\Path.cs" />
+    <Compile Include="Models\Utilities\Debounce.cs" />
+    <Compile Include="Models\Utilities\Memoize.cs" />
+    <Compile Include="Models\Binders\StringBinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
