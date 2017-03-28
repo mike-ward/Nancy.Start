@@ -4,6 +4,7 @@ module App.Views.Account.Admin {
   import GridColumn = App.Components.GridColumn;
 
   class DashboardView {
+    private loading: boolean;
     private errorMessage: string;
     private gridOptions: App.Components.GridOptions;
 
@@ -19,7 +20,8 @@ module App.Views.Account.Admin {
           m('h3.error-text', this.errorMessage),
           m('div.admin-dashboard-buttons', [
             m('a.pure-button', { href: 'account/admin/add' }, 'Add User'),
-            m('a.pure-button', { href: 'account/admin/system-information' }, 'System Information')
+            m('a.pure-button', { href: 'account/admin/system-information' }, 'System Information'),
+            m(App.Components.loading, { style: { visibility: this.loading ? 'visible' : 'hidden' } })
           ]),
           m(App.Components.grid, { gridOptions: this.gridOptions })
         ]),
@@ -35,8 +37,11 @@ module App.Views.Account.Admin {
     `;
 
     private getAllUsers() {
+      this.loading = true;
+      m.redraw();
       m.request({ url: 'account/admin/allUsers', data: { r: Date.now() } })
         .then(users => this.gridOptions = this.createGridOptions(users))
+        .then(() => this.loading = false, this.loading = false)
         .catch(error => this.errorMessage = error.message);
     }
 
