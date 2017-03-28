@@ -220,7 +220,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="js\package.json" />
-    <Content Include="js\app\views\welcomeView.tst" />
+    <Content Include="js\app\views\indexView.tst" />
     <Content Include="js\app\views\homeView.tst" />
     <Content Include="js\app\views\account\user\loginView.tst" />
     <Content Include="js\app\components\pageFooter.tst" />
@@ -232,7 +232,7 @@
     <Content Include="js\app\services\Compare.tst" />
     <Content Include="js\app\components\navBar.tst" />
     <None Include="packages.config" />
-    <Content Include="Views\welcome.cshtml" />
+    <Content Include="Views\index.cshtml" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <Content Include="Views\home.cshtml" />
     <Content Include="Views\account\user\login.cshtml" />
@@ -251,6 +251,7 @@
   <ItemGroup>
     <Folder Include="Content\images\" />
     <Folder Include="js\app\models\" />
+    <Folder Include="Models\App\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="js\app\app.ts" />
@@ -267,7 +268,7 @@
     <TypeScriptCompile Include="js\app\views\account\admin\dashboardView.ts" />
     <TypeScriptCompile Include="js\app\views\account\user\loginView.ts" />
     <TypeScriptCompile Include="js\app\views\homeView.ts" />
-    <TypeScriptCompile Include="js\app\views\welcomeView.ts" />
+    <TypeScriptCompile Include="js\app\views\indexView.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

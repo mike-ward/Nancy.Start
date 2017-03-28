@@ -9,10 +9,10 @@ using Nancy.Testing;
 namespace UnitTests.Controllers
 {
     [TestClass]
-    public class WelcomeModuleTests
+    public class IndexModuleTests
     {
         [TestMethod]
-        public void WelcomePageShouldReturn200Ok()
+        public void IndexPageShouldReturn200Ok()
         {
             var browser = new Browser(with =>
             {

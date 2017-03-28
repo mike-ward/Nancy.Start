@@ -1,6 +1,6 @@
-﻿describe('welcomeView', () => {
+﻿describe('indexView', () => {
   it('should contain view tag', () => {
-    const vnode = App.Views.welcomeView.view();
+    const vnode = App.Views.indexView.view();
     expect(vnode.tag).toBe('view');
   });
 });

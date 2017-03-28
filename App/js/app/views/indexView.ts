@@ -1,15 +1,15 @@
 ﻿// ReSharper disable RedundantQualifier
 
 module App.Views {
-  class WelcomeView {
+  class IndexView {
     view() {
       return m('view', [
         m(App.Components.pageHeader),
-        m('h2', 'Welcome View'),
+        m('h2', 'Index View'),
         m(App.Components.pageFooter)
       ]);
     }
   }
 
-  export const welcomeView = new WelcomeView();
+  export const indexView = new IndexView();
 }

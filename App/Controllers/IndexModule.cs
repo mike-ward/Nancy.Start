@@ -7,7 +7,7 @@ namespace App.Controllers
     {
         public IndexModule(IModuleStaticWrappers moduleStaticWrappers)
         {
-            Get["/"] = parameters => View["welcome"];
+            Get["/"] = parameters => View["index"];
             Get["/logout"] = p => moduleStaticWrappers.LogoutAndRedirect(this, "~/");
         }
     }
