@@ -231,6 +231,7 @@
     <Content Include="js\app\services\Convert.tst" />
     <Content Include="js\app\services\Compare.tst" />
     <Content Include="js\app\components\navBar.tst" />
+    <Content Include="Models\App\ServerTemplate.tst" />
     <None Include="packages.config" />
     <Content Include="Views\index.cshtml" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
@@ -251,7 +252,6 @@
   <ItemGroup>
     <Folder Include="Content\images\" />
     <Folder Include="js\app\models\" />
-    <Folder Include="Models\App\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="js\app\app.ts" />
