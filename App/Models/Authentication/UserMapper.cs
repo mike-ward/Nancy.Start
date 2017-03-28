@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using App.Models.Utilities;
 using Nancy;
 using Nancy.Security;
 using Nancy.ViewEngines;

@@ -1,4 +1,4 @@
-﻿namespace App.Models
+﻿namespace App.Models.Utilities
 {
     public interface IConfiguration
     {

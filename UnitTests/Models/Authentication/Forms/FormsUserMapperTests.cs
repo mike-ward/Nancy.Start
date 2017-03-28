@@ -1,7 +1,7 @@
 ﻿using System;
-using App.Models;
 using App.Models.Authentication;
 using App.Models.Authentication.Forms;
+using App.Models.Utilities;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;

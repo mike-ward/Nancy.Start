@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace App.Models
+namespace App.Models.Utilities
 {
     public static class Require
     {

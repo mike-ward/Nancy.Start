@@ -1,5 +1,6 @@
 ﻿using App.Models;
 using App.Models.Authentication;
+using App.Models.Utilities;
 using Nancy;
 
 namespace App.Controllers.Authentication

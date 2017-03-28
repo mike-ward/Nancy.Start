@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using App.Models.Utilities;
 using Nancy.Security;
 
 namespace App.Models.Authentication

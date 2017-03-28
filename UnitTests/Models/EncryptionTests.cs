@@ -1,5 +1,5 @@
 ﻿using System;
-using App.Models;
+using App.Models.Utilities;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

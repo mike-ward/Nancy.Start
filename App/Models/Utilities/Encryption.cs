@@ -3,7 +3,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace App.Models
+namespace App.Models.Utilities
 {
     public static class Encryption
     {

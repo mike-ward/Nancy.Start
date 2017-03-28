@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using App.Models.Authentication.ActiveDirectory;
 
-namespace App.Models
+namespace App.Models.Utilities
 {
     public class Configuration : IConfiguration
     {
