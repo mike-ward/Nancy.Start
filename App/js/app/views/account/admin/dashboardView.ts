@@ -9,7 +9,7 @@ module App.Views.Account.Admin {
     private gridOptions: App.Components.GridOptions;
 
     oncreate() {
-      this.getAllUsers();
+      this.loadGrid();
     }
 
     view() {
@@ -36,13 +36,31 @@ module App.Views.Account.Admin {
       .admin-dashboard-buttons a { margin-right: 1em; }
     `;
 
+    private loadGrid() {
+      this.showLoadingIndicator();
+      this.getAllUsers()
+        .then(users => {
+          this.hideLoadingIndicator();
+          this.gridOptions = this.createGridOptions(users);
+        })
+        .catch(error => {
+          this.hideLoadingIndicator();
+          this.errorMessage = error.message;
+        });
+    }
+
     private getAllUsers() {
+       return m.request({ url: 'account/admin/allUsers', data: { r: Date.now() } });
+    }
+
+    private showLoadingIndicator() {
       this.loading = true;
       m.redraw();
-      m.request({ url: 'account/admin/allUsers', data: { r: Date.now() } })
-        .then(users => this.gridOptions = this.createGridOptions(users))
-        .then(() => this.loading = false, this.loading = false)
-        .catch(error => this.errorMessage = error.message);
+    }
+
+    private hideLoadingIndicator() {
+      this.loading = false;
+      m.redraw();
     }
 
     private createGridOptions(allUsers: any[]) {
