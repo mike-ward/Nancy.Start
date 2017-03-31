@@ -178,6 +178,8 @@
     <Compile Include="Controllers\Account\SystemInformationModule.cs" />
     <Compile Include="Controllers\Startup\SessionCacheMemory.cs" />
     <Compile Include="Models\Account\Admin\AdminModel.cs" />
+    <Compile Include="Models\SystemInformation\AppSettingsSystemInformationComponent.cs" />
+    <Compile Include="Models\SystemInformation\ConnectionStringsSystemInformationComponent.cs" />
     <Compile Include="Models\SystemInformation\ElmahSystemInformationComponent.cs" />
     <Compile Include="Models\SystemInformation\NancySystemInformationComponent.cs" />
     <Compile Include="Models\SystemInformation\SystemInformationComponentEqualityComparer.cs" />
