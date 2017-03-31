@@ -196,6 +196,7 @@
     <Compile Include="Models\Authentication\IUserRepository.cs" />
     <Compile Include="Models\Authentication\UserIdentity.cs" />
     <Compile Include="Models\Authentication\UserMapper.cs" />
+    <Compile Include="Models\SystemInformation\WebConfigSystemInformationComponent.cs" />
     <Compile Include="Models\Utilities\Configuration.cs" />
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\Utilities\Encryption.cs" />
