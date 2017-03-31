@@ -4,7 +4,7 @@ using Elmah;
 using Microsoft.Win32;
 using Version = App.Models.System.Version;
 
-namespace App.Models.Account.Admin.SystemInformation
+namespace App.Models.SystemInformation
 {
     public class VersionSystemInformationComponent : ISystemInformationComponent
     {

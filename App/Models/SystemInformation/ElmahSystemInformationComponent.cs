@@ -5,7 +5,7 @@ using System.Xml;
 using Elmah;
 using Nancy;
 
-namespace App.Models.Account.Admin.SystemInformation
+namespace App.Models.SystemInformation
 {
     public class ElmahSystemInformationComponent : ISystemInformationComponent
     {

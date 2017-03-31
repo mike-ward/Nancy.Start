@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace App.Models.Account.Admin.SystemInformation
+namespace App.Models.SystemInformation
 {
     public class SystemInformationComponentEqualityComparer : IEqualityComparer<ISystemInformationComponent>
     {

@@ -1,4 +1,4 @@
-namespace App.Models.Account.Admin.SystemInformation
+namespace App.Models.SystemInformation
 {
     /// <summary>
     ///  Add components to the System Information page by implementing this interface.

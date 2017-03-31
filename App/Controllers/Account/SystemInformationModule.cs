@@ -2,8 +2,8 @@
 using System.IO;
 using System.Linq;
 using System.Text;
-using App.Models.Account.Admin.SystemInformation;
 using App.Models.Extensions;
+using App.Models.SystemInformation;
 using Nancy;
 
 namespace App.Controllers.Account

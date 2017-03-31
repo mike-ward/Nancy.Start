@@ -1,10 +1,9 @@
 using System;
 using System.Linq;
-using App.Models;
-using App.Models.Account.Admin.SystemInformation;
 using App.Models.Authentication;
 using App.Models.Authentication.ActiveDirectory;
 using App.Models.Authentication.Forms;
+using App.Models.SystemInformation;
 using App.Models.Utilities;
 using Nancy;
 using Nancy.Authentication.Forms;
