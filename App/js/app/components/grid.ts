@@ -1,11 +1,10 @@
 ﻿module App.Components {
   class Grid {
     view(vnode) {
-      const styles = vnode.attrs.style || {};
       const gridOptions = vnode.attrs.gridOptions as GridOptions;
 
       return gridOptions
-        ? m('div.grid', { style: styles }, [
+        ? m('div.grid', vnode.attrs, [
           m('table.pure-table.pure-table-bordered', [
             this.head(gridOptions, vnode.state),
             this.body(gridOptions, vnode.state)
@@ -50,9 +49,9 @@
       const value = this.columnValue(row, column);
       return m('td',
         {
-          'class': column.cellClick ? 'grid-click-action' : '',
-          title: column.cellTooltip ? column.cellTooltip(value) : '',
-          onclick: () => column.cellClick ? column.cellClick(this.columnValue(row, column)) : ''
+          'class': column.cellClick ? 'grid-click-action' : undefined,
+          title: column.cellTooltip ? column.cellTooltip(value) : undefined,
+          onclick: () => column.cellClick ? column.cellClick(this.columnValue(row, column)) : undefined
         },
         column.renderer ? column.renderer(value) : value);
     }
