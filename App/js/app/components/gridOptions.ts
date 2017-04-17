@@ -12,7 +12,7 @@
     contentIfNull?: string;
     renderer?: (v: any) => string;
     allowSort?: boolean;
-    comparer?: (a, b) => number;
+    comparer?: (a:any, b:any) => number;
     cellClick?: (value: any) => void;
     cellTooltip?: (value: any) => void;
   }

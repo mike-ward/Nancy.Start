@@ -1,9 +1,9 @@
 ﻿module App.Components {
   class NavBar {
-    view(vnode) {
+    view(vnode: any) {
       const options = vnode.attrs.options;
       return options
-        ? m('.nav-bar', options.items.map(item => m('a', { href: item.link }, item.name)))
+        ? m('.nav-bar', options.items.map((item: any) => m('a', { href: item.link }, item.name)))
         : null;
     }
 

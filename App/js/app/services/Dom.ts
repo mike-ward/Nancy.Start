@@ -1,11 +1,11 @@
 ﻿module App.Services {
   export class Dom {
-    static loadCss(obj) {
+    static loadCss(obj: any) {
       const css = this.findAllCss(obj, []);
       Dom.addCssToHead(css.join('\n'));
     }
 
-    static findAllCss(obj, css) {
+    static findAllCss(obj: any, css: string[]) {
       const keys = Object.keys(obj);
 
       keys.forEach(function (key) {

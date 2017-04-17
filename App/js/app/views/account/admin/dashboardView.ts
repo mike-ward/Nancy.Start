@@ -39,11 +39,11 @@ module App.Views.Account.Admin {
     private loadGrid() {
       this.showLoadingIndicator();
       this.getAllUsers()
-        .then(users => {
+        .then((users: any) => {
           this.hideLoadingIndicator();
           this.gridOptions = this.createGridOptions(users);
         })
-        .catch(error => {
+        .catch((error: any) => {
           this.hideLoadingIndicator();
           this.errorMessage = error.message;
         });

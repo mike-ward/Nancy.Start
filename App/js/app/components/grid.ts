@@ -1,6 +1,6 @@
 ﻿module App.Components {
   class Grid {
-    view(vnode) {
+    view(vnode: any) {
       const gridOptions = vnode.attrs.gridOptions as GridOptions;
 
       return gridOptions
@@ -56,7 +56,7 @@
         column.renderer ? column.renderer(value) : value);
     }
 
-    private columnValue(row, column: GridColumn) {
+    private columnValue(row: any, column: GridColumn) {
       const value = row[column.id];
       return value === null || value === undefined ? column.contentIfNull : value;
     }
@@ -80,7 +80,7 @@
         ? column.comparer
         : Services.Compare.compareAny;
 
-      data.sort((l, r) => {
+      data.sort((l:any, r:any) => {
         const result = comparer(l[columnId], r[columnId]);
         return state.sortDirection ? result : -result;
       });

@@ -1,6 +1,6 @@
 ﻿module App.Components {
   class Loading {
-    view(vnode) {
+    view(vnode:any) {
       return m('span', vnode.attrs, [
         m('img',
           {

@@ -3,7 +3,7 @@ if (!-[1,]) alert('Internet Explorer 7 and 8 are not supported');
 
 // Mithril declarations
 declare var m: any;
-const mountView = view => m.mount(document.getElementById('content'), view);
+const mountView = (view: any) => m.mount(document.getElementById('content'), view);
 
 module App {
   class Styles {

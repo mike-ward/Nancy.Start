@@ -1,6 +1,6 @@
 ﻿module App.Services {
   export class Compare {
-    static compareAny(a, b): number {
+    static compareAny(a: any, b: any): number {
       if (a === b) return 0;
 
       // NaN, and only NaN, will compare unequal to itself,

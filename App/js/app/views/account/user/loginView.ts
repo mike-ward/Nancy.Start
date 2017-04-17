@@ -45,5 +45,5 @@ module App.Views.Account.User {
     }`;
   }
 
-  export const loginView = (authenticationUrl, returnUrl, msg) => new LoginView(authenticationUrl, returnUrl, msg);
+  export const loginView = (authenticationUrl: string, returnUrl: string, msg: string) => new LoginView(authenticationUrl, returnUrl, msg);
 }
