@@ -30,7 +30,8 @@ namespace App.Models.Authentication.ActiveDirectory
                 var userAndClaims = AuthenticateAndAuthorizeUser(HttpContext.Current.ApplicationInstance.User, configuration);
                 var names = userAndClaims.Item1.Split(',').Reverse().ToArray();
                 var userName = string.Join(" ", names);
-                var guid = userMapper.AddUser(userName, names[0] ?? "", names[1] ?? "", userAndClaims.Item2);
+                if (names.Length < 2) names = new[] { "", userName };
+                var guid = userMapper.AddUser(userName, names[0], names[1], userAndClaims.Item2);
                 return moduleStaticWrappers.LoginAndRedirect(nancyModule, guid, null, ModuleStaticWrappers.DefaultFallbackRedirectUrl);
             }
             catch (Exception ex)
@@ -48,7 +49,7 @@ namespace App.Models.Authentication.ActiveDirectory
             var claims = new string[0];
             if (adminRoles.Any(user.IsInRole))
             {
-                claims = new[] {"admin"};
+                claims = new[] { "admin" };
             }
             else if (userRoles.Any(user.IsInRole) == false)
             {
@@ -57,8 +58,17 @@ namespace App.Models.Authentication.ActiveDirectory
                     $"{string.Join("<br>", adminRoles.Concat(userRoles))}");
             }
             var name = user.Identity.Name.Replace('\\', '/');
-            var activeDirectoryEntry = new DirectoryEntry("WinNT://" + name);
-            var fullName = activeDirectoryEntry.Properties["FullName"].Value.ToString();
+            string fullName;
+            try
+            {
+                var activeDirectoryEntry = new DirectoryEntry("WinNT://" + name);
+                fullName = activeDirectoryEntry.Properties["FullName"].Value.ToString();
+
+            }
+            catch (Exception)
+            {
+                fullName = name;
+            }
             return new Tuple<string, string[]>(fullName, claims);
         }
     }
