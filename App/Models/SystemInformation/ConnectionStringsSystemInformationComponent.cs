@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Linq;
 using Nancy.Helpers;
 
 namespace App.Models.SystemInformation
@@ -18,12 +19,11 @@ namespace App.Models.SystemInformation
             return $"<pre>{GetData()}</pre>";
         }
 
-        private string GetData()
+        private static string GetData()
         {
-            var connectionStrings = string.Empty;
-
-            foreach (ConnectionStringSettings cs in  ConfigurationManager.ConnectionStrings)
-                connectionStrings += $"{cs.Name,-25}{cs.ConnectionString}{Environment.NewLine}";
+            var connectionStrings = ConfigurationManager.ConnectionStrings
+                .Cast<ConnectionStringSettings>()
+                .Aggregate(string.Empty, (current, cs) => current + $"{cs.Name,-25}{cs.ConnectionString}{Environment.NewLine}");
 
             return HttpUtility.HtmlEncode(connectionStrings);
         }

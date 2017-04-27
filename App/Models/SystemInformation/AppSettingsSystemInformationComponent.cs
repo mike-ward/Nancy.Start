@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Linq;
 
 namespace App.Models.SystemInformation
 {
@@ -17,14 +18,11 @@ namespace App.Models.SystemInformation
             return $"<pre>{GetData()}</pre>";
         }
 
-        private string GetData()
+        private static string GetData()
         {
-            var appSettings = string.Empty;
-
-            foreach (var key in  ConfigurationManager.AppSettings.AllKeys)
-                appSettings += $"{key,-25}{ConfigurationManager.AppSettings[key]}{Environment.NewLine}";
-
-            return appSettings;
+            return ConfigurationManager.AppSettings
+                .AllKeys
+                .Aggregate(string.Empty, (current, key) => current + $"{key,-25}{ConfigurationManager.AppSettings[key]}{Environment.NewLine}");
         }
     }
 }

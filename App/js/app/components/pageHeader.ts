@@ -15,7 +15,7 @@
         { name: 'Item2', link: 'item2' },
         { name: 'Item3', link: 'item3' }
       ]
-    };
+    }
 
     // language=CSS
     css = `.header{clear:both;text-align:center;}`;
