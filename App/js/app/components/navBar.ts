@@ -1,14 +1,13 @@
 ﻿module App.Components {
-  class NavBar {
-    view(vnode: any) {
-      const options = vnode.attrs.options;
-      return options
-        ? m('.nav-bar', options.items.map((item: any) => m('a', { href: item.link }, item.name)))
-        : null;
-    }
+  function view(vnode: any) {
+    const options = vnode.attrs.options;
+    return options
+      ? m('.nav-bar', options.items.map((item: any) => m('a', { href: item.link }, item.name)))
+      : null;
+  }
 
-    // language=css
-    css = `
+  // language=css
+  const css = `
       .nav-bar {
         margin: .25em auto;
       }
@@ -20,7 +19,9 @@
       .nav-bar a:hover {
         border-bottom: solid 1px;
       }`;
-  }
 
-  export const navBar = new NavBar();
+  export const navBar = {
+    view: view,
+    css: css
+  }
 }
