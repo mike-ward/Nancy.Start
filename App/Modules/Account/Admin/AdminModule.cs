@@ -13,7 +13,7 @@ namespace App.Controllers.Account.Admin
         public const string AdminDashboardRoute = "account/admin/dashboard";
         public const string AdminUserActionRoute = "account/admin/user";
 
-        public const string AdminUserAddRoute = "account/admin/add";
+        public const string AdminUserAddRoute = "account/admin/addUser";
         public const string AdminUserUpdateRoute = "account/admin/update";
         public const string AdminUserDeleteRoute = "account/admin/delete";
 

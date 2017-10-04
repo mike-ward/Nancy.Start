@@ -93,7 +93,7 @@ module App.Views.Account.Admin {
         m('h2', 'Administrator Dashboard'),
         m('h3.error-text', errorMessage),
         m('div.admin-dashboard-buttons', [
-          m('a.pure-button', { href: 'account/admin/add' }, 'Add User'),
+          m('a.pure-button', { href: 'account/admin/addUser' }, 'Add User'),
           m('a.pure-button', { href: 'account/admin/system-information' }, 'System Information'),
           m(App.Components.loading, { style: { visibility: loading ? 'visible' : 'hidden' } })
         ]),

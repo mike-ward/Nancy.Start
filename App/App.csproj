@@ -172,14 +172,14 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\Account\Admin\AdminModule.cs" />
-    <Compile Include="Controllers\Account\User\UserModule.cs" />
-    <Compile Include="Controllers\Authentication\ActiveDirectoryAuthenticateModule.cs" />
-    <Compile Include="Controllers\Authentication\FormsAuthenticationModule.cs" />
-    <Compile Include="Controllers\Startup\CultureEnforcer.cs" />
-    <Compile Include="Controllers\Startup\NancyGzipCompression.cs" />
-    <Compile Include="Controllers\Account\SystemInformationModule.cs" />
-    <Compile Include="Controllers\Startup\SessionCacheMemory.cs" />
+    <Compile Include="Modules\Account\Admin\AdminModule.cs" />
+    <Compile Include="Modules\Account\User\UserModule.cs" />
+    <Compile Include="Modules\Authentication\ActiveDirectoryAuthenticateModule.cs" />
+    <Compile Include="Modules\Authentication\FormsAuthenticationModule.cs" />
+    <Compile Include="Modules\Startup\CultureEnforcer.cs" />
+    <Compile Include="Modules\Startup\NancyGzipCompression.cs" />
+    <Compile Include="Modules\Account\SystemInformationModule.cs" />
+    <Compile Include="Modules\Startup\SessionCacheMemory.cs" />
     <Compile Include="Models\Account\Admin\AdminModel.cs" />
     <Compile Include="Models\SystemInformation\AppSettingsSystemInformationComponent.cs" />
     <Compile Include="Models\SystemInformation\ConnectionStringsSystemInformationComponent.cs" />
@@ -190,9 +190,9 @@
     <Compile Include="Models\Authentication\IUserMapper.cs" />
     <Compile Include="Models\Authentication\AuthenticationRedirectUrl.cs" />
     <Compile Include="Models\Authentication\UserCredentials.cs" />
-    <Compile Include="Controllers\Startup\Bootstrapper.cs" />
-    <Compile Include="Controllers\HomeModule.cs" />
-    <Compile Include="Controllers\IndexModule.cs" />
+    <Compile Include="Modules\Startup\Bootstrapper.cs" />
+    <Compile Include="Modules\HomeModule.cs" />
+    <Compile Include="Modules\IndexModule.cs" />
     <Compile Include="Models\Authentication\ActiveDirectory\ActiveDirectoryUserMapper.cs" />
     <Compile Include="Models\Authentication\ActiveDirectory\ActiveDirectoryUserRepository.cs" />
     <Compile Include="Models\Authentication\Forms\FormsUserMapper.cs" />
@@ -245,7 +245,7 @@
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <Content Include="Views\home.cshtml" />
     <Content Include="Views\account\user\login.cshtml" />
-    <Content Include="Views\account\admin\add.cshtml" />
+    <Content Include="Views\account\admin\addUser.cshtml" />
     <Content Include="Views\account\admin\dashboard.cshtml" />
     <None Include="Views\master.cshtml" />
     <Content Include="Views\_current-user.cshtml" />
