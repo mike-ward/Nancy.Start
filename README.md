@@ -41,3 +41,11 @@ To login:
 
 User: admin@admin.com  
 Password: admin
+
+### Get Started
+
+- nuget restore
+- cd App/js
+- npm insstall
+- Open in Visual Studio
+- Press `F5`
