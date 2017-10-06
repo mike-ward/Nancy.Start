@@ -46,6 +46,6 @@ Password: admin
 
 - nuget restore
 - cd App/js
-- npm insstall
+- npm install
 - Open in Visual Studio
 - Press `F5`
