@@ -7,6 +7,12 @@ module App.Services {
       return date;
     }
 
+    static dateToLocaleString(v: string): string {
+      if (!v) return 'null';
+      const date = new Date(v).toLocaleString();
+      return date;
+    }
+
     static camelIdentifierToTitle(v: string): string {
       const split = v.split(/(?=[A-Z])/);
       const join = split.join(' ');

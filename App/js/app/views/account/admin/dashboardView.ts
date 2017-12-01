@@ -60,7 +60,7 @@ module App.Views.Account.Admin {
         allowSort: true,
         hide: hideColumns.some(hc => hc === key),
         renderer: dateColumns.some(dc => dc === key)
-          ? Services.Convert.dateToISO
+          ? Services.Convert.dateToLocaleString
           : null
       }));
 
