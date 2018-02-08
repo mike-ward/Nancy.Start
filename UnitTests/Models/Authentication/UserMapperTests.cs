@@ -30,7 +30,7 @@ namespace UnitTests.Models.Authentication
         {
             var userMapper = new UserMapper();
             Action action = () => userMapper.Authenticate(null, null, null, null, null, null, null);
-            action.ShouldThrow<NotImplementedException>();
+            action.Should().Throw<NotImplementedException>();
         }
     }
 }

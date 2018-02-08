@@ -19,14 +19,14 @@ namespace UnitTests.Models
         public void ComputeHashWithNullOrEmptyTextPukes()
         {
             Action action = () => Encryption.ComputeHash(null, Guid.Empty).Should().Be("59db07466acb38723d5f09147560c2d1");
-            action.ShouldThrow<ArgumentException>().WithMessage("*text");
+            action.Should().Throw<ArgumentException>().WithMessage("*text");
         }
 
         [TestMethod]
         public void ComputeHashWithInvalidSaltPukes()
         {
             Action action = () => Encryption.ComputeHash("pukemenot", Guid.Empty).Should().Be("59db07466acb38723d5f09147560c2d1");
-            action.ShouldThrow<ArgumentException>().WithMessage("*salt*");
+            action.Should().Throw<ArgumentException>().WithMessage("*salt*");
         }
     }
 }

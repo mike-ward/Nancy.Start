@@ -68,7 +68,7 @@ namespace UnitTests.Models.Authentication.Forms
             var user = _userRepository.User(new Guid("8e2b3a59-b210-4e91-8a72-8e7179c61e20"));
             user.UserName.Should().Be("admin@admin.com");
             user.Password.Should().Be("ec205fc189684fe62f687eac68c8bde9");
-            user.Claims.ShouldBeEquivalentTo(new[] {"admin"});
+            user.Claims.Should().BeEquivalentTo(new[] {"admin"});
             user.FirstName.Should().Be("my");
             user.LastName.Should().Be("admin");
         }

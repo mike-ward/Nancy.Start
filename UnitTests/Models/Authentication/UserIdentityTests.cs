@@ -13,22 +13,22 @@ namespace UnitTests.Models.Authentication
         public void UserIdentityConstructorParameterTests()
         {
             Action action = () => new UserIdentity(null, null, null, null, null);
-            action.ShouldThrow<ArgumentException>().WithMessage("*userName");
+            action.Should().Throw<ArgumentException>().WithMessage("*userName");
 
             action = () => new UserIdentity("name", null, null, null, null);
-            action.ShouldThrow<ArgumentException>().WithMessage("*password");
+            action.Should().Throw<ArgumentException>().WithMessage("*password");
 
             action = () => new UserIdentity("name", "password", null, null, null);
-            action.ShouldThrow<ArgumentException>().WithMessage("*claims");
+            action.Should().Throw<ArgumentException>().WithMessage("*claims");
 
             action = () => new UserIdentity("name", "password", new string[0], null, null);
-            action.ShouldThrow<ArgumentException>().WithMessage("*firstName");
+            action.Should().Throw<ArgumentException>().WithMessage("*firstName");
 
             action = () => new UserIdentity("name", "password", new string[0], "firstName", null);
-            action.ShouldThrow<ArgumentException>().WithMessage("*lastName");
+            action.Should().Throw<ArgumentException>().WithMessage("*lastName");
 
             action = () => new UserIdentity("name", "password", new string[0], "firstName", "lastName");
-            action.ShouldNotThrow();
+            action.Should().NotThrow();
         }
 
         [TestMethod]
@@ -55,13 +55,13 @@ namespace UnitTests.Models.Authentication
         public void HashPasswordParameterTests()
         {
             Action action = () => Encryption.ComputeHash(null, Guid.Empty);
-            action.ShouldThrow<ArgumentException>().WithMessage("*text");
+            action.Should().Throw<ArgumentException>().WithMessage("*text");
 
             action = () => Encryption.ComputeHash("password", Guid.Empty);
-            action.ShouldThrow<ArgumentException>().WithMessage("salt is not a valid GUID");
+            action.Should().Throw<ArgumentException>().WithMessage("salt is not a valid GUID");
 
             action = () => Encryption.ComputeHash("password", Guid.NewGuid());
-            action.ShouldNotThrow();
+            action.Should().NotThrow();
         }
 
         [TestMethod]
