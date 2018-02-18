@@ -29,7 +29,7 @@ module App.Views.Account.Admin {
   }
 
   function createGridOptions(allUsers: any[]) {
-    const gridOptions = new App.Components.GridOptions();
+    const gridOptions = {} as Components.GridOptions;
     if (allUsers.length <= 0) return gridOptions;
 
     const hideColumns = ['id', 'password'];

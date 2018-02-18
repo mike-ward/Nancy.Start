@@ -1,4 +1,5 @@
 ﻿module App.Components {
+  // language=CSS
   const css = `.header{clear:both;text-align:center;}`;
 
   const navbarOptions = {
@@ -18,8 +19,6 @@
         m('hr')
       ]);
   }
-
-  // language=CSS
 
   export const pageHeader = {
     view: view,

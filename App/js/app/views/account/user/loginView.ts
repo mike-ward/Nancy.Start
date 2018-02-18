@@ -1,22 +1,17 @@
 ﻿// ReSharper disable RedundantQualifier
 
 module App.Views.Account.User {
-  class LoginView {
-    constructor(
-      private readonly authenticationUrl: string,
-      private readonly returnUrl: string,
-      private readonly errorMessage: string) {
-    }
+  function loginViewFactory(authenticationUrl: string, returnUrl: string, errorMessage: string) {
 
-    view() {
+    function view() {
       return m('view', [
         m(App.Components.pageHeader),
 
         m('div.login-form', [
           m('h2', 'Login'),
-          m('h2.error-text', this.errorMessage),
+          m('h2.error-text', errorMessage),
 
-          m(`form.pure-form.pure-form-stacked[action="${this.authenticationUrl}?returnUrl=${this.returnUrl}"][method="POST"])`, [
+          m(`form.pure-form.pure-form-stacked[action="${authenticationUrl}?returnUrl=${returnUrl}"][method="POST"])`, [
 
             m('div.pure-control-group', [
               m('label[for="name"]', 'Email'),
@@ -40,10 +35,12 @@ module App.Views.Account.User {
     }
 
     // language=CSS
-    css = `.login-form {
+    const css = `.login-form {
       margin-left: 5rem;
     }`;
+
+    return { view: view, css: css }
   }
 
-  export const loginView = (authenticationUrl: string, returnUrl: string, msg: string) => new LoginView(authenticationUrl, returnUrl, msg);
+  export const loginView = loginViewFactory;
 }

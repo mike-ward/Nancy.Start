@@ -1,10 +1,10 @@
 ﻿module App.Components {
-  export class GridOptions {
-    columns: GridColumn[] = [];
-    data: {}[] = [];
+  export type GridOptions = {
+    columns: GridColumn[];
+    data: {}[];
   }
 
-  export class GridColumn {
+  export type GridColumn = {
     id: string;
     title: string;
     tooltip?: string;
