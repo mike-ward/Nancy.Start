@@ -2,8 +2,7 @@
 
   function head(gridOptions: GridOptions, state: any) {
     const thead = m('thead', [
-      m('tr', gridOptions.columns
-        .filter(c => !c.hide)
+      m('tr', visibleColumns(gridOptions.columns)
         .map(column => columnHead(column, state))
       )
     ]);
@@ -12,12 +11,16 @@
 
   function body(gridOptions: GridOptions, state: any) {
     const data = sortByColumn(gridOptions, state);
-    const columns = gridOptions.columns.filter(c => !c.hide);
+    const columns = visibleColumns(gridOptions.columns);
     const tbody = m('tbody', [
       data.map(row => m('tr',
         columns.map(column => renderCell(row, column))))
     ]);
     return tbody;
+  }
+
+  function visibleColumns(columns: GridColumn[]) {
+    return columns.filter(c => !c.hide);
   }
 
   function columnHead(column: GridColumn, state: any) {
@@ -91,15 +94,16 @@
 
   function view(vnode: any) {
     const gridOptions = vnode.attrs.gridOptions as GridOptions;
+    if (!gridOptions) return null;
 
-    return gridOptions
-      ? m('div.grid', vnode.attrs, [
-        m('table.pure-table.pure-table-bordered', [
-          head(gridOptions, vnode.state),
-          body(gridOptions, vnode.state)
-        ])
+    const vdom = m('div.grid', vnode.attrs, [
+      m('table.pure-table.pure-table-bordered', [
+        head(gridOptions, vnode.state),
+        body(gridOptions, vnode.state)
       ])
-      : null;
+    ]);
+
+    return vdom;
   }
 
   // language=CSS
